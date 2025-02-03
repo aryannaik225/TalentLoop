@@ -1,9 +1,10 @@
-import Image from "next/image";
+import LoginButton from "../components/LoginButton";
 
 export default function Home() {
   return (
     <div>
-      Home
+      <h1>Welcome to TalentLoop</h1>
+      <LoginButton />
     </div>
   );
 }
