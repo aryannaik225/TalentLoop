@@ -122,3 +122,7 @@ body {
   font-weight: 900;
   font-style: italic;
 }
+
+.authen-bg {
+  background: linear-gradient(90deg, #BEFBE0 0%, #BEFBE0 50%, #FFF 50%, #FFF 100%);
+}
