@@ -1,8 +1,9 @@
+import Navbar from "@/components/authentication-page/Navbar";
+
 export default function Home () {
   return (
     <div>
-      <h1>Welcome to TalentLoop</h1>
-      <LoginButton />
+      <Navbar />
     </div>
   );
 }
