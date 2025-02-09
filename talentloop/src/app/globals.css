@@ -126,3 +126,9 @@ body {
 .authen-bg {
   background: linear-gradient(90deg, #BEFBE0 0%, #BEFBE0 50%, #FFF 50%, #FFF 100%);
 }
+
+@media (max-width: 767px) {
+  .authen-bg {
+    background: linear-gradient(180deg, #BEFBE0 0%, #BEFBE0 50%, #FFF 50%, #FFF 100%);
+  }
+}

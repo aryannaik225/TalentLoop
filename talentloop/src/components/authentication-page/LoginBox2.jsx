@@ -40,22 +40,22 @@ const LoginBox2 = () => {
   return (
     <div className="w-full h-full flex justify-center items-center p-4 sm:p-6 md:p-8">
       <div className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
-        <div className="w-20 sm:w-24 py-1 flex justify-center items-center bg-[#46F1A6] rounded-sm border border-black text-white">
+        <div className="w-20 sm:w-28 py-1 flex justify-center items-center bg-[#46F1A6] rounded-sm border border-black text-white">
           <span className="poppins-semibold text-[10px] sm:text-xs">Job-Seekers</span>
         </div>
 
         <div className="mt-2 sm:mt-4 flex flex-col items-center">
-          <span className="poppins-semibold text-xl sm:text-2xl md:text-3xl">For Job Seekers & Freelancers</span>
-          <span className="max-w-xs sm:max-w-sm md:max-w-md text-center poppins-regular text-xs sm:text-sm">
+          <span className="poppins-semibold text-xl lg:text-2xl xl:text-3xl text-nowrap">For Job Seekers & Freelancers</span>
+          <span className="max-w-xs sm:max-w-sm md:max-w-md text-center poppins-regular text-[10px] lg:text-xs xl:text-sm">
             Your next opportunity is just a click away. Apply for jobs, showcase your skills, and get hired!
           </span>
         </div>
 
         <div className="mt-6 sm:mt-9 px-6 sm:px-8 py-3 bg-white rounded-xl border-2 border-black flex flex-col items-center gap-4 sm:gap-6">
-          <div className='flex gap-2 sm:gap-4 items-center'>
+          <div className='flex gap-2 lg:gap-4 items-center'>
             <div className='w-16 sm:w-20 h-[1px] bg-[#46F1A6]'/>
             <Image src="/authentication-page/login-star-pattern.svg" alt="star" width={4} height={4}/>
-            <span className='poppins-medium text-sm sm:text-base'>{isSignUp ? "Sign-Up" : "Login"}</span>
+            <span className='poppins-medium text-sm sm:text-base text-nowrap'>{isSignUp ? "Sign-Up" : "Login"}</span>
             <Image src="/authentication-page/login-star-pattern.svg" alt="star" width={4} height={4}/>
             <div className='w-16 sm:w-20 h-[1px] bg-[#46F1A6]'/>
           </div>
@@ -158,9 +158,9 @@ const LoginBox2 = () => {
         </div>
           {/* Toggle Login/Signup */}
           <div className="flex flex-col items-center mt-4">
-            <span className="text-black text-xs sm:text-sm poppins-regular">{isSignUp ? "Already a member of TalentLoop?" : "New to TalentLoop? Sign up & find your dream job!"}</span>
+            <span className="text-black text-xs lg:text-sm poppins-regular text-center">{isSignUp ? "Already a member of TalentLoop?" : "New to TalentLoop? Sign up & find your dream job!"}</span>
             <button
-              className="text-xs sm:text-sm poppins-medium text-black"
+              className="text-xs lg:text-sm poppins-medium text-black"
               onClick={() => setIsSignUp(!isSignUp)}
             >
               {isSignUp ? "Login Now" : "Sign-up Now"}
