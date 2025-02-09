@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useAuth } from "@/context/AuthContext"; // Import authentication context
 import { useRouter } from "next/navigation";
 
-const LoginBox = () => {
+const LoginBox2 = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
@@ -36,17 +36,18 @@ const LoginBox = () => {
     }
   };
 
+
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="flex flex-col items-center">
         <div className="w-24 py-1 flex justify-center items-center bg-[#46F1A6] rounded-sm border-[0.5px] border-black text-white">
-          <span className="poppins-semibold text-[10px]">Business</span>
+          <span className="poppins-semibold text-[10px]">Job-Seekers</span>
         </div>
 
         <div className="mt-[6px] flex flex-col -gap-[1px] items-center">
-          <span className="poppins-semibold text-3xl">For Recruiters</span>
+          <span className="poppins-semibold text-3xl">For Job Seekers & Freelancers</span>
           <span className="max-w-[443px] poppins-regular text-xs text-center">
-            Find the best talent effortlessly. Post jobs, manage applications, and connect with top candidates today!
+            Your next opportunity is just a click away. Apply for jobs, showcase your skills, and get hired!
           </span>
         </div>
 
@@ -136,7 +137,7 @@ const LoginBox = () => {
               type="submit"
               className="w-full bg-[#46F1A6] py-2 poppins-semibold text-[10px] text-white rounded-md hover:bg-[#3bc68a] transition-colors duration-300 ease-out"
             >
-              {isSignUp ? "Signup" : "Login"} as Recruiter
+              {isSignUp ? "Signup" : "Login"} as Job-Seeker
             </button>
           </form>
 
@@ -157,7 +158,7 @@ const LoginBox = () => {
         </div>
           {/* Toggle Login/Signup */}
           <div className="flex flex-col items-center mt-2">
-            <span className="text-black text-xs poppins-regular">{isSignUp ? "Already a member of TalentLoop?" : "New to TalentLoop? Post your first job today!"}</span>
+            <span className="text-black text-xs poppins-regular">{isSignUp ? "Already a member of TalentLoop?" : "New to TalentLoop? Sign up & find your dream job!"}</span>
             <button
               className="text-xs poppins-medium text-black"
               onClick={() => setIsSignUp(!isSignUp)}
@@ -167,7 +168,7 @@ const LoginBox = () => {
           </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginBox;
+export default LoginBox2

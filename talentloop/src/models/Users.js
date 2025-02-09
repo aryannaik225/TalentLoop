@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     role: { type: String, enum: ["job-seeker", "recruiter"], required: true },
-    resume: { type: String }, // Link to uploaded resume
+    resumeLink: { type: String }, // Link to uploaded resume
     skills: { type: [String], default: [] }, // Skills for job-seekers
     company: { type: String }, // Only for recruiters
     jobPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }], // Jobs posted by recruiters
