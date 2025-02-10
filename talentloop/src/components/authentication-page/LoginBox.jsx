@@ -10,7 +10,7 @@ const LoginBox = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn, signUp, googleSignIn } = useAuth();
+  const { signIn, signUp, googleSignIn, resetPassword } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -35,6 +35,16 @@ const LoginBox = () => {
       alert(error.message);
     }
   };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      alert("Please enter your email address!");
+      return
+    }
+    await resetPassword(email);
+  }
+
+
 
   return (
     <div className="w-full h-full flex justify-center items-center p-4 sm:p-6 md:p-8">
@@ -77,7 +87,7 @@ const LoginBox = () => {
                   <Image src={showPassword ? "/authentication-page/eye-open-icon.svg" : "/authentication-page/eye-close-icon.svg"} alt="eye" width={16} height={16} />
                 </button>
               </div>
-              {!isSignUp && <button className="text-[10px] poppins-medium self-end">Forgot Password?</button>}
+              {!isSignUp && <button onClick={handleForgotPassword} className="text-[10px] poppins-medium self-end">Forgot Password?</button>}
             </div>
 
             {isSignUp && (

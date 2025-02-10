@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, googleProvider } from "@/utils/firebaseConfig";
-import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
 
 const AuthContext = createContext();
 
@@ -35,8 +35,17 @@ export const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const resetPassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      return "Password reset link sent to your email!";
+    } catch (error) {
+      return (error.message);
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, signUp, signIn, googleSignIn, logOut }}>
+    <AuthContext.Provider value={{ user, signUp, signIn, googleSignIn, logOut, resetPassword }}>
       {!loading && children}
     </AuthContext.Provider>
   );
