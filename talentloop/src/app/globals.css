@@ -132,3 +132,8 @@ body {
     background: linear-gradient(180deg, #BEFBE0 0%, #BEFBE0 50%, #FFF 50%, #FFF 100%);
   }
 }
+
+.landing-page-bg {
+  background: rgba(42, 41, 41, 0.71);
+  backdrop-filter: blur(190.5500030517578px);
+}
