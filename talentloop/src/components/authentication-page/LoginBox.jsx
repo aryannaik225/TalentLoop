@@ -4,12 +4,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginBox = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { signIn, signUp, googleSignIn, resetPassword } = useAuth();
   const router = useRouter();
 
@@ -17,13 +20,19 @@ const LoginBox = () => {
     e.preventDefault();
     try {
       if (isSignUp) {
+        if (password !== confirmPassword) {
+          toast.warn("Passwords do not match!");
+          return;
+        }
         await signUp(email, password);
+        toast.success("Account created successfully!");
       } else {
         await signIn(email, password);
+        toast.success("Logged in successfully!");
       }
       router.push("/dashboard");
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -32,22 +41,29 @@ const LoginBox = () => {
       await googleSignIn();
       router.push("/dashboard");
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
   const handleForgotPassword = async () => {
     if (!email) {
-      alert("Please enter your email address!");
-      return
+      toast.warn("Please enter your email.");
+      return;
     }
-    await resetPassword(email);
-  }
+    try {
+      await resetPassword(email);
+      toast.success("Password reset link sent to your email.");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+  
 
 
 
   return (
     <div className="w-full h-full flex justify-center items-center p-4 sm:p-6 md:p-8">
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
       <div className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
         <div className="w-20 sm:w-28 py-1 flex justify-center items-center bg-[#46F1A6] rounded-sm border border-black text-white">
           <span className="poppins-semibold text-[10px] sm:text-xs">Business</span>
@@ -95,7 +111,7 @@ const LoginBox = () => {
                 <span className="poppins-medium text-xs sm:text-sm ml-1">Re-enter Password</span>
                 <div className="w-full py-2 px-3 border border-black rounded flex items-center gap-2">
                   <Image src="/authentication-page/password-icon.svg" alt="password" width={16} height={16} />
-                  <input type={showPassword ? "text" : "password"} placeholder="Confirm Password" className="poppins-regular text-xs sm:text-sm w-full outline-none" required/>
+                  <input type={showPassword ? "text" : "password"} placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="poppins-regular text-xs sm:text-sm w-full outline-none" required/>
                   <button type="button" onClick={() => setShowPassword(!showPassword)}>
                     <Image src={showPassword ? "/authentication-page/eye-open-icon.svg" : "/authentication-page/eye-close-icon.svg"} alt="eye" width={16} height={16} />
                   </button>

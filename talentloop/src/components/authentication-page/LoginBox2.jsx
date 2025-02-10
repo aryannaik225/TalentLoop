@@ -4,26 +4,35 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginBox2 = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn, signUp, googleSignIn } = useAuth();
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const { signIn, signUp, googleSignIn, resetPassword } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (isSignUp) {
+        if (password !== confirmPassword) {
+          toast.warn("Passwords do not match!");
+          return;
+        }
         await signUp(email, password);
+        toast.success("Account created successfully!");
       } else {
         await signIn(email, password);
+        toast.success("Logged in successfully!");
       }
       router.push("/dashboard");
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -32,13 +41,27 @@ const LoginBox2 = () => {
       await googleSignIn();
       router.push("/dashboard");
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      toast.warn("Please enter your email.");
+      return;
+    }
+    try {
+      await resetPassword(email);
+      toast.success("Password reset link sent to your email.");
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 
 
   return (
     <div className="w-full h-full flex justify-center items-center p-4 sm:p-6 md:p-8">
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
       <div className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
         <div className="w-20 sm:w-28 py-1 flex justify-center items-center bg-[#46F1A6] rounded-sm border border-black text-white">
           <span className="poppins-semibold text-[10px] sm:text-xs">Job-Seekers</span>
@@ -102,7 +125,7 @@ const LoginBox2 = () => {
               </div>
               {!isSignUp && (
                 <div className="w-full flex justify-end">
-                  <button className="text-[10px] poppins-medium self-end">Forgot Password?</button>
+                  <button onClick={handleForgotPassword} className="text-[10px] poppins-medium self-end">Forgot Password?</button>
                 </div>
               )}
             </div>
@@ -116,6 +139,8 @@ const LoginBox2 = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     className="poppins-regular text-xs sm:text-sm w-full outline-none"
                     required
                   />
