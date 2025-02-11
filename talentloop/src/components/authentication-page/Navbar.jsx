@@ -4,7 +4,9 @@ import React from 'react'
 const Navbar = () => {
   return (
     <div className='flex w-screen py-5 bg-white border-b border-black justify-between px-3 lg:px-5 xl:justify-center items-center gap-0 xl:gap-[142px]'>
-      <Image src="/authentication-page/logo.svg" alt='talentloop' width={124} height={24} className='cursor-pointer w-[100px] lg:w-[124px] h-auto'/>
+      <a href="/">
+        <Image src="/authentication-page/logo.svg" alt='talentloop' width={124} height={24} className='cursor-pointer w-[100px] lg:w-[124px] h-auto'/>
+      </a>
       
       <div className='flex items-center gap-8 lg:gap-14 xl:gap-[76px] poppins-semibold'>
         <span className='text-xs lg:text-sm text-[#1F1F1F] hover:text-[#4f4f4f] cursor-pointer transition-all duration-300'>Home</span>

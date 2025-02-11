@@ -27,7 +27,7 @@ export default function Home() {
       <div className="relative w-screen h-full landing-page-bg"/>
       {/* <div className="absolute w-72 h-72 bg-[#38BE23] opacity-30 rounded-full top-[219px] left-[138px] blur-[120px]" /> */}
       <div
-        className="absolute bg-[#46F1A6] opacity-30 rounded-full blur-[100px] transition-all ease-linear duration-75"
+        className="z-0 absolute bg-[#46F1A6] opacity-30 rounded-full blur-[100px] transition-all ease-linear duration-75"
         style={{
           width: "200px",
           height: "200px",
@@ -37,7 +37,7 @@ export default function Home() {
         }}
       />
       {/* <div className="absolute w-96 h-96 bg-[#A6B331] opacity-30 rounded-full top-[74px] right-[173px] blur-[140px]" /> */}
-      <div className="">
+      <div className="z-10">
         <Navbar />
       </div>
     </div>
