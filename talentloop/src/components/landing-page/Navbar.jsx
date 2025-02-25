@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import {Turn as Hamburger} from 'hamburger-react'
+import { useAuth } from '@/context/AuthContext'
 
 const Navbar = () => {
+
+  const { user, logOut } = useAuth()
 
   const windowChange = (link) => {
     window.location.href = `/${link}`
@@ -56,20 +59,57 @@ const Navbar = () => {
         </div>
 
         <div className='hidden md:flex items-center gap-4'>
-          <button
-            onClick={() => windowChange('authentication-page')}
-            className='text-white poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
-          >
-            Sign In
-          </button>
-          
-          <button 
-            onClick={() => windowChange('authentication-page')}
-            className="hidden md:block poppins-semibold text-white py-2 px-4 rounded-md bg-[#0CA360] hover:bg-[#185037] transition-colors duration-300 ease-out"
-          >
-            Sign Up
-          </button>
+          {!user ? (
+            <>
+              <button
+                onClick={() => windowChange('authentication-page')}
+                className='text-white poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+              >
+                Sign In
+              </button>
+              
+              <button 
+                onClick={() => windowChange('authentication-page')}
+                className="hidden md:block poppins-semibold text-white py-2 px-4 rounded-md bg-[#0CA360] hover:bg-[#185037] transition-colors duration-300 ease-out"
+              >
+                Sign Up
+              </button>
+            </>
+          ) : (
+            <div className='flex items-center gap-4 relative'>
+              <button
+                // onClick={() => windowChange('profile')}
+                className='flex items-center gap-2'
+              >
+                <p className='text-white poppins-semibold'>{user.name}</p>
+                <Image
+                  src={user.photoURL}
+                  width={40}
+                  height={40}
+                  alt="profile"
+                  className="rounded-full"
+                />
+              </button>
 
+              <div className='absolute top-11 right-0 bg-[#33404c] w-40 flex flex-col items-center py-4 gap-4 rounded-md'>
+                <button
+                  onClick={() => windowChange('profile')}
+                  className='text-white text-sm poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+                >
+                  Profile
+                </button>
+              </div>
+
+              {/* <button
+                onClick={logOut}
+                className='text-white poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+              >
+                Sign Out
+              </button> */}
+            </div>
+          )
+
+          }
         </div>
 
         {/* Mobile Menu Button */}

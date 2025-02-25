@@ -175,7 +175,7 @@ const LoginBox2 = () => {
           {/* Google Login */}
           <button
            className='w-full py-2 border border-black rounded-md flex items-center justify-center hover:bg-[#F5F5F5] transition-colors duration-300'
-            onAbort={handleGoogleLogin}
+            onClick={handleGoogleLogin}
           >
             <Image src="/authentication-page/google-icon.svg" alt="google" width={16} height={16}/>
           </button>
