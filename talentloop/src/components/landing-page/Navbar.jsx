@@ -9,10 +9,22 @@ const Navbar = () => {
   const { user, logOut } = useAuth()
 
   const windowChange = (link) => {
+    setShowMenu(false)
     window.location.href = `/${link}`
   }
 
   const [isOpen, setIsOpen] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
+
+  const logOutFunc = async () => {
+    try {
+      await logOut()
+    } catch (error) {
+      console.log(error.message)
+    } finally {
+      setShowMenu(false)
+    }
+  }
 
   return (
     <div className="flex justify-center items-center w-full py-5 z-10 bg-transparent">
@@ -78,34 +90,49 @@ const Navbar = () => {
           ) : (
             <div className='flex items-center gap-4 relative'>
               <button
-                // onClick={() => windowChange('profile')}
-                className='flex items-center gap-2'
+                onClick={() => setShowMenu(!showMenu)}
+                className='flex items-center gap-2 hover:scale-105 duration-300 ease-out cursor-pointer'
               >
-                <p className='text-white poppins-semibold'>{user.name}</p>
-                <Image
-                  src={user.photoURL}
-                  width={40}
-                  height={40}
-                  alt="profile"
-                  className="rounded-full"
-                />
+                <motion.p 
+                  initial={{ scale: 2, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, stiffness: 260, delay: 0.8 }}
+                  className='text-white poppins-semibold'
+                >
+                  {user.name}
+                </motion.p>
+                <motion.div
+                  initial={{ scale: 2, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, stiffness: 260, delay: 1.2 }}
+                >
+                  <Image
+                    src={user.photoURL}
+                    width={40}
+                    height={40}
+                    alt="profile"
+                    className="rounded-full"
+                  />
+                </motion.div>
               </button>
 
-              <div className='absolute top-11 right-0 bg-[#33404c] w-40 flex flex-col items-center py-4 gap-4 rounded-md'>
+              <div className={`absolute top-11 right-0 bg-[#33404c] w-40 ${showMenu ? 'flex' : 'hidden'} flex-col items-center py-4 gap-4 rounded-md`}>
                 <button
                   onClick={() => windowChange('profile')}
-                  className='text-white text-sm poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+                  className='flex items-center gap-2 text-white text-sm poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
                 >
+                  <Image src='/landing-page/profile-icon.svg' width={24} height={24} alt='user' />
                   Profile
                 </button>
+                <div className='w-10/12 h-[1px] bg-gray-500'/>
+                <button 
+                  onClick={logOutFunc}
+                  className='flex items-center gap-2 text-white text-sm poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+                >
+                  <Image src='/landing-page/log-out.svg' width={24} height={24} alt='log-out' />
+                  Sign Out
+                </button>
               </div>
-
-              {/* <button
-                onClick={logOut}
-                className='text-white poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
-              >
-                Sign Out
-              </button> */}
             </div>
           )
 

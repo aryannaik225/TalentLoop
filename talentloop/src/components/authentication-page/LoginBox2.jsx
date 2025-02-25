@@ -30,7 +30,7 @@ const LoginBox2 = () => {
         await signIn(email, password);
         toast.success("Logged in successfully!");
       }
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       toast.error(error.message);
     }
@@ -39,7 +39,7 @@ const LoginBox2 = () => {
   const handleGoogleLogin = async () => {
     try {
       await googleSignIn();
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       toast.error(error.message);
     }
