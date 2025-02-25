@@ -17,7 +17,7 @@ export default function Home() {
         <span className="mt-1 text-center text-[#1E2532] text-sm inter-medium">Choose a style that fits your career and make a lasting impression.</span>
         <button 
           onClick={() => toast.warn("Select a template first!")}
-          className="bg-[#1A91F0] text-white inter-bold text-sm px-5 py-3 rounded mt-6 hover:bg-[#398bcd]"
+          className="bg-[#3fd896] text-white inter-bold text-sm px-5 py-3 rounded mt-6 hover:bg-[#37b880]"
         >
           Create my resume
         </button>
