@@ -62,7 +62,8 @@ const Navbar = () => {
             className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4]'
           >Hire freelancers</motion.button>
 
-          <motion.button 
+          <motion.button
+            onClick={() => windowChange('resume-templates')} 
             initial={{ scale: 2, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, stiffness: 260, delay: 0.8 }}
