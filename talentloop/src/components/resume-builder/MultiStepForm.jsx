@@ -51,6 +51,20 @@ const MultiStepForm = () => {
     setExperiences(updatedExperiences)
   }
 
+  const addEducation = () => {
+    setEducation([...education, { institution: "", degree: "", year: "" }])
+  }
+
+  const removeEducation = (index) => {
+    setEducation(education.filter((_, i) => i !== index))
+  }
+
+  const handleEducationChange = (index, field, value) => {
+    const updatedEducation = [...education]
+    updatedEducation[index][field] = value
+    setEducation(updatedEducation)
+  }
+
 
   useEffect(() => {
     setFormData({ ...formData, [name]: name, [email]: email, [phone]: phone, [experiences]: experiences, [education]: education, [skills]: skills, [summary]: summary })
@@ -207,7 +221,15 @@ const MultiStepForm = () => {
           )}
 
 
-          
+          {step === 2 && (
+            <div className='flex flex-col'>
+              <h2 className='text-2xl font-semibold text-center mb-10'>Education</h2>
+
+              {education.map((edu, index) => (
+                <div></div>
+              ))}
+            </div>
+          )}
 
         </div>
       </div>
