@@ -206,3 +206,13 @@ body {
   background: rgba(42, 41, 41, 0.71);
   backdrop-filter: blur(190.5500030517578px);
 }
+
+.no-arrows-container input[type="number"]::-webkit-inner-spin-button,
+.no-arrows-container input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-arrows-container input[type="number"] {
+  -moz-appearance: textfield;
+}
