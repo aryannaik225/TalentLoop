@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const steps = [
   "Personal Info", 
@@ -134,12 +135,12 @@ const MultiStepForm = () => {
               <h2 className='text-2xl font-semibold text-center mb-10'>Experience</h2>
 
               {experiences.map((exp, index) => (
-                <div key={index} className="mb-4 border p-4 rounded-lg shadow-md">
+                <div key={index} className="mb-4 border-2 p-4 rounded-lg relative">
                   <input
                     type="text"
                     placeholder="Company"
                     value={exp.company}
-                    onChange={(e) => handleChange(index, "company", e.target.value)}
+                    onChange={(e) => handleExperienceChange(index, "company", e.target.value)}
                     className="w-full p-2 mb-2 border rounded"
                   />
                   
@@ -147,21 +148,21 @@ const MultiStepForm = () => {
                     type="text"
                     placeholder="Role"
                     value={exp.role}
-                    onChange={(e) => handleChange(index, "role", e.target.value)}
+                    onChange={(e) => handleExperienceChange(index, "role", e.target.value)}
                     className="w-full p-2 mb-2 border rounded"
                   />
                   
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap justify-between gap-2">
                     <input
                       type="date"
                       value={exp.startDate}
-                      onChange={(e) => handleChange(index, "startDate", e.target.value)}
-                      className="p-2 border rounded"
+                      onChange={(e) => handleExperienceChange(index, "startDate", e.target.value)}
+                      className="p-2 border rounded w-6/12"
                     />
                     
                     <select
                       value={exp.endDate}
-                      onChange={(e) => handleChange(index, "endDate", e.target.value)}
+                      onChange={(e) => handleExperienceChange(index, "endDate", e.target.value)}
                       className="p-2 border rounded"
                     >
                       <option value="">Select End Date</option>
@@ -172,8 +173,8 @@ const MultiStepForm = () => {
                       <input
                         type="date"
                         value={exp.endDate}
-                        onChange={(e) => handleChange(index, "endDate", e.target.value)}
-                        className="p-2 border rounded"
+                        onChange={(e) => handleExperienceChange(index, "endDate", e.target.value)}
+                        className="p-2 border rounded w-6/12"
                       />
                     )}
                   </div>
@@ -181,9 +182,9 @@ const MultiStepForm = () => {
                   {experiences.length > 1 && (
                     <button
                       onClick={() => removeExperience(index)}
-                      className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+                      className="mt-2 bg-[#ececec] text-white border-2 border-red-200 hover:border-red-400 p-2 rounded flex justify-center items-center absolute top-2 right-2  " 
                     >
-                      Remove
+                      <Image src='/resume-builder/dustbinIcon.svg' width={10} height={10} alt='dustbin icon' />
                     </button>
                   )}
                 </div>
@@ -196,9 +197,18 @@ const MultiStepForm = () => {
                 Add Experience
               </button>
 
+              <div className='flex justify-between mt-10 w-full'>
+                <button onClick={handleBack} className='px-6 py-2 bg-gray-300 hover:bg-gray-400 transition-colors text-white rounded text-sm font-semibold'>Back</button>
+                <button onClick={handleNext} className='px-6 py-2 bg-[#3fd896] hover:bg-[#36ba81] transition-colors text-white rounded text-sm font-semibold'>Next</button>
+              </div>
+
 
             </div>
           )}
+
+
+          
+
         </div>
       </div>
       
