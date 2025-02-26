@@ -2,11 +2,12 @@
 
 import Navbar from "@/components/authentication-page/Navbar";
 import MultiStepForm from "@/components/resume-builder/MultiStepForm";
+import ResumeBuilder from "@/components/resume-builder/ResumeBuilder";
 import { useState } from "react";
 
 export default function Home() {
 
-  const [formIsFilled, setFormIsFilled] = useState(true);
+  const [formIsFilled, setFormIsFilled] = useState(false);
 
   return (
     <div>
@@ -17,6 +18,8 @@ export default function Home() {
           <MultiStepForm />
         </div>
       )}
+
+      <ResumeBuilder />
 
     </div>
   );
