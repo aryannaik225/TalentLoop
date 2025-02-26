@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 const SelectionGrid = () => {
 
+
     const templates = [
       { id: 1, name: 'Modern Elegance', category: 'Modern', image: '/resume-template-selection-page/modern-template-1.png' },
       { id: 2, name: 'Professional Template 1', category: 'Professional', image: '/resume-template-selection-page/professional-template-1.png' },
@@ -25,6 +26,10 @@ const SelectionGrid = () => {
     const [visibleCount, setVisibleCount] = useState(6)
 
     const filteredTemplates = templates.filter((template) => selectedCategory === 'All' || template.category === selectedCategory)
+
+    const windowChange = (link) => {
+      window.location.href = `/${link}`
+    }
 
     return (
       <div className='flex flex-col items-center mt-14'>
@@ -77,6 +82,7 @@ const SelectionGrid = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="cursor-pointer rounded-lg overflow-hidden shadow-lg transition-all relative"
+                onClick={() => windowChange(`resume-builder/${template.name.replace(/\s+/g, "-")}`)}
               >
                 <Image 
                   src={template.image} 
