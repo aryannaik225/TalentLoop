@@ -1,6 +1,7 @@
 'use client'
 
 import Navbar from "@/components/authentication-page/Navbar";
+import TemplateSkeleton from "@/components/resume-builder/Modern-Elegance/TemplateSkeleton";
 import MultiStepForm from "@/components/resume-builder/MultiStepForm";
 import ResumeBuilder from "@/components/resume-builder/ResumeBuilder";
 import { useState } from "react";
@@ -19,7 +20,7 @@ export default function Home() {
         </div>
       )}
 
-      <ResumeBuilder />
+      <TemplateSkeleton />
 
     </div>
   );
