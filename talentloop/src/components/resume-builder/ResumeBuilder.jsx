@@ -13,7 +13,7 @@ export default function ResumeBuilder() {
     });
 
     const data = await res.json();
-    console.log(data.text);  // This is your AI-generated resume
+    console.log(data.text);
     setResumeText(data.text);
     
 }
