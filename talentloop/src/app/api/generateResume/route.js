@@ -1,60 +1,71 @@
 export async function POST(req) {
   try {
-      const { prompt } = await req.json();
+    const { prompt } = await req.json();
 
-      const response = await fetch("http://localhost:11434/api/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-              model: "deepseek-r1:1.5b",
-              prompt: `Generate a well-formatted professional resume in JSON format for the following details:  
-              ${prompt}  
-              Ensure the output follows this JSON structure:  
-              {
-                  "name": "Full Name",
-                  "email": "Email Address",
-                  "phone": "Phone Number",
-                  "summary": "Professional Summary in first-person",
-                  "experience": [
-                      {
-                          "role": "Job Title",
-                          "company": "Company Name",
-                          "startDate": "Start Date",
-                          "endDate": "End Date",
-                          "description": "Description of responsibilities and achievements"
-                      }
-                  ],
-                  "education": [
-                      {
-                          "degree": "Degree Name",
-                          "institution": "Institution Name",
-                          "year": "Graduation Year"
-                      }
-                  ],
-                  "skills": {
-                      "Industrial Knowledge": ["Skill1", "Skill2"],
-                      "Tools & Technologies": ["Skill3", "Skill4"],
-                      "Other Skills": ["Skill5", "Skill6"]
-                  }
-              }
-              Provide only the JSON response without additional text or explanations.`,
-              stream: false
-          }),
-      });
+    const response = await fetch("http://localhost:11434/api/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "deepseek-r1:1.5b",
+        prompt: `You are a strict AI assistant that follows all rules EXACTLY. Generate a structured resume in JSON format.
 
-      if (!response.ok) throw new Error("Failed to fetch from Ollama");
+        **🚨 HARD RULES (DO NOT IGNORE):**
+        1️⃣ **Use FIRST-PERSON for summary.** ("I am a UX Designer...")
+        2️⃣ **DO NOT change, add, or remove any skills. Categorize them only.**
+        3️⃣ **DO NOT modify education. Keep names exactly as provided.**
+        4️⃣ **DO NOT duplicate any job roles or education entries.**
+        5️⃣ **Date format MUST be: DD-MM-YYYY (Strict format).**
+        
+        **User's Provided Data:**  
+        ${prompt}
 
-      const data = await response.json();
-      let resumeText = data.response;
+        **✅ REQUIRED JSON FORMAT (Strictly Follow This)**  
+        {
+            "name": "Full Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "summary": "First-person summary (DO NOT use third-person).",
+            "experience": [
+                {
+                    "role": "Job Title",
+                    "company": "Company Name",
+                    "startDate": "DD-MM-YYYY",
+                    "endDate": "DD-MM-YYYY",
+                    "description": "First-person job description."
+                }
+            ],
+            "education": [
+                {
+                    "degree": "Degree Name",
+                    "institution": "Institution Name",
+                    "year": "YYYY"
+                }
+            ],
+            "skills": {
+                "Industrial Knowledge": ["Exact user skills"],
+                "Tools & Technologies": ["Exact user skills"],
+                "Soft Skills": ["Exact user skills"]
+            }
+        }
 
-      // Remove any unnecessary text before/after JSON (if DeepSeek adds comments)
-      const jsonMatch = resumeText.match(/\{[\s\S]*\}/);
-      const structuredResume = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+        **Output ONLY the JSON. No extra text, no explanations.**`,
+        stream: false,
+      }),
+    });
 
-      if (!structuredResume) throw new Error("Invalid JSON format received");
+    if (!response.ok) throw new Error("Failed to fetch from Ollama");
 
-      return Response.json(structuredResume);
+    const data = await response.json();
+    let resumeText = data.response;
+
+    // Extract JSON from AI response
+    const jsonMatch = resumeText.match(/\{[\s\S]*\}/);
+    const structuredResume = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+
+    if (!structuredResume) throw new Error("Invalid JSON format received");
+
+    return Response.json(structuredResume);
   } catch (error) {
-      return Response.json({ error: error.message }, { status: 500 });
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }
