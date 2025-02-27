@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { toast, ToastContainer } from 'react-toastify'
+import { set } from 'mongoose'
 
 const steps = [
   "Personal Info", 
@@ -11,7 +12,7 @@ const steps = [
   "Summary"
 ]
 
-const MultiStepForm = () => {
+const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
 
   const [step, setStep] = useState(0)
   const [formData, setFormData] = useState({
@@ -66,12 +67,23 @@ const MultiStepForm = () => {
     }
   }
 
+  const handleFormSubmit = () => {
+    const resumeData = {
+      name, email, phone, experiences, education, skills, summary
+    }
+    handleSubmit(resumeData)
+    setFormIsFilled(true)
+  }
+
   const handleBack = () => setStep((prev) => Math.max(prev - 1, 0))
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: name === "skills" ? value.split(",").map((s) => s.trim()) : value,
+    });
+  };
 
   const addExperience = () => {
     setExperiences([...experiences, { company: "", role: "", startDate: "", endDate: "" }])
@@ -103,7 +115,16 @@ const MultiStepForm = () => {
 
 
   useEffect(() => {
-    setFormData({ ...formData, [name]: name, [email]: email, [phone]: phone, [experiences]: experiences, [education]: education, [skills]: skills, [summary]: summary })
+    setFormData({
+      ...formData, 
+      name, 
+      email, 
+      phone, 
+      experiences, 
+      education, 
+      skills, 
+      summary 
+    });    
   }, [name, email, phone, experiences, education, skills, summary])
   
   return (
@@ -336,8 +357,8 @@ const MultiStepForm = () => {
                   type="text" 
                   name="skills"
                   placeholder="Skills (comma-separated)"
-                  value={skills}
-                  onChange={(e) => setSkills(e.target.value)}
+                  value={skills.join(", ")}
+                  onChange={(e) => setSkills(e.target.value.split(",").map(skill => skill.trim()))}
                   className={`p-3 border rounded w-full h-32 resize-none ${skills.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
                 />
               </div>
@@ -367,7 +388,7 @@ const MultiStepForm = () => {
 
               <div className='flex justify-between mt-10 w-full'>
                 <button onClick={handleBack} className='px-6 py-2 bg-gray-300 hover:bg-gray-400 transition-colors text-white rounded text-sm font-semibold'>Back</button>
-                <button onClick={handleNext} className='px-6 py-2 bg-[#3fd896] hover:bg-[#36ba81] transition-colors text-white rounded text-sm font-semibold'>Skip and Next</button>
+                <button onClick={handleFormSubmit} className='px-6 py-2 bg-[#3fd896] hover:bg-[#36ba81] transition-colors text-white rounded text-sm font-semibold'>Skip and Submit</button>
               </div>
             </div>
           )}
