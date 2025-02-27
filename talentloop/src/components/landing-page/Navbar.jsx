@@ -4,7 +4,7 @@ import Image from 'next/image'
 import {Turn as Hamburger} from 'hamburger-react'
 import { useAuth } from '@/context/AuthContext'
 
-const Navbar = () => {
+const Navbar = (setShowProfile) => {
 
   const { user, logOut } = useAuth()
 
