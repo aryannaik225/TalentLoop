@@ -3845,5 +3845,1646 @@
         "skills": ["Creativity", "Problem-Solving", "Teamwork"]
       }
     ]
+  },
+  {
+    "fullName": "Zara Foster",
+    "jobTitle": "UX/UI Designer",
+    "contact": "+1 1234567890",
+    "location": "California, USA",
+    "email": "zarafoster@gmail.com",
+    "summary": "Creative UX/UI Designer with a focus on designing intuitive and user-friendly interfaces for digital products and services. Skilled in user research, wireframing, and prototyping. Experienced in creating engaging user experiences and visual designs to enhance usability and user satisfaction.",
+    "experience": [
+      {
+        "company": "Tech Startup",
+        "role": "UX/UI Designer",
+        "place": "California, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Designed user interfaces and interactive prototypes for web and mobile applications.",
+          "Conducted user research and usability testing to inform design decisions.",
+          "Collaborated with product managers and developers to implement design solutions.",
+          "Created visual designs and style guides to maintain brand consistency."
+        ]
+      },
+      {
+        "company": "Design Agency",
+        "role": "Junior UX/UI Designer",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in wireframing and prototyping for digital design projects.",
+          "Worked on user interface design and visual concepts for client websites.",
+          "Participated in team projects and contributed to design discussions."
+        ]
+      },
+      {
+        "company": "UX/UI Design Internship",
+        "role": "UX/UI Design Intern",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in user experience research and interface design activities.",
+          "Learned about wireframing, prototyping, and user-centered design principles.",
+          "Participated in team projects and gained hands-on experience in UX/UI design."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of Southern California",
+        "degree": "Master's in Interaction Design",
+        "year_end": "2015",
+        "description": "Specialized in user experience design, user interface design, and digital product development."
+      },
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Bachelor's in Graphic Design",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on visual communication and design principles."
+      },
+      {
+        "institution": "Certified UX/UI Designer (CUXD)",
+        "degree": "CUXD Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified UX/UI Designer designation to create intuitive and user-friendly interfaces."
+      }
+    ],
+    "skills": [
+      {
+        "category": "User Experience Design",
+        "skills": ["User Research", "Usability Testing", "Wireframing"]
+      },
+      {
+        "category": "User Interface Design",
+        "skills": ["Interactive Prototypes", "Visual Design", "Style Guides"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Creativity", "Problem-Solving", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Zoe Reynolds",
+    "jobTitle": "Digital Marketing Specialist",
+    "contact": "+1 1234567890",
+    "location": "California, USA",
+    "email": "zoereynolds@gmail.com",
+    "summary": "Strategic Digital Marketing Specialist with a focus on developing and implementing digital marketing campaigns to drive brand awareness and customer engagement. Skilled in social media marketing, content creation, and data analysis. Experienced in optimizing online channels, measuring campaign performance, and enhancing digital marketing strategies.",
+    "experience": [
+      {
+        "company": "Digital Marketing Agency",
+        "role": "Digital Marketing Specialist",
+        "place": "California, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Developed and executed digital marketing campaigns across multiple channels.",
+          "Managed social media accounts, created content, and engaged with followers.",
+          "Analyzed campaign performance and provided insights to optimize marketing strategies.",
+          "Collaborated with marketing teams and clients to achieve business objectives."
+        ]
+      },
+      {
+        "company": "Marketing Department",
+        "role": "Junior Marketing Analyst",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in digital marketing campaigns and content creation projects.",
+          "Worked on social media marketing and email marketing initiatives.",
+          "Participated in team projects and contributed to marketing discussions."
+        ]
+      },
+      {
+        "company": "Digital Marketing Internship",
+        "role": "Digital Marketing Intern",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in social media management and content marketing activities.",
+          "Learned about digital marketing tools and techniques for online promotion.",
+          "Participated in team projects and gained hands-on experience in digital marketing."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of Southern California",
+        "degree": "Master's in Digital Marketing",
+        "year_end": "2015",
+        "description": "Specialized in online marketing strategies, social media marketing, and data analytics."
+      },
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Bachelor's in Marketing",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on digital marketing and brand management."
+      },
+      {
+        "institution": "Certified Digital Marketing Specialist (CDMS)",
+        "degree": "CDMS Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Digital Marketing Specialist designation to develop and implement digital marketing campaigns."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Digital Marketing",
+        "skills": ["Social Media Marketing", "Content Creation", "Data Analysis"]
+      },
+      {
+        "category": "Online Promotion",
+        "skills": ["SEO", "Email Marketing", "PPC Advertising"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Zara Foster",
+    "jobTitle": "Data Scientist",
+    "contact": "+1 1234567890",
+    "location": "California, USA",
+    "email": "zarafoster@gmail.com",
+    "summary": "Analytical Data Scientist with a focus on extracting insights from data to drive business decisions and strategies. Skilled in data analysis, statistical modeling, and machine learning. Experienced in working with large datasets, developing predictive models, and communicating data-driven recommendations to stakeholders.",
+    "experience": [
+      {
+        "company": "Data Analytics Firm",
+        "role": "Data Scientist",
+        "place": "California, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Analyzed large datasets and performed statistical analysis to extract insights.",
+          "Developed predictive models and machine learning algorithms for business applications.",
+          "Communicated data-driven recommendations to support decision-making processes.",
+          "Collaborated with cross-functional teams to implement data-driven strategies."
+        ]
+      },
+      {
+        "company": "Data Science Department",
+        "role": "Junior Data Analyst",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in data analysis and modeling projects.",
+          "Worked on statistical analysis and data visualization tasks.",
+          "Participated in team projects and contributed to data science discussions."
+        ]
+      },
+      {
+        "company": "Data Science Internship",
+        "role": "Data Science Intern",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in data analysis and machine learning activities.",
+          "Learned about data visualization tools and techniques for data analysis.",
+          "Participated in team projects and gained hands-on experience in data science."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of Southern California",
+        "degree": "Master's in Data Science",
+        "year_end": "2015",
+        "description": "Specialized in data analysis, statistical modeling, and machine learning."
+      },
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Bachelor's in Computer Science",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on data structures and algorithms."
+      },
+      {
+        "institution": "Certified Data Scientist (CDS)",
+        "degree": "CDS Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Data Scientist designation to analyze data and develop predictive models."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Data Analysis",
+        "skills": ["Statistical Modeling", "Data Visualization", "Predictive Analytics"]
+      },
+      {
+        "category": "Machine Learning",
+        "skills": ["Supervised Learning", "Unsupervised Learning", "Deep Learning"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Lumine Estelle",
+    "jobTitle": "Pokemon Trainer",
+    "contact": "+1 1234567890",
+    "location": "California, USA",
+    "email": "lumineestelle@pokemon.com",
+    "summary": "Experienced Pokemon Trainer with a focus on capturing, training, and battling Pokemon to become a Pokemon Master. Skilled in Pokemon types, moves, and strategies. Experienced in exploring different regions, challenging Gym Leaders, and participating in Pokemon battles to improve skills and build a strong Pokemon team.",
+    "experience": [
+      {
+        "company": "Pokemon League",
+        "role": "Pokemon Trainer",
+        "place": "California, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Captured and trained Pokemon to build a diverse and powerful team.",
+          "Challenged Gym Leaders and participated in Pokemon battles to earn badges.",
+          "Explored different regions and encountered various Pokemon species.",
+          "Strategized battles, learned new moves, and evolved Pokemon to improve skills."
+        ]
+      },
+      {
+        "company": "Pokemon Academy",
+        "role": "Junior Pokemon Trainer",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Attended Pokemon training classes and learned about Pokemon types and moves.",
+          "Practiced battling techniques and strategies with other Pokemon Trainers.",
+          "Participated in Pokemon contests and events to showcase skills and abilities."
+        ]
+      },
+      {
+        "company": "Pokemon Training Camp",
+        "role": "Pokemon Training Camp Participant",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Participated in Pokemon training sessions and battles with other Trainers.",
+          "Learned about Pokemon evolution, breeding, and training methods.",
+          "Explored the world of Pokemon and gained hands-on experience in Pokemon training."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "Pokemon Academy",
+        "degree": "Pokemon Trainer Certification",
+        "year_end": "2015",
+        "description": "Graduated with honors and focused on Pokemon types, moves, and strategies."
+      },
+      {
+        "institution": "Pokemon League",
+        "degree": "Pokemon Master Certification",
+        "year_end": "2016",
+        "description": "Earned the Pokemon Master designation to become a skilled and experienced Pokemon Trainer."
+      },
+      {
+        "institution": "Certified Pokemon Trainer (CPT)",
+        "degree": "CPT Certification",
+        "year_end": "2017",
+        "description": "Earned the Certified Pokemon Trainer designation to capture, train, and battle Pokemon."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Pokemon Training",
+        "skills": ["Pokemon Types", "Moves", "Strategies"]
+      },
+      {
+        "category": "Pokemon Battles",
+        "skills": ["Gym Leaders", "Pokemon Contests", "Pokemon Evolution"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Teamwork", "Determination"]
+      }
+    ]
+  },
+  {
+    "fullName": "Ava Mitchell",
+    "jobTitle": "Software Engineer",
+    "contact": "+1 1234567890",
+    "location": "Pallet Town, Kanto",
+    "email": "ava.mitchell@email.com",
+    "summary": "Experienced Software Engineer with a focus on developing innovative software solutions and applications. Skilled in programming languages, software development, and problem-solving. Experienced in designing and implementing software projects, collaborating with cross-functional teams, and delivering high-quality software products.",
+    "experience": [
+      {
+        "company": "Software Development Company",
+        "role": "Software Engineer",
+        "place": "Pallet Town, Kanto",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Designed and developed software applications and solutions.",
+          "Collaborated with software developers and engineers to implement projects.",
+          "Tested and debugged software to ensure functionality and performance.",
+          "Deployed software products and provided technical support to end-users."
+        ]
+      },
+      {
+        "company": "Software Engineering Internship",
+        "role": "Software Engineering Intern",
+        "place": "Viridian City, Kanto",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in software development and coding projects.",
+          "Learned about programming languages and software development tools.",
+          "Participated in team projects and gained hands-on experience in software engineering."
+        ]
+      },
+      {
+        "company": "Software Development Bootcamp",
+        "role": "Bootcamp Participant",
+        "place": "Cerulean City, Kanto",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Attended coding workshops and training sessions to learn software development.",
+          "Practiced coding exercises and challenges to improve programming skills.",
+          "Explored different programming languages and software development techniques."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "Pallet Town Technical Institute",
+        "degree": "Bachelor's in Software Engineering",
+        "year_end": "2015",
+        "description": "Graduated with honors and focused on software development and programming."
+      },
+      {
+        "institution": "Kanto University",
+        "degree": "Master's in Computer Science",
+        "year_end": "2017",
+        "description": "Specialized in software engineering, algorithms, and data structures."
+      },
+      {
+        "institution": "Certified Software Engineer (CSE)",
+        "degree": "CSE Certification",
+        "year_end": "2018",
+        "description": "Earned the Certified Software Engineer designation to develop software solutions."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Software Development",
+        "skills": ["Programming Languages", "Software Design", "Problem-Solving"]
+      },
+      {
+        "category": "Software Engineering",
+        "skills": ["Software Testing", "Debugging", "Deployment"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Teamwork", "Attention to Detail", "Continuous Learning"]
+      }
+    ]
+  },
+  {
+    "fullName": "Ethan Carter",
+    "jobTitle": "Data Analyst",
+    "contact": "+1 1234567890",
+    "location": "Dublin, Ireland",
+    "email": "ethan.carter@email.com",
+    "summary": "Analytical Data Analyst with a focus on interpreting and analyzing data to drive business decisions and strategies. Skilled in data analysis, statistical modeling, and data visualization. Experienced in working with large datasets, developing insights, and communicating data-driven recommendations to stakeholders.",
+    "experience": [
+      {
+        "company": "Data Analytics Company",
+        "role": "Data Analyst",
+        "place": "Dublin, Ireland",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Analyzed and interpreted data to extract insights and trends.",
+          "Developed statistical models and data visualizations to support decision-making.",
+          "Communicated data-driven recommendations to stakeholders and management.",
+          "Collaborated with cross-functional teams to implement data-driven strategies."
+        ]
+      },
+      {
+        "company": "Data Analysis Department",
+        "role": "Junior Data Analyst",
+        "place": "Cork, Ireland",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in data analysis and modeling projects.",
+          "Worked on data visualization and reporting tasks.",
+          "Participated in team projects and contributed to data discussions."
+        ]
+      },
+      {
+        "company": "Data Analysis Internship",
+        "role": "Data Analysis Intern",
+        "place": "Galway, Ireland",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in data analysis and interpretation activities.",
+          "Learned about statistical modeling and data visualization techniques.",
+          "Participated in team projects and gained hands-on experience in data analysis."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "Dublin Institute of Technology",
+        "degree": "Master's in Data Analytics",
+        "year_end": "2015",
+        "description": "Specialized in data analysis, statistical modeling, and data visualization."
+      },
+      {
+        "institution": "University College Cork",
+        "degree": "Bachelor's in Mathematics",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on statistics and data analysis."
+      },
+      {
+        "institution": "Certified Data Analyst (CDA)",
+        "degree": "CDA Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Data Analyst designation to analyze and interpret data."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Data Analysis",
+        "skills": ["Statistical Modeling", "Data Visualization", "Data Interpretation"]
+      },
+      {
+        "category": "Data Management",
+        "skills": ["Data Cleaning", "Data Mining", "Data Reporting"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Sophia Reynolds",
+    "jobTitle": "UX Designer",
+    "contact": "+1 1234567890",
+    "location": "London, UK",
+    "email": "sophia.reynolds@email.com",
+    "summary": "Creative UX Designer with a focus on designing intuitive and user-friendly interfaces for digital products and services. Skilled in user research, wireframing, and prototyping. Experienced in creating engaging user experiences and visual designs to enhance usability and user satisfaction.",
+    "experience": [
+      {
+        "company": "Design Agency",
+        "role": "UX Designer",
+        "place": "London, UK",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Designed user interfaces and interactive prototypes for web and mobile applications.",
+          "Conducted user research and usability testing to inform design decisions.",
+          "Collaborated with product managers and developers to implement design solutions.",
+          "Created visual designs and style guides to maintain brand consistency."
+        ]
+      },
+      {
+        "company": "UX Design Department",
+        "role": "Junior UX Designer",
+        "place": "Manchester, UK",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in wireframing and prototyping for digital design projects.",
+          "Worked on user interface design and visual concepts for client websites.",
+          "Participated in team projects and contributed to design discussions."
+        ]
+      },
+      {
+        "company": "UX Design Internship",
+        "role": "UX Design Intern",
+        "place": "Birmingham, UK",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in user experience research and interface design activities.",
+          "Learned about wireframing, prototyping, and user-centered design principles.",
+          "Participated in team projects and gained hands-on experience in UX design."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of the Arts London",
+        "degree": "Master's in Interaction Design",
+        "year_end": "2015",
+        "description": "Specialized in user experience design, user interface design, and digital product development."
+      },
+      {
+        "institution": "University of Manchester",
+        "degree": "Bachelor's in Graphic Design",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on visual communication and design principles."
+      },
+      {
+        "institution": "Certified UX Designer (CUXD)",
+        "degree": "CUXD Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified UX Designer designation to create intuitive and user-friendly interfaces."
+      }
+    ],
+    "skills": [
+      {
+        "category": "User Experience Design",
+        "skills": ["User Research", "Usability Testing", "Wireframing"]
+      },
+      {
+        "category": "User Interface Design",
+        "skills": ["Interactive Prototypes", "Visual Design", "Style Guides"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Creativity", "Problem-Solving", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Liam Bennett",
+    "jobTitle": "Project Manager",
+    "contact": "+1 1234567890",
+    "location": "New York, USA",
+    "email": "liam.bennett@email.com",
+    "summary": "Results-driven Project Manager with a focus on leading and managing projects to deliver successful outcomes. Skilled in project planning, team coordination, and stakeholder communication. Experienced in overseeing project timelines, budgets, and resources to ensure project goals are met on time and within scope.",
+    "experience": [
+      {
+        "company": "Project Management Firm",
+        "role": "Project Manager",
+        "place": "New York, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Led and managed projects from initiation to completion.",
+          "Developed project plans, timelines, and budgets to meet project goals.",
+          "Coordinated project teams, resources, and stakeholders to ensure project success.",
+          "Communicated project status, risks, and issues to stakeholders and management."
+        ]
+      },
+      {
+        "company": "Project Management Department",
+        "role": "Junior Project Manager",
+        "place": "San Francisco, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in project planning, coordination, and execution.",
+          "Worked on project timelines, budgets, and resource allocation.",
+          "Participated in team projects and contributed to project discussions."
+        ]
+      },
+      {
+        "company": "Project Management Internship",
+        "role": "Project Management Intern",
+        "place": "Los Angeles, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in project management activities and tasks.",
+          "Learned about project planning, scheduling, and stakeholder management.",
+          "Participated in team projects and gained hands-on experience in project management."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "New York University",
+        "degree": "Master's in Project Management",
+        "year_end": "2015",
+        "description": "Specialized in project planning, execution, and stakeholder management."
+      },
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Bachelor's in Business Administration",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on project management and business operations."
+      },
+      {
+        "institution": "Certified Project Manager (CPM)",
+        "degree": "CPM Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Project Manager designation to lead and manage projects."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Project Management",
+        "skills": ["Project Planning", "Team Coordination", "Stakeholder Communication"]
+      },
+      {
+        "category": "Project Execution",
+        "skills": ["Resource Management", "Budget Control", "Risk Management"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Team Leadership"]
+      }
+    ]
+  },
+  {
+    "fullName": "Olivia Sanders",
+    "jobTitle": "Marketing Specialist",
+    "contact": "+1 1234567890",
+    "location": "San Francisco, USA",
+    "email": "olivia.sanders@email.com",
+    "summary": "Strategic Marketing Specialist with a focus on developing and implementing marketing campaigns to drive brand awareness and customer engagement. Skilled in digital marketing, content creation, and data analysis. Experienced in optimizing online channels, measuring campaign performance, and enhancing marketing strategies.",
+    "experience": [
+      {
+        "company": "Marketing Agency",
+        "role": "Marketing Specialist",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Developed and executed marketing campaigns across multiple channels.",
+          "Managed social media accounts, created content, and engaged with followers.",
+          "Analyzed campaign performance and provided insights to optimize marketing strategies.",
+          "Collaborated with marketing teams and clients to achieve business objectives."
+        ]
+      },
+      {
+        "company": "Marketing Department",
+        "role": "Junior Marketing Analyst",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in marketing campaigns and content creation projects.",
+          "Worked on social media marketing and email marketing initiatives.",
+          "Participated in team projects and contributed to marketing discussions."
+        ]
+      },
+      {
+        "company": "Marketing Internship",
+        "role": "Marketing Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in social media management and content marketing activities.",
+          "Learned about digital marketing tools and techniques for online promotion.",
+          "Participated in team projects and gained hands-on experience in marketing."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Marketing",
+        "year_end": "2015",
+        "description": "Specialized in online marketing strategies, social media marketing, and data analytics."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Business Administration",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on marketing and brand management."
+      },
+      {
+        "institution": "Certified Marketing Specialist (CMS)",
+        "degree": "CMS Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Marketing Specialist designation to develop and implement marketing campaigns."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Marketing Strategies",
+        "skills": ["Digital Marketing", "Content Creation", "Data Analysis"]
+      },
+      {
+        "category": "Online Promotion",
+        "skills": ["SEO", "Email Marketing", "PPC Advertising"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Noah Hughes",
+    "jobTitle": "Frontend Developer",
+    "contact": "+1 1234567890",
+    "location": "Los Angeles, USA",
+    "email": "noah.hughes@email.com",
+    "summary": "Creative Frontend Developer with a focus on designing and developing user interfaces for web applications. Skilled in frontend technologies, responsive design, and web development. Experienced in creating interactive and user-friendly interfaces to enhance user experience and engagement.",
+    "experience": [
+      {
+        "company": "Web Development Agency",
+        "role": "Frontend Developer",
+        "place": "Los Angeles, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Designed and developed user interfaces for web applications.",
+          "Implemented frontend technologies and responsive design principles.",
+          "Collaborated with backend developers and designers to create seamless user experiences.",
+          "Tested and optimized web interfaces for performance and usability."
+        ]
+      },
+      {
+        "company": "Frontend Development Team",
+        "role": "Junior Frontend Developer",
+        "place": "San Francisco, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in frontend development projects and coding tasks.",
+          "Worked on responsive design and web development initiatives.",
+          "Participated in team projects and contributed to frontend discussions."
+        ]
+      },
+      {
+        "company": "Frontend Development Internship",
+        "role": "Frontend Development Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in frontend development and user interface design activities.",
+          "Learned about frontend technologies and web development tools.",
+          "Participated in team projects and gained hands-on experience in frontend development."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Computer Science",
+        "year_end": "2015",
+        "description": "Specialized in frontend development, web technologies, and user interface design."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Web Development",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on frontend technologies and web design."
+      },
+      {
+        "institution": "Certified Frontend Developer (CFD)",
+        "degree": "CFD Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Frontend Developer designation to design and develop user interfaces."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Frontend Development",
+        "skills": ["HTML", "CSS", "JavaScript"]
+      },
+      {
+        "category": "Web Technologies",
+        "skills": ["React", "Angular", "Vue.js"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Emma Coleman",
+    "jobTitle": "Product Manager",
+    "contact": "+1 1234567890",
+    "location": "San Francisco, USA",
+    "email": "emma.coleman@email.com",
+    "summary": "Strategic Product Manager with a focus on developing and managing product strategies to drive business growth and customer satisfaction. Skilled in product development, market research, and project management. Experienced in defining product roadmaps, leading cross-functional teams, and delivering successful product launches.",
+    "experience": [
+      {
+        "company": "Product Management Team",
+        "role": "Product Manager",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Developed and managed product strategies to meet business objectives.",
+          "Conducted market research and analyzed customer feedback to inform product decisions.",
+          "Led cross-functional teams to define product roadmaps and deliver product features.",
+          "Collaborated with stakeholders and executives to drive product innovation and growth."
+        ]
+      },
+      {
+        "company": "Product Development Department",
+        "role": "Junior Product Manager",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in product development projects and feature planning.",
+          "Worked on market research and competitive analysis initiatives.",
+          "Participated in team projects and contributed to product discussions."
+        ]
+      },
+      {
+        "company": "Product Management Internship",
+        "role": "Product Management Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in product management activities and project coordination.",
+          "Learned about product development processes and project management tools.",
+          "Participated in team projects and gained hands-on experience in product management."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Business Administration",
+        "year_end": "2015",
+        "description": "Specialized in product management, marketing, and business strategy."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Economics",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on market research and analysis."
+      },
+      {
+        "institution": "Certified Product Manager (CPM)",
+        "degree": "CPM Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Product Manager designation to develop and manage product strategies."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Product Management",
+        "skills": ["Product Strategy", "Market Research", "Project Management"]
+      },
+      {
+        "category": "Product Development",
+        "skills": ["Product Roadmaps", "Feature Planning", "Product Launches"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Team Leadership"]
+      }
+    ]
+  },
+  {
+    "fullName": "Mason Price",
+    "jobTitle": "Cybersecurity Analyst",
+    "contact": "+1 1234567890",
+    "location": "Los Angeles, USA",
+    "email": "mason.price@email.com",
+    "summary": "Dedicated Cybersecurity Analyst with a focus on protecting and securing digital assets and information systems. Skilled in cybersecurity technologies, threat detection, and incident response. Experienced in analyzing security risks, implementing security measures, and ensuring data protection and privacy.",
+    "experience": [
+      {
+        "company": "Cybersecurity Firm",
+        "role": "Cybersecurity Analyst",
+        "place": "Los Angeles, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Analyzed security risks and vulnerabilities to protect digital assets.",
+          "Implemented security measures and controls to secure information systems.",
+          "Detected and responded to security incidents and threats to prevent data breaches.",
+          "Collaborated with IT teams and stakeholders to ensure data protection and privacy."
+        ]
+      },
+      {
+        "company": "Cybersecurity Department",
+        "role": "Junior Cybersecurity Analyst",
+        "place": "San Francisco, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in cybersecurity analysis and threat detection activities.",
+          "Worked on security monitoring and incident response tasks.",
+          "Participated in team projects and contributed to cybersecurity discussions."
+        ]
+      },
+      {
+        "company": "Cybersecurity Internship",
+        "role": "Cybersecurity Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in cybersecurity assessments and security audits.",
+          "Learned about cybersecurity technologies and tools for threat detection.",
+          "Participated in team projects and gained hands-on experience in cybersecurity."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Cybersecurity",
+        "year_end": "2015",
+        "description": "Specialized in cybersecurity technologies, threat detection, and incident response."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Computer Science",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on network security and information systems."
+      },
+      {
+        "institution": "Certified Cybersecurity Analyst (CCA)",
+        "degree": "CCA Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Cybersecurity Analyst designation to protect digital assets and information systems."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Cybersecurity Technologies",
+        "skills": ["Threat Detection", "Incident Response", "Security Monitoring"]
+      },
+      {
+        "category": "Information Security",
+        "skills": ["Data Protection", "Privacy Compliance", "Security Controls"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Charlotte Brooks",
+    "jobTitle": "HR Coordinator",
+    "contact": "+1 1234567890",
+    "location": "New York, USA",
+    "email": "charlotte.brooks@email.com",
+    "summary": "Dedicated HR Coordinator with a focus on supporting human resources functions and activities. Skilled in recruitment, onboarding, and employee relations. Experienced in coordinating HR processes, managing HR systems, and providing administrative support to HR teams.",
+    "experience": [
+      {
+        "company": "HR Department",
+        "role": "HR Coordinator",
+        "place": "New York, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Supported recruitment processes, including job postings and candidate screening.",
+          "Managed employee onboarding, orientation, and training programs.",
+          "Handled HR administrative tasks, such as maintaining employee records and files.",
+          "Assisted in employee relations activities and HR projects to support HR initiatives."
+        ]
+      },
+      {
+        "company": "HR Team",
+        "role": "HR Assistant",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in HR processes, such as recruitment and onboarding activities.",
+          "Managed HR systems and databases to ensure data accuracy and compliance.",
+          "Participated in team projects and contributed to HR discussions and initiatives."
+        ]
+      },
+      {
+        "company": "HR Internship",
+        "role": "HR Intern",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in HR functions, such as recruitment and employee relations tasks.",
+          "Learned about HR policies, procedures, and compliance requirements.",
+          "Participated in team projects and gained hands-on experience in HR coordination."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Human Resources",
+        "year_end": "2015",
+        "description": "Specialized in HR management, recruitment, and employee relations."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Business Administration",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on HR management and organizational behavior."
+      },
+      {
+        "institution": "Certified HR Coordinator (CHRC)",
+        "degree": "CHRC Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified HR Coordinator designation to support HR functions and activities."
+      }
+    ],
+    "skills": [
+      {
+        "category": "HR Coordination",
+        "skills": ["Recruitment", "Onboarding", "Employee Relations"]
+      },
+      {
+        "category": "HR Administration",
+        "skills": ["HR Systems", "Data Management", "Compliance"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "James Peterson",
+    "jobTitle": "Financial Analyst",
+    "contact": "+1 1234567890",
+    "location": "Los Angeles, USA",
+    "email": "james.peterson@email.com",
+    "summary": "Analytical Financial Analyst with a focus on analyzing financial data, preparing reports, and providing insights to support financial decision-making. Skilled in financial analysis, forecasting, and budgeting. Experienced in evaluating financial performance, identifying trends, and communicating financial recommendations to stakeholders.",
+    "experience": [
+      {
+        "company": "Financial Services Firm",
+        "role": "Financial Analyst",
+        "place": "Los Angeles, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Analyzed financial data and prepared reports to support decision-making.",
+          "Conducted financial forecasting and budgeting to assess financial performance.",
+          "Provided insights and recommendations to stakeholders and management.",
+          "Collaborated with finance teams and executives to achieve financial goals."
+        ]
+      },
+      {
+        "company": "Finance Department",
+        "role": "Junior Financial Analyst",
+        "place": "San Francisco, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in financial analysis and reporting activities.",
+          "Worked on financial modeling and data analysis projects.",
+          "Participated in team projects and contributed to financial discussions."
+        ]
+      },
+      {
+        "company": "Finance Internship",
+        "role": "Finance Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in financial data analysis and forecasting tasks.",
+          "Learned about financial modeling techniques and tools for analysis.",
+          "Participated in team projects and gained hands-on experience in financial analysis."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Finance",
+        "year_end": "2015",
+        "description": "Specialized in financial analysis, forecasting, and budgeting."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Economics",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on financial management and analysis."
+      },
+      {
+        "institution": "Certified Financial Analyst (CFA)",
+        "degree": "CFA Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Financial Analyst designation to analyze financial data and provide insights."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Financial Analysis",
+        "skills": ["Financial Modeling", "Data Analysis", "Forecasting"]
+      },
+      {
+        "category": "Budgeting",
+        "skills": ["Financial Reporting", "Performance Evaluation", "Trend Analysis"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Isabella Hayes",
+    "jobTitle": "Content Writer",
+    "contact": "+1 1234567890",
+    "location": "San Francisco, USA",
+    "email": "isabella.hayes@email.com",
+    "summary": "Creative Content Writer with a focus on producing engaging and informative content for digital platforms. Skilled in content creation, copywriting, and storytelling. Experienced in writing articles, blog posts, social media content, and marketing materials to engage audiences and drive brand awareness.",
+    "experience": [
+      {
+        "company": "Content Marketing Agency",
+        "role": "Content Writer",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Produced engaging and informative content for digital platforms.",
+          "Wrote articles, blog posts, social media content, and marketing materials.",
+          "Collaborated with marketing teams and clients to develop content strategies.",
+          "Edited and proofread content to ensure quality and consistency."
+        ]
+      },
+      {
+        "company": "Content Writing Department",
+        "role": "Junior Content Writer",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in content creation and copywriting projects.",
+          "Worked on blog posts, social media content, and email campaigns.",
+          "Participated in team projects and contributed to content discussions."
+        ]
+      },
+      {
+        "company": "Content Writing Internship",
+        "role": "Content Writing Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in content writing and editing activities.",
+          "Learned about content marketing strategies and techniques.",
+          "Participated in team projects and gained hands-on experience in content creation."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Journalism",
+        "year_end": "2015",
+        "description": "Specialized in content writing, storytelling, and digital journalism."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in English Literature",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on writing and communication."
+      },
+      {
+        "institution": "Certified Content Writer (CCW)",
+        "degree": "CCW Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Content Writer designation to produce engaging and informative content."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Content Creation",
+        "skills": ["Copywriting", "Storytelling", "Editing"]
+      },
+      {
+        "category": "Digital Content",
+        "skills": ["Blog Posts", "Social Media Content", "Marketing Materials"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Creativity", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Benjamin Scott",
+    "jobTitle": "IT Support Specialist",
+    "contact": "+1 1234567890",
+    "location": "Los Angeles, USA",
+    "email": "benjamin.scott@email.com",
+    "summary": "Dedicated IT Support Specialist with a focus on providing technical support and troubleshooting services to end-users. Skilled in IT support, network administration, and system maintenance. Experienced in resolving technical issues, installing software, and ensuring IT systems are operational and secure.",
+    "experience": [
+      {
+        "company": "IT Services Company",
+        "role": "IT Support Specialist",
+        "place": "Los Angeles, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Provided technical support and troubleshooting services to end-users.",
+          "Resolved IT issues, installed software, and configured hardware devices.",
+          "Managed IT systems, networks, and servers to ensure operational efficiency.",
+          "Collaborated with IT teams and vendors to implement IT solutions and upgrades."
+        ]
+      },
+      {
+        "company": "IT Support Department",
+        "role": "Junior IT Support Specialist",
+        "place": "San Francisco, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in IT support and network administration tasks.",
+          "Worked on system maintenance, software installations, and user training.",
+          "Participated in team projects and contributed to IT discussions."
+        ]
+      },
+      {
+        "company": "IT Support Internship",
+        "role": "IT Support Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in IT troubleshooting and technical support activities.",
+          "Learned about IT systems, networks, and security protocols.",
+          "Participated in team projects and gained hands-on experience in IT support."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Information Technology",
+        "year_end": "2015",
+        "description": "Specialized in IT support, network administration, and system maintenance."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Computer Science",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on IT systems and network security."
+      },
+      {
+        "institution": "Certified IT Support Specialist (CISS)",
+        "degree": "CISS Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified IT Support Specialist designation to provide technical support and troubleshooting services."
+      }
+    ],
+    "skills": [
+      {
+        "category": "IT Support",
+        "skills": ["Technical Troubleshooting", "Software Installation", "Hardware Configuration"]
+      },
+      {
+        "category": "Network Administration",
+        "skills": ["Network Security", "Server Management", "IT Systems"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Mia Russell",
+    "jobTitle": "Business Consultant",
+    "contact": "+1 1234567890",
+    "location": "San Francisco, USA",
+    "email": "mia.russell@email.com",
+    "summary": "Strategic Business Consultant with a focus on providing advisory services to businesses to improve performance and achieve growth. Skilled in business analysis, strategic planning, and project management. Experienced in identifying opportunities, developing solutions, and implementing strategies to drive business success.",
+    "experience": [
+      {
+        "company": "Consulting Firm",
+        "role": "Business Consultant",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Provided advisory services to businesses to improve performance and efficiency.",
+          "Conducted business analysis, market research, and competitive assessments.",
+          "Developed strategic plans, business models, and implementation strategies.",
+          "Collaborated with clients and stakeholders to achieve business objectives and growth."
+        ]
+      },
+      {
+        "company": "Business Consulting Department",
+        "role": "Junior Business Consultant",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in business analysis and strategic planning projects.",
+          "Worked on market research, financial analysis, and project management tasks.",
+          "Participated in team projects and contributed to business discussions."
+        ]
+      },
+      {
+        "company": "Business Consulting Internship",
+        "role": "Business Consulting Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in business consulting activities and client engagements.",
+          "Learned about business analysis, strategic planning, and project implementation.",
+          "Participated in team projects and gained hands-on experience in business consulting."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Business Administration",
+        "year_end": "2015",
+        "description": "Specialized in business analysis, strategic planning, and project management."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Business Management",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on business operations and strategy."
+      },
+      {
+        "institution": "Certified Business Consultant (CBC)",
+        "degree": "CBC Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Business Consultant designation to provide advisory services to businesses."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Business Analysis",
+        "skills": ["Market Research", "Financial Analysis", "Competitive Assessment"]
+      },
+      {
+        "category": "Strategic Planning",
+        "skills": ["Business Models", "Implementation Strategies", "Performance Improvement"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Team Leadership"]
+      }
+    ]
+  },
+  {
+    "fullName": "Alexander Foster",
+    "jobTitle": "AI Researcher",
+    "contact": "+1 1234567890",
+    "location": "Los Angeles, USA",
+    "email": "alexander.foster@email.com",
+    "summary": "Innovative AI Researcher with a focus on developing and implementing artificial intelligence solutions to solve complex problems. Skilled in machine learning, deep learning, and natural language processing. Experienced in AI research, algorithm development, and model training to advance AI technologies and applications.",
+    "experience": [
+      {
+        "company": "AI Research Lab",
+        "role": "AI Researcher",
+        "place": "Los Angeles, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Developed and implemented artificial intelligence solutions to solve complex problems.",
+          "Researched AI technologies, machine learning algorithms, and deep learning models.",
+          "Trained AI models, conducted experiments, and analyzed data to improve performance.",
+          "Collaborated with AI teams and researchers to advance AI technologies and applications."
+        ]
+      },
+      {
+        "company": "AI Research Department",
+        "role": "Junior AI Researcher",
+        "place": "San Francisco, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in AI research projects, algorithm development, and model training.",
+          "Worked on natural language processing, computer vision, and AI applications.",
+          "Participated in team projects and contributed to AI discussions."
+        ]
+      },
+      {
+        "company": "AI Research Internship",
+        "role": "AI Research Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in AI research activities, model training, and data analysis.",
+          "Learned about machine learning techniques, deep learning frameworks, and AI applications.",
+          "Participated in team projects and gained hands-on experience in AI research."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Artificial Intelligence",
+        "year_end": "2015",
+        "description": "Specialized in machine learning, deep learning, and natural language processing."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Computer Science",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on AI research and algorithm development."
+      },
+      {
+        "institution": "Certified AI Researcher (CAIR)",
+        "degree": "CAIR Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified AI Researcher designation to develop and implement AI solutions."
+      }
+    ],
+    "skills": [
+      {
+        "category": "AI Research",
+        "skills": ["Machine Learning", "Deep Learning", "Natural Language Processing"]
+      },
+      {
+        "category": "Algorithm Development",
+        "skills": ["Model Training", "Data Analysis", "Experimentation"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Amelia Morgan",
+    "jobTitle": "Graphic Designer",
+    "contact": "+1 1234567890",
+    "location": "San Francisco, USA",
+    "email": "amelia.morgan@email.com",
+    "summary": "Creative Graphic Designer with a focus on visual communication and branding. Skilled in graphic design, illustration, and typography. Experienced in creating visual concepts, designing marketing materials, and developing brand identities to enhance brand recognition and engagement.",
+    "experience": [
+      {
+        "company": "Design Studio",
+        "role": "Graphic Designer",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Created visual concepts, illustrations, and designs for marketing materials.",
+          "Designed logos, brochures, banners, and other branding assets.",
+          "Collaborated with marketing teams and clients to develop brand identities.",
+          "Edited and refined designs to ensure quality and consistency."
+        ]
+      },
+      {
+        "company": "Graphic Design Department",
+        "role": "Junior Graphic Designer",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in graphic design projects, illustration tasks, and typography projects.",
+          "Worked on branding assets, social media graphics, and marketing materials.",
+          "Participated in team projects and contributed to design discussions."
+        ]
+      },
+      {
+        "company": "Graphic Design Internship",
+        "role": "Graphic Design Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in graphic design activities, visual concepts, and branding projects.",
+          "Learned about design tools, techniques, and principles for visual communication.",
+          "Participated in team projects and gained hands-on experience in graphic design."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Graphic Design",
+        "year_end": "2015",
+        "description": "Specialized in visual communication, branding, and illustration."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Fine Arts",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on graphic design and visual arts."
+      },
+      {
+        "institution": "Certified Graphic Designer (CGD)",
+        "degree": "CGD Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Graphic Designer designation to create visual concepts and designs."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Graphic Design",
+        "skills": ["Illustration", "Typography", "Visual Communication"]
+      },
+      {
+        "category": "Branding",
+        "skills": ["Logo Design", "Brand Identity", "Marketing Materials"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Creativity", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Elijah Cooper",
+    "jobTitle": "Backend Developer",
+    "contact": "+1 1234567890",
+    "location": "Los Angeles, USA",
+    "email": "elijah.cooper@email.com",
+    "summary": "Innovative Backend Developer with a focus on designing and developing server-side applications and databases. Skilled in backend technologies, API development, and database management. Experienced in building scalable and secure backend systems to support web and mobile applications.",
+    "experience": [
+      {
+        "company": "Software Development Company",
+        "role": "Backend Developer",
+        "place": "Los Angeles, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Designed and developed server-side applications and databases.",
+          "Built APIs, implemented backend technologies, and managed databases.",
+          "Collaborated with frontend developers and designers to integrate frontend and backend systems.",
+          "Tested and optimized backend systems for performance, scalability, and security."
+        ]
+      },
+      {
+        "company": "Backend Development Team",
+        "role": "Junior Backend Developer",
+        "place": "San Francisco, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in backend development projects, API development, and database management.",
+          "Worked on server-side applications, backend technologies, and system integrations.",
+          "Participated in team projects and contributed to backend discussions."
+        ]
+      },
+      {
+        "company": "Backend Development Internship",
+        "role": "Backend Development Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in backend development and database management activities.",
+          "Learned about backend technologies, API development, and system architecture.",
+          "Participated in team projects and gained hands-on experience in backend development."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Computer Science",
+        "year_end": "2015",
+        "description": "Specialized in backend development, server-side applications, and database management."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Web Development",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on backend technologies and system architecture."
+      },
+      {
+        "institution": "Certified Backend Developer (CBD)",
+        "degree": "CBD Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Backend Developer designation to design and develop server-side applications."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Backend Development",
+        "skills": ["API Development", "Database Management", "Server-Side Applications"]
+      },
+      {
+        "category": "System Architecture",
+        "skills": ["Scalability", "Security", "Performance Optimization"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Teamwork"]
+      }
+    ]
+  },
+  {
+    "fullName": "Harper Richardson",
+    "jobTitle": "Social Media Manager",
+    "contact": "+1 1234567890",
+    "location": "San Francisco, USA",
+    "email": "harper.richardson@email.com",
+    "summary": "Strategic Social Media Manager with a focus on developing and implementing social media strategies to enhance brand visibility and engagement. Skilled in social media marketing, content creation, and community management. Experienced in managing social media platforms, analyzing performance metrics, and driving social media campaigns.",
+    "experience": [
+      {
+        "company": "Digital Marketing Agency",
+        "role": "Social Media Manager",
+        "place": "San Francisco, USA",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Developed and implemented social media strategies to enhance brand visibility and engagement.",
+          "Managed social media platforms, created content, and engaged with followers.",
+          "Analyzed performance metrics, monitored social media trends, and optimized campaigns.",
+          "Collaborated with marketing teams and clients to achieve social media goals and objectives."
+        ]
+      },
+      {
+        "company": "Social Media Department",
+        "role": "Junior Social Media Manager",
+        "place": "Los Angeles, USA",
+        "duration": "01/01/2016 - 31/05/2018",
+        "description": [
+          "Assisted in social media marketing projects, content creation, and community management.",
+          "Worked on social media platforms, engagement strategies, and campaign optimization.",
+          "Participated in team projects and contributed to social media discussions."
+        ]
+      },
+      {
+        "company": "Social Media Internship",
+        "role": "Social Media Intern",
+        "place": "New York, USA",
+        "duration": "01/06/2015 - 31/12/2015",
+        "description": [
+          "Assisted in social media activities, content creation, and community engagement.",
+          "Learned about social media marketing strategies, analytics tools, and campaign planning.",
+          "Participated in team projects and gained hands-on experience in social media management."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Master's in Marketing",
+        "year_end": "2015",
+        "description": "Specialized in social media marketing, digital marketing, and brand management."
+      },
+      {
+        "institution": "University of Southern California",
+        "degree": "Bachelor's in Communication Studies",
+        "year_end": "2013",
+        "description": "Graduated with honors and focused on media studies and public relations."
+      },
+      {
+        "institution": "Certified Social Media Manager (CSM)",
+        "degree": "CSM Certification",
+        "year_end": "2016",
+        "description": "Earned the Certified Social Media Manager designation to develop and implement social media strategies."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Social Media Marketing",
+        "skills": ["Content Creation", "Community Management", "Engagement Strategies"]
+      },
+      {
+        "category": "Performance Analysis",
+        "skills": ["Metrics Monitoring", "Trend Analysis", "Campaign Optimization"]
+      },
+      {
+        "category": "Other Skills",
+        "skills": ["Problem-Solving", "Attention to Detail", "Team Leadership"]
+      }
+    ]
+  },
+  {
+    
   }
 ]
