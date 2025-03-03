@@ -7,6 +7,7 @@ import Navbar from "../components/landing-page/Navbar";
 export default function Home() {
 
   const [circlePosition, setCirclePosition] = useState({ x: 0, y: 0 });
+  const [showProfile, setShowProfile] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -38,7 +39,7 @@ export default function Home() {
       />
       {/* <div className="absolute w-96 h-96 bg-[#A6B331] opacity-30 rounded-full top-[74px] right-[173px] blur-[140px]" /> */}
       <div className="z-10">
-        <Navbar />
+      <Navbar setShowProfile={setShowProfile} /> 
       </div>
     </div>
   );
