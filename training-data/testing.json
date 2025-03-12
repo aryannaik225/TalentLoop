@@ -1,24 +1,53 @@
-{
-    "jobTitle": "Backend Developer",
-    "summary": "Innovative Backend Developer with a focus on designing and developing server-side applications and databases...",
+[
+  {
+    "fullName": "Aryan Naik",
+    "jobTitle": "Software Engineer",
+    "contact": "+91 9876543210",
+    "location": "Mumbai, India",
+    "email": "aryan.naik@example.com",
+    "summary": "I'm a Software Engineer specializing in full-stack development and AI. With experience in designing scalable applications and optimizing backend processes, I create high-performing solutions that enhance user experience and business growth.",
     "experience": [
       {
-        "company": "Software Development Company",
-        "role": "Backend Developer",
-        "duration": "01/06/2018 - Present",
+        "company": "TechCorp",
+        "role": "Software Engineer",
+        "place": "Mumbai, India",
+        "duration": "01/06/2020 - Present",
         "description": [
-          "Designed and developed server-side applications and databases.",
-          "Built APIs, implemented backend technologies, and managed databases."
+          "Developed scalable web applications and led backend optimizations.",
+          "Implemented microservices architecture, improving system efficiency.",
+          "Mentored junior developers, conducting regular code reviews."
         ]
       }
     ],
     "education": [
       {
-        "degree": "Master's in Computer Science",
-        "institution": "University of California, Berkeley",
-        "year_end": "2015"
+        "degree": "Bachelor's in Computer Science",
+        "institution": "IIT Bombay",
+        "year_end": "2019"
       }
     ],
-    "skills": ["API Development", "Database Management", "Server-Side Applications"]
+    "skills": [
+      "Full-Stack Development",
+      "Machine Learning",
+      "Microservices Architecture",
+      "Database Management",
+      "Cloud Computing"
+    ],
+    "projects": [
+      {
+        "name": "AI Chatbot",
+        "description": "Developed an AI chatbot that automates customer interactions, reducing response time by 40%."
+      },
+      {
+        "name": "E-commerce Platform",
+        "description": "Built a scalable e-commerce system handling 10k+ concurrent users with optimized backend performance."
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect",
+        "year": "2021"
+      }
+    ]
   }
-  
+]
