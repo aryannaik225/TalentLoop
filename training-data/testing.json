@@ -1,0 +1,24 @@
+{
+    "jobTitle": "Backend Developer",
+    "summary": "Innovative Backend Developer with a focus on designing and developing server-side applications and databases...",
+    "experience": [
+      {
+        "company": "Software Development Company",
+        "role": "Backend Developer",
+        "duration": "01/06/2018 - Present",
+        "description": [
+          "Designed and developed server-side applications and databases.",
+          "Built APIs, implemented backend technologies, and managed databases."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master's in Computer Science",
+        "institution": "University of California, Berkeley",
+        "year_end": "2015"
+      }
+    ],
+    "skills": ["API Development", "Database Management", "Server-Side Applications"]
+  }
+  
