@@ -17,36 +17,38 @@
           "Implemented microservices architecture, improving system efficiency.",
           "Mentored junior developers, conducting regular code reviews."
         ]
+      },
+      {
+        "company": "StartupX",
+        "role": "Intern",
+        "place": "Bangalore, India",
+        "duration": "01/01/2020 - 31/05/2020",
+        "description": [
+          "Worked on frontend development and API integrations.",
+          "Contributed to UI improvements, enhancing user engagement by 30%."
+        ]
       }
     ],
     "education": [
       {
-        "degree": "Bachelor's in Computer Science",
-        "institution": "IIT Bombay",
-        "year_end": "2019"
+        "institution": "Ramrao Adik Institute of Technology",
+        "degree": "BTech in AI & Data Science",
+        "year_end": "2026",
+        "description": "Graduating with top honors in AI & Data Science."
       }
     ],
     "skills": [
-      "Full-Stack Development",
-      "Machine Learning",
-      "Microservices Architecture",
-      "Database Management",
-      "Cloud Computing"
-    ],
-    "projects": [
       {
-        "name": "AI Chatbot",
-        "description": "Developed an AI chatbot that automates customer interactions, reducing response time by 40%."
+        "category": "Industry Knowledge",
+        "skills": ["Software Development", "Machine Learning", "Data Science"]
       },
       {
-        "name": "E-commerce Platform",
-        "description": "Built a scalable e-commerce system handling 10k+ concurrent users with optimized backend performance."
-      }
-    ],
-    "certifications": [
+        "category": "Tools and Technology",
+        "skills": ["Python", "TensorFlow", "React.js", "Node.js"]
+      },
       {
-        "name": "AWS Certified Solutions Architect",
-        "year": "2021"
+        "category": "Other Skills",
+        "skills": ["Communication", "Problem-Solving", "Leadership"]
       }
     ]
   }
