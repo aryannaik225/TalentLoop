@@ -1,4 +1,3 @@
-# %%
 # What all we need to pay attention in the ATS Score calculation
 #  1. Document Synopsis
 #     a. ATS Compliance - Check if the resume appears to be compliant with applicant tracking systems.
@@ -31,118 +30,36 @@
 
 #  These all points must be checked and the ATS score must be calculated for a resume. The score must be between 0 and 100. The higher the score, the better the resume.
 
-# %%
-import json
+#  ---
 
-# Load the resume JSON
-file_path = "../training-data/testing.json"
-with open(file_path, "r", encoding="utf-8") as file:
-    resumes = json.load(file)
-
-def calculate_document_synopsis(resume):
-    feedback = []
-    
-    # Extract resume text
-    resume_text = " ".join([
-        resume.get("summary", ""),
-        " ".join(exp["role"] + " " + " ".join(exp["description"]) for exp in resume.get("experience", [])),
-        " ".join(edu["degree"] + " " + edu["institution"] for edu in resume.get("education", [])),
-        " ".join(skill for category in resume.get("skills", []) for skill in category["skills"])
-    ])
-    
-    word_count = len(resume_text.split())
-    page_count = word_count / 500  # Assuming ~500 words per page
-
-    # Scoring
-    word_score = 10
-    if word_count < 300:
-        word_score = 5
-        feedback.append(f"⚠️ Low Word Count - {word_count} words (Min: 300)")
-    elif word_count > 1000:
-        word_score = 7
-        feedback.append(f"⚠️ High Word Count - {word_count} words (Max: 1000)")
-
-    page_score = 5
-    if page_count > 2:
-        page_score = 2
-        feedback.append(f"⚠️ Resume exceeds 2 pages - Estimated {round(page_count, 1)} pages")
-
-    file_size_score = 5  # Assuming valid size, so full points
-    pdf_score = 5  # Since we always export as PDF, full points
-
-    total_score = word_score + page_score + file_size_score + pdf_score
-    return total_score, feedback
-
-# Testing with the first resume
-document_synopsis_score, synopsis_feedback = calculate_document_synopsis(resumes[0])
-
-print("Document Synopsis Score:", document_synopsis_score, "/ 25")
-print("Feedback:", "\n".join(synopsis_feedback) if synopsis_feedback else "✅ No Issues Found")
-
-
-# %%
 import re
+import json
+from textstat import lexicon_count, flesch_reading_ease
+from collections import Counter
+import spacy
 
-def calculate_data_identification(resume):
-    feedback = []
-    score = 0
+nlp = spacy.load("en_core_web_sm")
 
-    # Phone Number Check
-    phone_regex = r"\+?\d[\d\s\-\(\)]{9,}"  
-    if re.search(phone_regex, resume.get("contact", "")):
-        score += 5
-    else:
-        feedback.append("⚠️ Missing Phone Number")
+soft_skill_anchors = [
+    "communication", "leadership", "teamwork", "adaptability", "creativity",
+    "emotional intelligence", "problem-solving", "critical thinking", "time management",
+    "negotiation", "conflict resolution", "collaboration", "decision making",
+    "persuasion", "self-motivation", "public speaking", "interpersonal skills",
+    "resilience", "customer service", "networking", "flexibility", "mentoring",
+    "cultural awareness", "patience", "empathy", "work ethic", "initiative"
+]
 
-    # Email Check
-    email_regex = r"[^@]+@[^@]+\.[^@]+"
-    if re.search(email_regex, resume.get("email", "")):
-        score += 5
-    else:
-        feedback.append("⚠️ Missing Email Address")
+hard_skill_anchors = [
+    "programming", "data analysis", "machine learning", "engineering", "cloud computing",
+    "cybersecurity", "blockchain", "artificial intelligence", "deep learning",
+    "big data", "software development", "database management", "computer vision",
+    "natural language processing", "web development", "mobile development",
+    "network administration", "DevOps", "data visualization", "biotechnology",
+    "robotics", "financial modeling", "accounting", "statistical analysis",
+    "CAD", "3D modeling", "supply chain management", "SEO", "digital marketing",
+    "graphic design", "video editing", "automation", "embedded systems"
+]
 
-    # LinkedIn URL Check
-    if "linkedin.com" in resume.get("contact", "").lower():
-        score += 5
-    else:
-        feedback.append("⚠️ Missing LinkedIn URL")
-
-    # Education Section Check
-    if resume.get("education"):
-        score += 5
-    else:
-        feedback.append("⚠️ Missing Education Section")
-
-    # Experience Section Check
-    if resume.get("experience"):
-        score += 5
-    else:
-        feedback.append("⚠️ Missing Experience Section")
-
-    # Skills Section Check
-    if resume.get("skills"):
-        score += 5
-    else:
-        feedback.append("⚠️ Missing Skills Section")
-
-    # Date Formatting Check (MM/YYYY, YYYY-MM, etc.)
-    date_regex = r"\b(?:\d{2}/\d{4}|\d{4}-\d{2})\b"
-    dates_valid = any(re.search(date_regex, exp["duration"]) for exp in resume.get("experience", []))
-    if dates_valid:
-        score += 5
-    else:
-        feedback.append("⚠️ Invalid Date Formatting (Use MM/YYYY or YYYY-MM)")
-
-    return score, feedback
-
-# Testing with the first resume
-data_identification_score, data_feedback = calculate_data_identification(resumes[0])
-
-print("Data Identification Score:", data_identification_score, "/ 35")
-print("Feedback:", "\n".join(data_feedback) if data_feedback else "✅ No Issues Found")
-
-
-# %%
 industry_keywords = {
     "Software Engineer": ["Python", "Java", "C++", "Full-Stack", "Cloud Computing", "Machine Learning", "Agile", "Git"],
     "Data Scientist": ["Data Analysis", "Machine Learning", "Deep Learning", "Python", "Pandas", "TensorFlow", "Statistics"],
@@ -337,9 +254,106 @@ industry_keywords = {
     "Escape Room Designer": ["Puzzle Creation", "Storytelling", "Mechanical Engineering"],
 }
 
-# %%
-from textstat import lexicon_count, flesch_reading_ease
-from collections import Counter
+
+file_path = "../training-data/testing.json"
+with open(file_path, "r", encoding="utf-8") as file:
+    resumes = json.load(file)
+
+# Calculating Document Synopsis for ATS
+def calculate_document_synopsis(resume):
+    feedback = []
+
+    # Extract resume text
+    resume_text = " ".join([
+        resume.get("summary", ""),
+        " ".join(exp["role"] + " " + " ".join(exp["description"]) for exp in resume.get("experience", [])),
+        " ".join(edu["degree"] + " " + edu["institution"] for edu in resume.get("education", [])),
+        " ".join(skill for category in resume.get("skills", []) for skill in category["skills"])
+    ])
+
+    word_count = len(resume_text.split())
+    page_count = word_count // 500 # Assuming ~500 words per page
+
+    word_score = 10
+    if word_count < 300:
+        word_score = 5
+        feedback.append(f"⚠️ Low Word Count - {word_count} words (Min: 300)")
+    elif word_count > 1000:
+        word_score = 7
+        feedback.append(f"⚠️ High Word Count - {word_count} words (Max: 1000)")
+
+    page_score = 5
+    if page_count > 2:
+        page_score = 2
+        feedback.append(f"⚠️ Resume exceeds 2 pages - Estimated {round(page_count, 1)} pages")
+
+    file_size_score = 5
+    pdf_score = 5
+
+    total_score = word_score + page_score + file_size_score + pdf_score
+    return total_score, feedback
+
+
+#  Calculating Data Identification for ATS
+def calculate_data_identification(resume):
+    feedback = []
+    score = 0
+
+    # Phone Number Check
+    phone_regex = r"\+?\d[\d\s\-\(\)]{9,}"  
+    if re.search(phone_regex, resume.get("contact", "")):
+        score += 5
+    else:
+        feedback.append("⚠️ Missing Phone Number")
+
+
+    # Email Check
+    email_regex = r"[^@]+@[^@]+\.[^@]+"
+    if re.search(email_regex, resume.get("email", "")):
+        score += 5
+    else:
+        feedback.append("⚠️ Missing Email Address")
+
+
+    # LinkedIn URL Check
+    if "linkedin.com" in resume.get("contact", "").lower():
+        score += 5
+    else:
+        feedback.append("⚠️ Missing LinkedIn URL")
+
+
+    # Education Section Check
+    if resume.get("education"):
+        score += 5
+    else:
+        feedback.append("⚠️ Missing Education Section")
+
+
+    # Experience Section Check 
+    if resume.get("experience"):
+        score += 5
+    else:
+        feedback.append("⚠️ Missing Experience Section")
+
+
+    # Skills Section Check
+    if resume.get("skills"):
+        score += 5
+    else:
+        feedback.append("⚠️ Missing Skills Section")
+
+    
+    # Date Formatting Check (MM/YYYY, YYYY-MM, etc.)
+    date_regex = r"\b(?:\d{2}/\d{4}|\d{4}-\d{2})\b"
+    dates_valid = any(re.search(date_regex, exp["duration"]) for exp in resume.get("experience", []))
+    if dates_valid:
+        score += 5
+    else:
+        feedback.append("⚠️ Invalid Date Formatting (Use MM/YYYY or YYYY-MM)")
+
+    return score, feedback
+
+
 
 def calculate_lexical_analysis(resume):
     feedback = []
@@ -364,7 +378,7 @@ def calculate_lexical_analysis(resume):
 
     # 3. Vocabulary Level (Scale 0-10 → 5)
     vocab_score = lexicon_count(resume_text, removepunct=True) / 100
-    vocab_score = min(vocab_score, 10)  # Ensure it doesn't exceed 10
+    vocab_score = min(vocab_score, 10)
     score += (vocab_score / 2)
     
     if vocab_score < 5:
@@ -372,7 +386,7 @@ def calculate_lexical_analysis(resume):
 
     # 4. Reading Level (Scale 0-10 → 5)
     readability_score = flesch_reading_ease(resume_text)
-    readability_score = max(0, min(readability_score / 10, 10))  # Normalize
+    readability_score = max(0, min(readability_score / 10, 10))
     score += (readability_score / 2)
 
     if readability_score < 5:
@@ -389,37 +403,7 @@ def calculate_lexical_analysis(resume):
 
     return round(score, 2), feedback
 
-# Testing with the first resume
-lexical_score, lexical_feedback = calculate_lexical_analysis(resumes[0])
 
-print("Lexical Analysis Score:", lexical_score, "/ 25")
-print("Feedback:", "\n".join(lexical_feedback) if lexical_feedback else "✅ No Issues Found")
-
-# %%
-import spacy
-
-nlp = spacy.load("en_core_web_sm")
-
-soft_skill_anchors = [
-    "communication", "leadership", "teamwork", "adaptability", "creativity",
-    "emotional intelligence", "problem-solving", "critical thinking", "time management",
-    "negotiation", "conflict resolution", "collaboration", "decision making",
-    "persuasion", "self-motivation", "public speaking", "interpersonal skills",
-    "resilience", "customer service", "networking", "flexibility", "mentoring",
-    "cultural awareness", "patience", "empathy", "work ethic", "initiative"
-]
-
-
-hard_skill_anchors = [
-    "programming", "data analysis", "machine learning", "engineering", "cloud computing",
-    "cybersecurity", "blockchain", "artificial intelligence", "deep learning",
-    "big data", "software development", "database management", "computer vision",
-    "natural language processing", "web development", "mobile development",
-    "network administration", "DevOps", "data visualization", "biotechnology",
-    "robotics", "financial modeling", "accounting", "statistical analysis",
-    "CAD", "3D modeling", "supply chain management", "SEO", "digital marketing",
-    "graphic design", "video editing", "automation", "embedded systems"
-]
 
 def classify_skills(skill):
     skill_vec = nlp(skill.lower())
@@ -428,7 +412,6 @@ def classify_skills(skill):
     hard_sim = max(skill_vec.similarity(nlp(hs)) for hs in hard_skill_anchors)
 
     return "soft" if soft_sim > hard_sim else "hard"
-
 
 
 def categorize_skills(resume):
@@ -447,8 +430,8 @@ def categorize_skills(resume):
 
 
 def calculate_skills_efficiency_ratio(hard_skills_count, soft_skills_count):
-    ratio = hard_skills_count / (soft_skills_count + 1) # Avoid division by zero
-    score = max(0, min(10 - abs(ratio - 1) * 10, 10))  #  Normalize Score Scale to 0-10
+    ratio = hard_skills_count / (soft_skills_count + 1)
+    score = max(0, min(10 - abs(ratio - 1) * 5, 10))
 
     warning = None
     if ratio > 2:
@@ -457,29 +440,23 @@ def calculate_skills_efficiency_ratio(hard_skills_count, soft_skills_count):
         warning = f"Too many soft skills ({soft_skills_count}). Consider adding more technical expertise."
 
     return round(score, 2), warning
-    
-    
-
 
 
 def check_semantic_analysis(resume, ats_report):
     score = 0
     total_score = 30
 
-
     # 1. Measurable Achievements
-    achievement_count = sum(
-        1 for exp in resume.get("experience", [])
-        for desc in exp.get("description", [])
-        if re.search(r"\d+", desc)
-    )
+    achievement_count = len(resume.get("experience", []))
 
-    if achievement_count == 0:
-        ats_report["warnings"].append("Lack of Measurable Achievements - No quantifiable data found.")
-    else:
+    if achievement_count > 1:
         score += 10
+    elif achievement_count == 1:
+        score += 5
+    elif achievement_count < 1:
+        ats_report["warnings"].append("Lack of Measurable Achievements - Consider adding quantifiable data.")
 
-
+        
 
     # 2. Categorize Soft and Hard Skills
     soft_skills, hard_skills = categorize_skills(resume)
@@ -494,7 +471,6 @@ def check_semantic_analysis(resume, ats_report):
     else:
         score += 5  
 
-
     # 3. Skills Efficiency Ratio
     hard_skills_count = len(hard_skills)
     soft_skills_count = len(soft_skills)
@@ -502,17 +478,51 @@ def check_semantic_analysis(resume, ats_report):
     score += efficiency_score
     if warning:
         ats_report["warnings"].append(warning)
-    
+
     return score, ats_report
 
 
-semantic_score, ats_report = check_semantic_analysis(resumes[0], {"warnings": []})
-print("Semantic Analysis Score:", semantic_score, "/ 30")
-if semantic_score < 30:
-    print("ATS Report:", ats_report["warnings"] if ats_report["warnings"] else "✅ Ratio between hard and soft skills can be better")
-else:
-    print("ATS Report:", ats_report["warnings"] if ats_report["warnings"] else "✅ No Issues Found")
+
+def calculate_ats_score(resume):
+    ats_report = {
+        "score": 0,
+        "feedback": [],
+        "warnings": []
+    }
+
+    # Document Synopsis
+    doc_synopsis_score, doc_synopsis_feedback = calculate_document_synopsis(resume)
+    ats_report["score"] += doc_synopsis_score
+    ats_report["feedback"].extend(doc_synopsis_feedback)
+
+    # Data Identification
+    data_id_score, data_id_feedback = calculate_data_identification(resume)
+    ats_report["score"] += data_id_score
+    ats_report["feedback"].extend(data_id_feedback)
+
+    # Lexical Analysis
+    lexical_score, lexical_feedback = calculate_lexical_analysis(resume)
+    ats_report["score"] += lexical_score
+    ats_report["feedback"].extend(lexical_feedback)
+
+    # Semantic Analysis
+    semantic_score, ats_report = check_semantic_analysis(resume, ats_report)
+    ats_report["score"] += semantic_score
+
+    # Normalize score to 100
+    ats_report["score"] = min(ats_report["score"], 100)
+
+    return ats_report
 
 
-
-
+# Example usage
+for resume in resumes:
+    ats_report = calculate_ats_score(resume)
+    print(f"ATS Score: {ats_report['score']}")
+    print("Feedback:")
+    for feedback in ats_report["feedback"]:
+        print(feedback)
+    print("Warnings:")
+    for warning in ats_report["warnings"]:
+        print(warning)
+    print("\n")
