@@ -526,3 +526,40 @@ for resume in resumes:
     for warning in ats_report["warnings"]:
         print(warning)
     print("\n")
+    
+def check_job_title_relevance(experience):
+    """
+    Checks if the job description aligns with the job title based on semantic similarity.
+    """
+    title = experience.get("role", "").strip().lower()
+    description = " ".join(experience.get("description", [])).strip().lower()
+
+    if not title or not description:
+        return False, "⚠️ Missing job title or description."
+
+    # Process title and description with NLP
+    title_doc = nlp(title)
+    desc_doc = nlp(description)
+
+    # Compute semantic similarity
+    similarity_score = title_doc.similarity(desc_doc)
+
+    # Define relevance threshold (adjustable)
+    relevance_threshold = 0.5
+
+    if similarity_score < relevance_threshold:
+        return False, f"⚠️ The job description for '{experience['role']}' seems unrelated. Consider improving alignment."
+    
+    return True, None
+
+# Example Experience Entry
+experience_entry = {
+    "role": "Software Engineer",
+    "description": ["Developed scalable web applications", "Optimized database queries", "Implemented RESTful APIs"]
+}
+
+# Test the function
+is_relevant, warning = check_job_title_relevance(experience_entry)
+print("Relevance:", is_relevant)
+if warning:
+    print(warning)
