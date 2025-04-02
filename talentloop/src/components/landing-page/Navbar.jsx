@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import {Turn as Hamburger} from 'hamburger-react'
 import { useAuth } from '@/context/AuthContext'
+// import DefaultPfp from 'talentloop\public\landing-page\default-pfp.png'
 
 const Navbar = (setShowProfile) => {
 
@@ -108,10 +109,10 @@ const Navbar = (setShowProfile) => {
                   transition={{ duration: 0.5, stiffness: 260, delay: 1.2 }}
                 >
                   <Image
-                    src={user.photoURL}
+                    src={user.photoURL ? user.photoURL : '/landing-page/default-pfp.png'}
                     width={40}
                     height={40}
-                    alt="profile"
+                    alt={'user'}
                     className="rounded-full"
                   />
                 </motion.div>
