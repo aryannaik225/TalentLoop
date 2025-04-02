@@ -1,1 +1,2 @@
 resume-builder/trained_t5_resume_without_optimization/model.safetensors filter=lfs diff=lfs merge=lfs -text
+/resume-builder/t5_resume_model_no_optimizer/model.safetensors filter=lfs diff=lfs merge=lfs -text
