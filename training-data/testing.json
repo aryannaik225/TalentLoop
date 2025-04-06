@@ -5,7 +5,7 @@
     "contact": "+91 9876543210",
     "location": "Mumbai, India",
     "email": "aryan.naik@example.com",
-    "summary": "I'm a Software Engineer specializing in full-stack development and AI. With experience in designing scalable applications and optimizing backend processes, I create high-performing solutions that enhance user experience and business growth.",
+    "summary": "With a strong foundation in AI & Data Science, I bring expertise in developing machine learning algorithms and building scalable data solutions. I am passionate about leveraging cutting-edge technologies to solve complex problems while maintaining excellent communication and teamwork skills.",
     "experience": [
       {
         "company": "TechCorp",
@@ -13,19 +13,9 @@
         "place": "Mumbai, India",
         "duration": "01/06/2020 - Present",
         "description": [
-          "Developed scalable web applications and led backend optimizations.",
-          "Implemented microservices architecture, improving system efficiency.",
-          "Mentored junior developers, conducting regular code reviews."
-        ]
-      },
-      {
-        "company": "StartupX",
-        "role": "Intern",
-        "place": "Bangalore, India",
-        "duration": "01/01/2020 - 31/05/2020",
-        "description": [
-          "Worked on frontend development and API integrations.",
-          "Contributed to UI improvements, enhancing user engagement by 30%."
+          "Developed and implemented machine learning models to improve customer engagement.",
+          "Collaborated with cross-functional teams to design and deploy scalable data pipelines.",
+          "Optimized existing systems using advanced algorithms for enhanced performance."
         ]
       }
     ],
@@ -34,21 +24,35 @@
         "institution": "Ramrao Adik Institute of Technology",
         "degree": "BTech in AI & Data Science",
         "year_end": "2026",
-        "description": "Graduating with top honors in AI & Data Science."
+        "description": "Graduated with a strong foundation in artificial intelligence and data science, including coursework on machine learning algorithms, data analysis techniques, and software development practices."
       }
     ],
     "skills": [
       {
-        "category": "Industry Knowledge",
-        "skills": ["Software Development", "Machine Learning", "Data Science"]
+        "category": "Industrial Knowledge",
+        "skills": [
+          "Machine Learning Algorithms",
+          "Data Analysis Techniques",
+          "Soft Computing"
+        ]
       },
       {
-        "category": "Tools and Technology",
-        "skills": ["Python", "TensorFlow", "React.js", "Node.js"]
+        "category": "Tools & Technologies",
+        "skills": [
+          "Python",
+          "R",
+          "TensorFlow",
+          "Pandas",
+          "Matplotlib"
+        ]
       },
       {
-        "category": "Other Skills",
-        "skills": ["Communication", "Problem-Solving", "Leadership"]
+        "category": "Soft Skills",
+        "skills": [
+          "Problem-Solving",
+          "Team Collaboration",
+          "Communication Skills"
+        ]
       }
     ]
   }
