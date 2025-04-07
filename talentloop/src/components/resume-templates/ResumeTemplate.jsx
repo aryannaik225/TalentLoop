@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const ResumeTemplate = ({ userData }) => {
   const {
-    profile_picture = "/resume-template/resume-template-1/default-pfp.png",
+    profile_picture = "/resume-template/modern-template-1/default-pfp.png",
     fullName = "Maksud Alam",
     jobTitle = "Senior Product Designer",
     contact = "+1234567890",
@@ -67,7 +67,7 @@ const ResumeTemplate = ({ userData }) => {
     <div className="max-w-2xl mx-auto py-8 px-10 bg-white shadow-lg border border-gray-300 rounded-lg relative flex flex-col overflow-hidden">
       <div className="absolute inset-0 z-0 flex justify-center">
         <Image 
-          src="/resume-template/resume-template-1/Modern-shapes-of-abstract-banner-on-transparent-background-PNG.png" 
+          src="/resume-template/modern-template-1/Modern-shapes-of-abstract-banner-on-transparent-background-PNG.png" 
           alt="" 
           layout="fill" 
           objectFit="cover" 
@@ -90,7 +90,7 @@ const ResumeTemplate = ({ userData }) => {
       {/* About Section */}
       <div className="flex w-full mt-12 relative z-10">
         <div>
-          <Image src='/resume-template/resume-template-1/side-ways-about.png' width={25} height={570} alt="ABOUT" draggable='false' className="select-none"/>
+          <Image src='/resume-template/modern-template-1/side-ways-about.png' width={25} height={570} alt="ABOUT" draggable='false' className="select-none"/>
         </div>
 
         <div className="flex flex-col w-full items-start pl-10">
@@ -103,7 +103,7 @@ const ResumeTemplate = ({ userData }) => {
       {/* Experience Section */}
       <div className="flex w-full mt-12 relative z-10">
         <div>
-          <Image src='/resume-template/resume-template-1/side-ways-work-experience.png' width={25} height={570} alt="EXPERIENCE" draggable='false' className="select-none"/>
+          <Image src='/resume-template/modern-template-1/side-ways-work-experience.png' width={25} height={570} alt="EXPERIENCE" draggable='false' className="select-none"/>
         </div>
         <div className="flex flex-col w-full pl-10 items-start gap-6">
           {experience.map((exp, index) => (
@@ -128,7 +128,7 @@ const ResumeTemplate = ({ userData }) => {
         {/* Education Section */}
         <div className="flex w-5/12">
           <div>
-            <Image src='/resume-template/resume-template-1/side-ways-education.png' width={20} height={570} alt="EDUCATION" draggable='false' className="select-none"/>
+            <Image src='/resume-template/modern-template-1/side-ways-education.png' width={20} height={570} alt="EDUCATION" draggable='false' className="select-none"/>
           </div>
           <div>
             <div className="flex flex-col w-full pl-10 items-start gap-6">
@@ -154,7 +154,7 @@ const ResumeTemplate = ({ userData }) => {
           {/* Skills Section */}
           <div className="flex w-6/12">
             <div>
-              <Image src='/resume-template/resume-template-1/side-ways-skills.png' width={20} height={570} alt="SKILLS" draggable='false' className="select-none"/>
+              <Image src='/resume-template/modern-template-1/side-ways-skills.png' width={20} height={570} alt="SKILLS" draggable='false' className="select-none"/>
             </div>
             <div className="flex flex-col w-full pl-10 items-start gap-6">
               {skills.map((skill, index) => (
