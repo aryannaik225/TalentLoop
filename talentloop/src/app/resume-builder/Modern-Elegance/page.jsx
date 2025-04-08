@@ -4,6 +4,8 @@ import Navbar from "@/components/authentication-page/Navbar";
 import ResumePreview from "@/components/resume-builder/Modern-Elegance/ResumePreview";
 import TemplateSkeleton from "@/components/resume-builder/Modern-Elegance/TemplateSkeleton";
 import MultiStepForm from "@/components/resume-builder/MultiStepForm";
+import GeneratedResume from "@/components/resume-builder/Modern-Elegance/GeneratedResume";
+import sampleData from "@/components/resume-builder/Modern-Elegance/GeneratedResume.json";
 import { useState } from "react";
 
 export default function Home() {
@@ -86,7 +88,7 @@ export default function Home() {
     <div>
       <Navbar />
       
-      {!formIsFilled && (
+      {/* {!formIsFilled && (
         <div className="fixed w-screen h-screen inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
           <MultiStepForm handleSubmit={handleGenerateResume} setFormIsFilled={setFormIsFilled} />
         </div>
@@ -104,7 +106,10 @@ export default function Home() {
         <div className="w-1/2 p-4">
           <ResumePreview content={resumeContent}/>
         </div>
-      )}
+      )} */}
+
+      <GeneratedResume userData={sampleData}/>
+      {/* <GeneratedResume /> */}
 
     </div>
   );

@@ -2,7 +2,6 @@
 
 import Navbar from "@/components/authentication-page/Navbar";
 import SelectionGrid from "@/components/resume-templates-selection-page/SelectionGrid";
-import ResumeTemplate from "@/components/resume-templates/ResumeTemplate";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
@@ -24,8 +23,7 @@ export default function Home() {
         </button>
       </div>
 
-      {/* <SelectionGrid /> */}
-      <ResumeTemplate />
+      <SelectionGrid />
     </div>
   )
 }
