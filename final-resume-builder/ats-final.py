@@ -28,6 +28,9 @@
 #     c. Hard Skills - Check if the resume contains hard skills. Hard skills are a great way to show your technical abilities and make your resume stand out.
 #     d. Skills Efficiency Ratio - The skills efficiency ratio of the resume must be near to 1. The skills efficiency ratio is the ratio of the number of hard skills to soft skills.
 
+#  5. Job Title Relevance
+#     a. Job Title - Check if the job title is relevant to the job description. The job title must be relevant to the job description. The score will be a float value of one decimal point and the range will be between 0 and 10. The higher the score, the better the relevance.
+
 #  These all points must be checked and the ATS score must be calculated for a resume. The score must be between 0 and 100. The higher the score, the better the resume.
 
 #  ---

@@ -63,6 +63,16 @@ const ResumeTemplate = ({ userData }) => {
     ]
   } = userData || {};
 
+
+  const normalizedSkills = Array.isArray(skills)
+    ? skills
+    : Object.entries(skills).map(([category, skillList]) => ({
+        category,
+        skills: Array.isArray(skillList) ? skillList : [skillList]
+      }));
+
+
+
   return (
     <div className="max-w-2xl mx-auto py-8 px-10 bg-white shadow-lg border border-gray-300 rounded-lg relative flex flex-col overflow-hidden">
       <div className="absolute inset-0 z-0 flex justify-center">
@@ -157,7 +167,7 @@ const ResumeTemplate = ({ userData }) => {
               <Image src='/resume-template/modern-template-1/side-ways-skills.png' width={20} height={570} alt="SKILLS" draggable='false' className="select-none"/>
             </div>
             <div className="flex flex-col w-full pl-10 items-start gap-6">
-              {skills.map((skill, index) => (
+              {normalizedSkills.map((skill, index) => (
                 <div key={index} className="flex flex-col w-full">
                   <span className="text-sm font-bold capitalize text-gray-900">
                     {skill.category}
