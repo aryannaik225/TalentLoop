@@ -83,10 +83,15 @@ def generate_resume():
     }), 200
 
   except Exception as e:
-    # print("❌ Error: DeepSeek returned invalid JSON.")
-    # print("Raw Output:", output_text)
     print("🔥 ERROR OCCURED:", str(e))
-    return jsonify({"error": "Something went wrong", "details": str(e)}), 500
+    print("⚠️ Raw Model Output:")
+    print(output_text)  # Helps debug malformed JSON
+
+    return jsonify({
+        "error": "Invalid JSON from model",
+        "message": str(e),
+        "raw_output": output_text
+    }), 500
 
 
 if __name__ == '__main__':
