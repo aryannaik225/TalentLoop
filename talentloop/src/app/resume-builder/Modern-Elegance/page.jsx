@@ -5,6 +5,7 @@ import MultiStepForm from "@/components/resume-builder/MultiStepForm";
 import GeneratedResume from "@/components/resume-builder/Modern-Elegance/GeneratedResume";
 import axios from "axios";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
 
@@ -12,6 +13,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [resumeContent, setResumeContent] = useState(null);
   const [atsScore, setAtsScore] = useState(null);
+  const [atsFeedback, setAtsFeedback] = useState(null);
+  const [atsWarnings, setAtsWarnings] = useState(null);
 
   const selectedResumeTemplate = {
     fullName: "",
@@ -62,10 +65,12 @@ export default function Home() {
         resume_template: selectedResumeTemplate
       });
 
-      const { resume_json, ats_score } = response.data;
+      const { resume_json, ats_score, ats_feedback, ats_warnings } = response.data;
 
       setResumeContent(resume_json);
       setAtsScore(ats_score);
+      setAtsFeedback(ats_feedback);
+      setAtsWarnings(ats_warnings);
       setLoading(false);
     } catch (error) {
       console.error("Error generating resume:", error);
@@ -93,9 +98,19 @@ export default function Home() {
       {resumeContent && !loading && (
         <div className="w-screen flex justify-between relative">
           <div className="absolute top-4 flex justify-center w-screen z-50">
-            <div className="rounded-full bg-white border-2 border-black px-5 py-3 shadow-md flex items-center justify-center gap-1">
-              <div className="h-full aspect-square rounded-full bg-green-400" />
-              <span className="text-sm font-semibold text-black ml-2 text-nowrap">ATS Score: {atsScore}%</span>
+            <div className="rounded-full bg-white border-2 border-black px-5 py-3 shadow-md flex flex-col items-center justify-center gap-1">
+              <div className="flex items-center gap-1">
+                <div className="h-full aspect-square rounded-full bg-green-400" />
+                <span className="text-sm font-semibold text-black ml-2 text-nowrap">ATS Score: {atsScore}%</span>
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mt-0.5 text-sm font-medium text-gray-700 text-center"
+              >
+                {atsFeedback ? atsFeedback[0] : ""}
+              </motion.div>
             </div>
           </div>
           <div className="w-6/12 bg-white border-r-2 border-r-black h-full">
