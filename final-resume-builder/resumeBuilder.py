@@ -3,6 +3,7 @@ import json
 import re
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from ats_score import calculate_ats_score
 
 app = Flask(__name__)
 CORS(app)
@@ -73,13 +74,19 @@ def generate_resume():
   try:
     resume_json = json.loads(output_text)
     # print("✅ Successfully Parsed JSON:", json.dumps(resume_json, indent=4))
-    ats_score = 82  # Replace with your actual ATS logic later
-    return jsonify({"resume_json": resume_json, "ats_score": ats_score}), 200
+    ats_result = calculate_ats_score(resume_json)
+    return jsonify({
+      "resume_json": resume_json,
+      "ats_score": ats_result["score"],
+      "ats_feedback": ats_result["feedback"],
+      "ats_warnings": ats_result["warnings"]
+    }), 200
 
-  except json.JSONDecodeError:
+  except Exception as e:
     # print("❌ Error: DeepSeek returned invalid JSON.")
     # print("Raw Output:", output_text)
-    return jsonify({"error": "Invalid JSON from model", "raw_output": output_text}), 500
+    print("🔥 ERROR OCCURED:", str(e))
+    return jsonify({"error": "Something went wrong", "details": str(e)}), 500
 
 
 if __name__ == '__main__':
