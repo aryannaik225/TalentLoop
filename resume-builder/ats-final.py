@@ -37,8 +37,10 @@ import json
 from textstat import lexicon_count, flesch_reading_ease
 from collections import Counter
 import spacy
+from sentence_transformers import CrossEncoder
 
 nlp = spacy.load("en_core_web_sm")
+model = CrossEncoder('cross-encoder/stsb-roberta-base')
 
 soft_skill_anchors = [
     "communication", "leadership", "teamwork", "adaptability", "creativity",
@@ -483,6 +485,45 @@ def check_semantic_analysis(resume, ats_report):
 
 
 
+
+def check_job_title_relevance(experience):
+    # title = experience.get("role", "").strip().lower()
+    # description_list = experience.get("description", [])
+    # description = " ".join(description_list).strip().lower()
+
+    # if not title or not description:
+    #     return False, "⚠️ Missing job title or description."
+
+    # # Cross-encoder takes both strings at once
+    # similarity_score = model.predict([(title, description)])[0]
+
+    # relevance_threshold = 0.35  # You can tune this
+
+    # if similarity_score < relevance_threshold:
+    #     return False, f"⚠️ The job description for '{title}' seems unrelated. Similarity Score: {similarity_score:.2f}."
+    
+    # return True, f"✅ Relevance passed. Similarity Score: {similarity_score:.2f}"
+    for experiences in experience:
+        title = experiences.get("role", "").strip().lower()
+        description_list = experiences.get("description", [])
+        description = " ".join(description_list).strip().lower()
+
+        if not title or not description:
+            return False, "⚠️ Missing job title or description."
+
+        # Cross-encoder takes both strings at once
+        similarity_score = model.predict([(title, description)])[0]
+
+        relevance_threshold = 0.35
+
+        if similarity_score < relevance_threshold:
+            return False, f"⚠️ The job description for '{title}' seems unrelated. Similarity Score: {similarity_score:.2f}."
+        
+    
+    return True, f"✅ Relevance passed. Similarity Score: {similarity_score:.2f}"
+
+
+
 def calculate_ats_score(resume):
     ats_report = {
         "score": 0,
@@ -509,8 +550,17 @@ def calculate_ats_score(resume):
     semantic_score, ats_report = check_semantic_analysis(resume, ats_report)
     ats_report["score"] += semantic_score
 
+    # Job Title Relevance Check
+    is_relevant, job_title_feedback = check_job_title_relevance(resume.get("experience", []))
+    if not is_relevant:
+        ats_report["feedback"].append(job_title_feedback)
+    else:
+        ats_report["score"] += 10
+
     # Normalize score to 100
-    ats_report["score"] = min(ats_report["score"], 100)
+    # ats_report["score"] = min(ats_report["score"], 100)
+
+    ats_report["score"] = round(ats_report["score"] / 135 * 100, 2)  # Normalize to 100
 
     return ats_report
 
@@ -522,44 +572,4 @@ for resume in resumes:
     print("Feedback:")
     for feedback in ats_report["feedback"]:
         print(feedback)
-    print("Warnings:")
-    for warning in ats_report["warnings"]:
-        print(warning)
     print("\n")
-    
-def check_job_title_relevance(experience):
-    """
-    Checks if the job description aligns with the job title based on semantic similarity.
-    """
-    title = experience.get("role", "").strip().lower()
-    description = " ".join(experience.get("description", [])).strip().lower()
-
-    if not title or not description:
-        return False, "⚠️ Missing job title or description."
-
-    # Process title and description with NLP
-    title_doc = nlp(title)
-    desc_doc = nlp(description)
-
-    # Compute semantic similarity
-    similarity_score = title_doc.similarity(desc_doc)
-
-    # Define relevance threshold (adjustable)
-    relevance_threshold = 0.5
-
-    if similarity_score < relevance_threshold:
-        return False, f"⚠️ The job description for '{experience['role']}' seems unrelated. Consider improving alignment."
-    
-    return True, None
-
-# Example Experience Entry
-experience_entry = {
-    "role": "Software Engineer",
-    "description": ["Developed scalable web applications", "Optimized database queries", "Implemented RESTful APIs"]
-}
-
-# Test the function
-is_relevant, warning = check_job_title_relevance(experience_entry)
-print("Relevance:", is_relevant)
-if warning:
-    print(warning)

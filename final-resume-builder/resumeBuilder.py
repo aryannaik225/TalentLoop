@@ -1,0 +1,86 @@
+import ollama
+import json
+import re
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+@app.route('/generate-resume', methods=['POST'])
+
+def generate_resume():
+  data = request.json
+  user_data = data.get('user_data')
+  resume_template = data.get('resume_template')
+
+  if not user_data or not resume_template:
+    return jsonify({"error": "Missing user_data or resume_template"}), 400
+  
+  # Prepare the prompt for the model
+  prompt = f"""
+  You are an AI that generates **STRICTLY VALID JSON ONLY** for a resume.
+  **DO NOT MODIFY OR OMIT ANY PROVIDED DATA.**
+  NO MARKDOWN. NO EXPLANATIONS. **ONLY JSON OUTPUT**
+
+  ---
+  🚨 **STRICT RULES** 🚨
+  1️⃣ **Use exact personal details as provided. DO NOT CHANGE NAME, EMAIL, PHONE, OR COMPANY.**
+  2️⃣ **Experience must exactly match the provided role, company, and dates.**
+  3️⃣ **Summary must be 4-5 sentences based on given skills and experience.**
+  4️⃣ **Each experience must have at least 3 bullet points describing work done.**
+  5️⃣ **Each education entry MUST have a "description" field with one meaningful sentence about coursework, GPA, or achievements. DO NOT leave it blank.**
+  6️⃣ **All skills must be categorized under:**
+    - `"Industrial Knowledge"`  
+    - `"Tools & Technologies"`  
+    - `"Soft Skills"`
+
+  ---
+  ✅ **USER INPUT**
+  {json.dumps(user_data, indent=2)}
+
+  ---
+  📄 **TEMPLATE FORMAT TO FOLLOW STRICTLY** (STRICTLY FOLLOW THIS)
+  {json.dumps(resume_template, indent=2)}
+
+  ---
+  🚨 **IMPORTANT:** 🚨
+  - **DO NOT RETURN ANYTHING ELSE EXCEPT PURE JSON.**
+  - **NO MARKDOWN (` ```json `), NO TEXT, NO EXPLANATIONS, NO COMMENTS, JUST JSON!**
+  - **DO NOT include ```json or any kind of markdown. If you do, the response will be REJECTED. JSON ONLY.**
+  - **FIRST SORT THE ALREADY PROVIDED SKILLS INTO THE CATEGORIES AND THEN YOU MIGHT ADD NEW IF REQUIRED**
+  - **Let the WORD COUNT be between 300 and 1000**
+  - **Avoid Personal Pronouns.**
+  - **Keep the VOCABULARY LEVEL ABOUVE AVERAGE.**
+  - **Keep the READABILITY LEVEL AVERAGE.**
+  - **USE FEW INDUSTRY-RELEVANT JARGONS.**
+  """
+
+  # Query DeepSeek-R1
+  response = ollama.chat(model="deepseek-r1:7b", messages=[{"role": "user", "content": prompt}])
+
+  # Extract text safely
+  output_text = response.get("message", {}).get("content", "").strip()
+
+  if not output_text:
+    # print("❌ Error: No 'message' or 'content' found in response.")
+    return jsonify({"error": "No valid response from the model."}), 500
+
+  # Remove unwanted AI-generated sections
+  output_text = re.sub(r"<think>.*?</think>", "", output_text, flags=re.DOTALL)
+  output_text = re.sub(r"^```json\s*|\s*```$", "", output_text.strip(), flags=re.MULTILINE).strip()
+
+  # Validate JSON output
+  try:
+    resume_json = json.loads(output_text)
+    # print("✅ Successfully Parsed JSON:", json.dumps(resume_json, indent=4))
+    ats_score = 82  # Replace with your actual ATS logic later
+    return jsonify({"resume_json": resume_json, "ats_score": ats_score}), 200
+
+  except json.JSONDecodeError:
+    # print("❌ Error: DeepSeek returned invalid JSON.")
+    # print("Raw Output:", output_text)
+    return jsonify({"error": "Invalid JSON from model", "raw_output": output_text}), 500
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

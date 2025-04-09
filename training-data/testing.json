@@ -5,7 +5,7 @@
     "contact": "+91 9876543210",
     "location": "Mumbai, India",
     "email": "aryan.naik@example.com",
-    "summary": "I'm a Software Engineer specializing in full-stack development and AI. With experience in designing scalable applications and optimizing backend processes, I create high-performing solutions that enhance user experience and business growth.",
+    "summary": "With a strong foundation in AI & Data Science, I have excelled as a Software Engineer at TechCorp. My expertise lies in developing scalable solutions using Python and TensorFlow. I've successfully implemented machine learning models to optimize company processes.",
     "experience": [
       {
         "company": "TechCorp",
@@ -13,19 +13,9 @@
         "place": "Mumbai, India",
         "duration": "01/06/2020 - Present",
         "description": [
-          "Developed scalable web applications and led backend optimizations.",
-          "Implemented microservices architecture, improving system efficiency.",
-          "Mentored junior developers, conducting regular code reviews."
-        ]
-      },
-      {
-        "company": "StartupX",
-        "role": "Intern",
-        "place": "Bangalore, India",
-        "duration": "01/01/2020 - 31/05/2020",
-        "description": [
-          "Worked on frontend development and API integrations.",
-          "Contributed to UI improvements, enhancing user engagement by 30%."
+          "Developed and deployed machine learning models to improve operational efficiency.",
+          "Collaborated with cross-functional teams to design scalable solutions.",
+          "Maintained and updated existing software systems for optimal performance."
         ]
       }
     ],
@@ -34,21 +24,35 @@
         "institution": "Ramrao Adik Institute of Technology",
         "degree": "BTech in AI & Data Science",
         "year_end": "2026",
-        "description": "Graduating with top honors in AI & Data Science."
+        "description": "Completed advanced coursework in machine learning and artificial intelligence, achieving high scores in research projects."
       }
     ],
     "skills": [
       {
-        "category": "Industry Knowledge",
-        "skills": ["Software Development", "Machine Learning", "Data Science"]
+        "category": "Industrial Knowledge",
+        "skills": [
+          "AI & Machine Learning",
+          "Data Analysis",
+          "Process Optimization"
+        ]
       },
       {
-        "category": "Tools and Technology",
-        "skills": ["Python", "TensorFlow", "React.js", "Node.js"]
+        "category": "Tools & Technologies",
+        "skills": [
+          "Python",
+          "TensorFlow",
+          "PyTorch",
+          "NumPy",
+          "Big Data Tools"
+        ]
       },
       {
-        "category": "Other Skills",
-        "skills": ["Communication", "Problem-Solving", "Leadership"]
+        "category": "Soft Skills",
+        "skills": [
+          "Collaboration",
+          "Time Management",
+          "Problem Solving"
+        ]
       }
     ]
   }

@@ -126,11 +126,11 @@ const ResumeTemplate = ({ userData }) => {
 
       <div className="flex w-full mt-12 relative z-10 justify-between">
         {/* Education Section */}
-        <div className="flex w-5/12">
-          <div>
+        <div className="flex w-5/12 items-start h-auto">
+          <div className="w-5">
             <Image src='/resume-template/modern-template-1/side-ways-education.png' width={20} height={570} alt="EDUCATION" draggable='false' className="select-none"/>
           </div>
-          <div>
+          <div className="w-full">
             <div className="flex flex-col w-full pl-10 items-start gap-6">
               {education.map((edu, index) => (
                 <div key={index} className="flex flex-col w-full">

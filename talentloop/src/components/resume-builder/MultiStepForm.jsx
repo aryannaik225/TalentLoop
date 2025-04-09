@@ -15,18 +15,14 @@ const steps = [
 const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
 
   const [step, setStep] = useState(0)
-  const [formData, setFormData] = useState({
-    name: "", email: "", phone: "",
-    experiences: [{ company: "", role: "", startDate: "", endDate: "" }],
-    education: [{ institution: "", degree: "", year: "" }],
-    skills: [],
-    summary: ""
-  })
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
+  const [contact, setContact] = useState("")
+  const [currentJobTitle, setCurrentJobTitle] = useState("")
+  const [currentLocation, setCurrentLocation] = useState("")
 
-  const [experiences, setExperiences] = useState([{ company: "", role: "", startDate: "", endDate: "" }])
+  const [experiences, setExperiences] = useState([{ company: "", role: "", location: "", startDate: "", endDate: "" }])
   const [education, setEducation] = useState([{ institution: "", degree: "", year: "" }])
   const [skills, setSkills] = useState([])
   const [summary, setSummary] = useState("")
@@ -35,7 +31,7 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
     let isValid = true;
 
     if (step === 0) {
-      if (!name.trim() || !email.trim() || !phone.trim()) {
+      if (!name.trim() || !email.trim() || !contact.trim()) {
         isValid = false;
         toast.error("Please fill in all personal info fields");
       }
@@ -69,7 +65,7 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
 
   const handleFormSubmit = () => {
     const resumeData = {
-      name, email, phone, experiences, education, skills, summary
+      name, email, contact, currentJobTitle, currentLocation, experiences, education, skills, summary
     }
     handleSubmit(resumeData)
     setFormIsFilled(true)
@@ -77,16 +73,8 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
 
   const handleBack = () => setStep((prev) => Math.max(prev - 1, 0))
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: name === "skills" ? value.split(",").map((s) => s.trim()) : value,
-    });
-  };
-
   const addExperience = () => {
-    setExperiences([...experiences, { company: "", role: "", startDate: "", endDate: "" }])
+    setExperiences([...experiences, { company: "", role: "", location: "", startDate: "", endDate: "" }])
   }
 
   const removeExperience = (index) => {
@@ -112,26 +100,12 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
     updatedEducation[index][field] = value
     setEducation(updatedEducation)
   }
-
-
-  useEffect(() => {
-    setFormData({
-      ...formData, 
-      name, 
-      email, 
-      phone, 
-      experiences, 
-      education, 
-      skills, 
-      summary 
-    });    
-  }, [name, email, phone, experiences, education, skills, summary])
   
   return (
     <div className='flex flex-col items-center justify-center w-full max-w-md h-screen'>
       <ToastContainer position='top-right' hideProgressBar={false} />
       <motion.div
-       className='w-full flex flex-col items-center max-h-[93%] overflow-x-hidden overflow-y-scroll p-6 rounded-lg shadow-lg bg-white'
+       className='w-full flex flex-col items-center max-h-[93%] overflow-x-hidden overflow-y-scroll p-6 rounded-lg shadow-lg bg-white no-scrollbar'
        animate={{ height: 'auto' }}
         transition={{ duration: 0.4, ease: 'easeInOut' }}
       >
@@ -141,13 +115,13 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
             <div className='relative flex items-center gap-2' key={index}>
               <div className='flex flex-col items-center gap-1'>
                 <motion.div 
-                  className={`flex justify-center items-center w-10 h-10 rounded-full text-sm font-bold ${step >= index ? 'bg-[#3fd896] text-white' : 'bg-gray-300 text-gray-700'}`}
+                  className={`select-none flex justify-center items-center w-10 h-10 rounded-full text-sm font-bold ${step >= index ? 'bg-[#3fd896] text-white' : 'bg-gray-300 text-gray-700'}`}
                   animate={{ scale: step === index ? 1.2 : 1 }}
                   transition={{ type: "spring", stiffness: 100 }}  
                 >
                   {index+1}
                 </motion.div>
-                <span className={`inter-medium ${step >= index ? 'text-xs mt-[2px]' : 'text-[8px] mt-1'}`}>{label}</span>
+                <span className={`select-none inter-medium ${step >= index ? 'text-xs mt-[2px]' : 'text-[8px] mt-1'}`}>{label}</span>
               </div>
             </div>
           ))}
@@ -179,15 +153,43 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
                 className={`p-3 border rounded w-full text-sm ${email.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
               />
 
-              <span className='mt-4 mb-1 inter-semibold'>Phone Number</span>
-              <input 
-                type='tel'
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                name='phone'
-                placeholder='123-456-7890'
-                className={`p-3 border rounded w-full text-sm ${phone.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
+              <span className='mt-4 mb-1 inter-semibold'>Current Location</span>
+              <input
+                type='text'
+                value={currentLocation}
+                onChange={(e) => setCurrentLocation(e.target.value)}
+                name='currentLocation'
+                placeholder='New York, NY'
+                className={`p-3 border rounded w-full text-sm ${currentLocation.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
               />
+
+
+              <div className='flex justify-between w-full mt-4 gap-5'>
+                <div className='flex flex-col items-start w-full'>
+                  <span className='mb-1 inter-semibold'>Current Job Title</span>
+                  <input
+                    type='text'
+                    value={currentJobTitle}
+                    onChange={(e) => setCurrentJobTitle(e.target.value)}
+                    name='currentJobTitle'
+                    placeholder='Software Engineer'
+                    className={`p-3 border rounded w-full text-sm ${currentJobTitle.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
+                  />
+                </div>
+
+                <div className='flex flex-col items-start w-full'>
+                  <span className='mb-1 inter-semibold'>Contact Number</span>
+                  <input 
+                    type='tel'
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
+                    name='contact'
+                    placeholder='123-456-7890'
+                    className={`p-3 border rounded w-full text-sm ${contact.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
+                  />
+                </div>
+              </div>
+
 
               <div className='flex justify-between mt-10 w-full'>
                 <button onClick={handleBack} className='px-6 py-2 border rounded text-sm font-semibold bg-gray-300 text-gray-400 cursor-not-allowed' disabled={true}>Back</button>
@@ -212,14 +214,29 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
                     className={`w-full p-2 mt-1 mb-2 border rounded ${exp.company.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
                   />
                   
-                  <span className=' mb-1 inter-semibold'>Role</span>
-                  <input
-                    type="text"
-                    placeholder="Role"
-                    value={exp.role}
-                    onChange={(e) => handleExperienceChange(index, "role", e.target.value)}
-                    className={`w-full p-2 mt-1 mb-2 border rounded ${exp.role.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
-                  />
+                  <div className='flex w-full justify-between gap-7'>
+                  <div className='flex flex-col items-start w-8/12'>
+                    <span className=' mb-1 inter-semibold'>Role</span>
+                    <input
+                      type="text"
+                      placeholder="Role"
+                      value={exp.role}
+                      onChange={(e) => handleExperienceChange(index, "role", e.target.value)}
+                      className={`w-full p-2 mt-1 mb-2 border rounded ${exp.role.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
+                    />
+                  </div>
+
+                  <div className='flex flex-col items-start'>
+                    <span className=' mb-1 inter-semibold'>Location</span>
+                    <input
+                      type="text"
+                      placeholder="Singapore"
+                      value={exp.location}
+                      onChange={(e) => handleExperienceChange(index, "location", e.target.value)}
+                      className={`w-full p-2 mt-1 mb-2 border rounded ${exp.location.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
+                    />
+                  </div>
+                  </div>
                   
                   <div className="flex flex-wrap justify-between gap-2">
                     <div className='flex flex-col items-start w-6/12'>

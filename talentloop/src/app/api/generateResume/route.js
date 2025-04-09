@@ -7,14 +7,15 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "deepseek-r1:1.5b",
-        prompt: `You are a strict AI assistant that follows all rules EXACTLY. Generate a structured resume in JSON format.
+        prompt: `You are a strict AI assistant that follows all rules **EXACTLY**. Generate a structured resume **ONLY** in **valid JSON format**.
 
-        **🚨 HARD RULES (DO NOT IGNORE):**
-        1️⃣ **Use FIRST-PERSON for summary.** ("I am a UX Designer...")
-        2️⃣ **DO NOT change, add, or remove any skills. Categorize them only.**
-        3️⃣ **DO NOT modify education. Keep names exactly as provided.**
-        4️⃣ **DO NOT duplicate any job roles or education entries.**
-        5️⃣ **Date format MUST be: DD-MM-YYYY (Strict format).**
+        🚨 **HARD RULES (DO NOT IGNORE):**  
+        1️⃣ **Use FIRST-PERSON for the summary** (e.g., "I am a UX Designer...").  
+        2️⃣ **DO NOT add, remove, or modify any skills. Categorize them only.**  
+        3️⃣ **DO NOT change the education details. Keep names exactly as provided.**  
+        4️⃣ **DO NOT duplicate any job roles or education entries.**  
+        5️⃣ **Date format MUST be: `DD-MM-YYYY` (Strict format, no exceptions).**  
+        6️⃣ **DO NOT output anything except the JSON object.**  
         
         **User's Provided Data:**  
         ${prompt}
@@ -38,7 +39,8 @@ export async function POST(req) {
                 {
                     "degree": "Degree Name",
                     "institution": "Institution Name",
-                    "year": "YYYY"
+                    "year": "YYYY",
+                    "description": "First-person description."
                 }
             ],
             "skills": {
@@ -49,7 +51,7 @@ export async function POST(req) {
         }
 
         **Output ONLY the JSON. No extra text, no explanations.**`,
-        stream: false,
+        stream: false,,
       }),
     });
 

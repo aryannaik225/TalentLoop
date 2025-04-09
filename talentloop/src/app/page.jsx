@@ -24,7 +24,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative w-screen h-auto min-h-screen bg-[#2A2929]">
+    <div className="relative w-screen h-auto min-h-screen bg-[#2A2929] overflow-hidden">
       <div className="relative w-screen h-full landing-page-bg"/>
       {/* <div className="absolute w-72 h-72 bg-[#38BE23] opacity-30 rounded-full top-[219px] left-[138px] blur-[120px]" /> */}
       <div

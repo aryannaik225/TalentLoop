@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 export default function Home() {
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
       <Navbar />
 
