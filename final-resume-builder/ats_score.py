@@ -280,12 +280,12 @@ def calculate_document_synopsis(resume):
     page_count = word_count // 500 # Assuming ~500 words per page
 
     word_score = 10
-    if word_count < 300:
+    if word_count < 130:
         word_score = 5
-        feedback.append(f"⚠️ Low Word Count - {word_count} words (Min: 300)")
-    elif word_count > 1000:
+        feedback.append(f"⚠️ Low Word Count - {word_count} words (Min: 130)")
+    elif word_count > 500:
         word_score = 7
-        feedback.append(f"⚠️ High Word Count - {word_count} words (Max: 1000)")
+        feedback.append(f"⚠️ High Word Count - {word_count} words (Max: 500)")
 
     page_score = 5
     if page_count > 2:

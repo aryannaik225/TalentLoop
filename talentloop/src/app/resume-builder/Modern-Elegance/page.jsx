@@ -4,8 +4,10 @@ import Navbar from "@/components/authentication-page/Navbar";
 import MultiStepForm from "@/components/resume-builder/MultiStepForm";
 import GeneratedResume from "@/components/resume-builder/Modern-Elegance/GeneratedResume";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import ResumeEditor from "@/components/resume-builder/Modern-Elegance/ResumeEditor";
+import FeedbackBanner from "@/components/utils/FeedbackBanner";
 
 export default function Home() {
 
@@ -15,6 +17,23 @@ export default function Home() {
   const [atsScore, setAtsScore] = useState(null);
   const [atsFeedback, setAtsFeedback] = useState(null);
   const [atsWarnings, setAtsWarnings] = useState(null);
+
+  // For development ONLY: Load from localStorage if available
+  useEffect(() => {
+    const savedResume = localStorage.getItem("dev_resume");
+    const savedScore = localStorage.getItem("dev_atsScore");
+    const savedFeedback = localStorage.getItem("dev_atsFeedback");
+    const savedWarnings = localStorage.getItem("dev_atsWarnings");
+
+    if (savedResume && savedScore) {
+      setResumeContent(JSON.parse(savedResume));
+      setAtsScore(JSON.parse(savedScore));
+      setAtsFeedback(JSON.parse(savedFeedback));
+      setAtsWarnings(JSON.parse(savedWarnings));
+      setFormIsFilled(true);
+    }
+  }, []);
+
 
   const selectedResumeTemplate = {
     fullName: "",
@@ -72,11 +91,22 @@ export default function Home() {
       setAtsFeedback(ats_feedback);
       setAtsWarnings(ats_warnings);
       setLoading(false);
+      setFormIsFilled(true);
+
+      // ✅ DEV ONLY: Save to localStorage for quick reloads
+      localStorage.setItem("dev_resume", JSON.stringify(resume_json));  
+      localStorage.setItem("dev_atsScore", JSON.stringify(ats_score));
+      localStorage.setItem("dev_atsFeedback", JSON.stringify(ats_feedback));
+      localStorage.setItem("dev_atsWarnings", JSON.stringify(ats_warnings));
+
     } catch (error) {
       console.error("Error generating resume:", error);
       setLoading(false);
     }
   };
+
+
+
 
   return (
     <div>
@@ -96,26 +126,29 @@ export default function Home() {
       )}
 
       {resumeContent && !loading && (
-        <div className="w-screen flex justify-between relative">
+        <div className="w-screen flex justify-between relative overflow-x-hidden">
+          <button
+            onClick={() => {
+              localStorage.removeItem("dev_resume");
+              localStorage.removeItem("dev_atsScore");
+              localStorage.removeItem("dev_atsFeedback");
+              localStorage.removeItem("dev_atsWarnings");
+              location.reload(); // instantly refresh for testing
+            }}
+            className="fixed bottom-4 right-4 bg-red-600 text-white px-4 py-2 rounded-md shadow-lg z-50"
+          >
+            Clear Resume Cache
+          </button>
           <div className="absolute top-4 flex justify-center w-screen z-50">
-            <div className="rounded-full bg-white border-2 border-black px-5 py-3 shadow-md flex flex-col items-center justify-center gap-1">
-              <div className="flex items-center gap-1">
-                <div className="h-full aspect-square rounded-full bg-green-400" />
-                <span className="text-sm font-semibold text-black ml-2 text-nowrap">ATS Score: {atsScore}%</span>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mt-0.5 text-sm font-medium text-gray-700 text-center"
-              >
-                {atsFeedback ? atsFeedback[0] : ""}
-              </motion.div>
-            </div>
+            <FeedbackBanner atsScore={atsScore} atsFeedback={atsFeedback} />
           </div>
-          <div className="w-6/12 bg-white border-r-2 border-r-black h-full">
+          <div className="w-6/12 bg-white border-r-2 border-r-black h-screen">
+            <ResumeEditor
+              resumeData={resumeContent}
+              onUpdate={(updatedResume) => setResumeContent(updatedResume)}
+            />
           </div>
-          <div className="w-6/12 bg-white">
+          <div className="w-6/12 bg-white h-screen overflow-y-scroll overflow-x-hidden no-scrollbar">
             <GeneratedResume userData={resumeContent} />
           </div>
         </div>

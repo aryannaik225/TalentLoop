@@ -68,11 +68,39 @@ def generate_resume():
 
   # Remove unwanted AI-generated sections
   output_text = re.sub(r"<think>.*?</think>", "", output_text, flags=re.DOTALL)
+  # output_text = re.sub(r"^```json\s*|\s*```$", "", output_text.strip(), flags=re.MULTILINE).strip()
   output_text = re.sub(r"^```json\s*|\s*```$", "", output_text.strip(), flags=re.MULTILINE).strip()
+
+  # Remove stray commas before closing braces/brackets (e.g., "value", ])
+  output_text = re.sub(r",\s*([}\]])", r"\1", output_text)
+
+  # Remove double closing brackets (e.g., ]] instead of ])
+  output_text = re.sub(r"\]\s*\]", "]", output_text)
+
+  # Remove invisible BOM or invalid UTF-8 chars
+  output_text = output_text.encode("utf-8", "ignore").decode("utf-8")
+
+
 
   # Validate JSON output
   try:
     resume_json = json.loads(output_text)
+    # 🔧 Normalize `skills` in case it's returned as a dictionary
+    if isinstance(resume_json.get("skills"), dict):
+        resume_json["skills"] = [
+            {
+                "category": category,
+                "skills": value if isinstance(value, list) else [value]
+            }
+            for category, value in resume_json["skills"].items()
+        ]
+
+    # 🛡️ Ensure all education entries have a "description" field
+    for edu in resume_json.get("education", []):
+        if "description" not in edu or not edu["description"].strip():
+            edu["description"] = "Coursework included practicals, projects, and academic excellence."
+
+    
     # print("✅ Successfully Parsed JSON:", json.dumps(resume_json, indent=4))
     ats_result = calculate_ats_score(resume_json)
     return jsonify({

@@ -88,7 +88,15 @@ const ResumeTemplate = ({ userData }) => {
 
       {/* Profile and Contact Info */}
       <div className="flex w-full justify-between items-center z-10 relative mt-12">
-        <Image src={profile_picture} width={76} height={76} alt="" draggable='false' className="select-none rounded-full border border-gray-300 shadow-md" />
+        <Image 
+          src={profile_picture} 
+          width={76} 
+          height={76} 
+          alt="" 
+          draggable='false' 
+          className="select-none rounded-full border border-gray-300 shadow-md" 
+          unoptimized={typeof profile_picture === "string" && profile_picture.startsWith("data:image/")}
+        />
         
         <div className="flex flex-col items-start gap-[6px] text-right">
           <p className="text-xs font-medium text-orange-600">{location}</p>
