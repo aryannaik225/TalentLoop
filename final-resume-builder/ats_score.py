@@ -396,7 +396,7 @@ def calculate_readability_score(resume):
     grade_level = flesch_kincaid_grade(readable_text)
     print("📘 Grade level:", grade_level)
 
-    score = max(0, min(grade_level, 10))  # Scale to 0-10 range
+    score = round(max(0, min((16 - grade_level), 10)),2)  # Scale to 0-10 range
 
     return score
 
@@ -426,14 +426,14 @@ def calculate_lexical_analysis(resume):
 
     # 3. Vocabulary Level (Scale 0-10 → 5)
     vocab_score = calculate_vocabulary_score(resume_text)
-    score += (vocab_score / 2)
+    score += vocab_score
     if vocab_score < 5:
         feedback.append(f"⚠️ Improve Vocabulary Level ({vocab_score}/10)")
 
     # 4. Reading Level (Scale 0-10 → 5)
     readability_score = calculate_readability_score(resume)
-    score += (readability_score / 2)
-    if readability_score < 5:
+    score += readability_score
+    if readability_score < 1:
         feedback.append(f"⚠️ Improve Readability Score ({readability_score}/10)")
 
     # 5. Common Words Check (Industry Keywords)
@@ -529,22 +529,6 @@ def check_semantic_analysis(resume, ats_report):
 
 
 def check_job_title_relevance(experience):
-    # title = experience.get("role", "").strip().lower()
-    # description_list = experience.get("description", [])
-    # description = " ".join(description_list).strip().lower()
-
-    # if not title or not description:
-    #     return False, "⚠️ Missing job title or description."
-
-    # # Cross-encoder takes both strings at once
-    # similarity_score = model.predict([(title, description)])[0]
-
-    # relevance_threshold = 0.35  # You can tune this
-
-    # if similarity_score < relevance_threshold:
-    #     return False, f"⚠️ The job description for '{title}' seems unrelated. Similarity Score: {similarity_score:.2f}."
-    
-    # return True, f"✅ Relevance passed. Similarity Score: {similarity_score:.2f}"
     for experiences in experience:
         title = experiences.get("role", "").strip().lower()
         description_list = experiences.get("description", [])
@@ -556,7 +540,7 @@ def check_job_title_relevance(experience):
         # Cross-encoder takes both strings at once
         similarity_score = model.predict([(title, description)])[0]
 
-        relevance_threshold = 0.35
+        relevance_threshold = 0.30
 
         if similarity_score < relevance_threshold:
             return False, f"⚠️ The job description for '{title}' seems unrelated. Similarity Score: {similarity_score:.2f}."
