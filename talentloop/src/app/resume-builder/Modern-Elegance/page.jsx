@@ -1,7 +1,7 @@
 'use client'
 
 import Navbar from "@/components/authentication-page/Navbar";
-import MultiStepForm from "@/components/resume-builder/Modern-Elegance/MultiStepFormm";
+import MultiStepForm from "@/components/resume-builder/Modern-Elegance/MultiStepForm";
 import GeneratedResume from "@/components/resume-builder/Modern-Elegance/GeneratedResume";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -41,6 +41,7 @@ export default function Home() {
     contact: "",
     location: "",
     email: "",
+    linkedin: "",
     summary: "",
     experience: [
       {

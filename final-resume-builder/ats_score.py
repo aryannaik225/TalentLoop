@@ -321,7 +321,8 @@ def calculate_data_identification(resume):
 
 
     # LinkedIn URL Check
-    if "linkedin.com" in resume.get("contact", "").lower():
+    linkedin_field = resume.get("linkedin", "") or resume.get("contact", "")
+    if "linkedin.com" in linkedin_field.lower():
         score += 5
     else:
         feedback.append("⚠️ Missing LinkedIn URL")
@@ -358,6 +359,10 @@ def calculate_data_identification(resume):
 
     return score, feedback
 
+def contains_personal_pronouns(text):
+    doc = nlp(text)
+    pronouns = {"I", "me", "my", "mine", "we", "us", "our", "ours"}
+    return any(token.text.lower() in pronouns for token in doc if token.pos_ == "PRON")
 
 
 def calculate_lexical_analysis(resume):
@@ -369,11 +374,11 @@ def calculate_lexical_analysis(resume):
     )
 
     # 1. Personal Pronouns Check
-    personal_pronouns = ["i ", "me ", "my ", "mine ", "we ", "us "]
-    if any(word in resume_text.lower() for word in personal_pronouns):
+    if contains_personal_pronouns(resume_text):
         feedback.append("⚠️ Avoid Personal Pronouns (I, Me, My, etc.)")
     else:
         score += 5
+
 
     # 2. Numericized Data Check
     if re.search(r"\d+", resume_text):
@@ -438,13 +443,13 @@ def calculate_skills_efficiency_ratio(hard_skills_count, soft_skills_count):
     ratio = hard_skills_count / (soft_skills_count + 1)
     score = max(0, min(10 - abs(ratio - 1) * 5, 10))
 
-    warning = None
+    feedback = None
     if ratio > 2:
-        warning = f"Too many hard skills ({hard_skills_count}). Consider adding more soft skills."
+        feedback = f"Too many hard skills ({hard_skills_count}). Consider adding more soft skills."
     elif ratio < 0.5:
-        warning = f"Too many soft skills ({soft_skills_count}). Consider adding more technical expertise."
+        feedback = f"Too many soft skills ({soft_skills_count}). Consider adding more technical expertise."
 
-    return round(score, 2), warning
+    return round(score, 2), feedback
 
 
 def check_semantic_analysis(resume, ats_report):
@@ -459,7 +464,7 @@ def check_semantic_analysis(resume, ats_report):
     elif achievement_count == 1:
         score += 5
     elif achievement_count < 1:
-        ats_report["warnings"].append("Lack of Measurable Achievements - Consider adding quantifiable data.")
+        ats_report["feedback"].append("Lack of Measurable Achievements - Consider adding quantifiable data.")
 
         
 
@@ -467,12 +472,12 @@ def check_semantic_analysis(resume, ats_report):
     soft_skills, hard_skills = categorize_skills(resume)
 
     if not soft_skills:
-        ats_report["warnings"].append("Insufficient Soft Skills - Consider adding communication, teamwork, or leadership skills.")
+        ats_report["feedback"].append("Insufficient Soft Skills - Consider adding communication, teamwork, or leadership skills.")
     else:
         score += 5  
 
     if not hard_skills:
-        ats_report["warnings"].append("Insufficient Hard Skills - Consider adding technical or industry-specific skills.")
+        ats_report["feedback"].append("Insufficient Hard Skills - Consider adding technical or industry-specific skills.")
     else:
         score += 5  
 
@@ -482,7 +487,7 @@ def check_semantic_analysis(resume, ats_report):
     efficiency_score, warning = calculate_skills_efficiency_ratio(hard_skills_count, soft_skills_count)
     score += efficiency_score
     if warning:
-        ats_report["warnings"].append(warning)
+        ats_report["feedback"].append(warning)
 
     return score, ats_report
 

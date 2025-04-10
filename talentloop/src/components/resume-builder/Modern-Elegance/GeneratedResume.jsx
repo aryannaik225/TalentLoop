@@ -9,6 +9,7 @@ const ResumeTemplate = ({ userData }) => {
     contact = "+1234567890",
     location = "Rampura, Dhaka, Bangladesh",
     email = "maksud@musemind.agency",
+    linkedin = "linkedin.com/in/maksudalam",
     summary = "I'm a Senior Product Designer at MuseMind, creating meaningful, user-centered experiences. With a decade pf design experience and a pashion for pushing the boundaries of design. I design products that not only are beautiful but also functional, achieve user satisfaction and increase revenue.",
     experience = [
       {
@@ -98,10 +99,14 @@ const ResumeTemplate = ({ userData }) => {
           unoptimized={typeof profile_picture === "string" && profile_picture.startsWith("data:image/")}
         />
         
-        <div className="flex flex-col items-start gap-[6px] text-right">
+        <div className="flex flex-col items-end gap-[6px] text-right">
           <p className="text-xs font-medium text-orange-600">{location}</p>
           <p className="text-xs font-medium text-orange-600">{contact}</p>
           <p className="text-xs font-medium text-orange-600">{email}</p>
+          <div className="flex items-center gap-1">
+            <img src="https://cdn-icons-png.flaticon.com/512/2496/2496097.png" alt="Linkedin" className="w-3"/>
+            <p className="text-xs font-medium text-orange-600">{linkedin}</p>
+          </div>
         </div>
       </div>
 

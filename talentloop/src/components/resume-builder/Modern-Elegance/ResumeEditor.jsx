@@ -42,7 +42,7 @@ const ResumeEditor = ({ resumeData, onUpdate }) => {
       <h2 className="text-center uppercase text-lg inter-semibold mb-4">Edit Resume</h2>
 
       {/* Profile Picture */}
-      <div className="mb-6">
+      <div className="mb-12">
         <label className="block inter-bold mb-1">Profile Picture</label>
         <input
           type="file"
@@ -62,9 +62,54 @@ const ResumeEditor = ({ resumeData, onUpdate }) => {
         />
       </div>
 
+      {/* Links */}
+      <div className="mb-12">
+        <div className="mb-4 px-3 pt-3 border rounded bg-gray-100">
+
+          <div className="mb-6">
+            <label className="block inter-bold mb-1">Location</label>
+            <input
+              type="text"
+              value={formData.location}
+              onChange={(e) => handleChange("location", null, e.target.value)}
+              className={`w-full inter-regular text-sm p-2 border-2 rounded-md ${modifiedFields["location"] ? "border-yellow-500" : "border-gray-400"}`}
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block inter-bold mb-1">Contact</label>
+            <input
+              type="text"
+              value={formData.contact}
+              onChange={(e) => handleChange("contact", null, e.target.value)}
+              className={`w-full inter-regular text-sm p-2 border-2 rounded-md ${modifiedFields["contact"] ? "border-yellow-500" : "border-gray-400"}`}
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block inter-bold mb-1">Email</label>
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleChange("email", null, e.target.value)}
+              className={`w-full inter-regular text-sm p-2 border-2 rounded-md ${modifiedFields["email"] ? "border-yellow-500" : "border-gray-400"}`}
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block inter-bold mb-1">LinkedIn</label>
+            <input
+              type="text"
+              value={formData.linkedin}
+              onChange={(e) => handleChange("linkedin", null, e.target.value)}
+              className={`w-full inter-regular text-sm p-2 border-2 rounded-md ${modifiedFields["linkedin"] ? "border-yellow-500" : "border-gray-400"}`}
+            />
+          </div>
+        </div>
+      </div>
 
       {/* Personal Information */}
-      <div className="mb-6">
+      <div className="mb-12">
         <h3 className="font-semibold text-md mb-2">Personal Information</h3>
         <div className="mb-4 px-3 pt-3 border rounded bg-gray-100">
           {/* Name */}
@@ -97,7 +142,7 @@ const ResumeEditor = ({ resumeData, onUpdate }) => {
             <textarea
               value={formData.summary}
               onChange={(e) => handleChange("summary", null, e.target.value)}
-              className={`w-full inter-regular text-sm p-2 border-2 rounded-md ${modifiedFields["summary"] ? "border-yellow-500" : "border-gray-400"}`}
+              className={`w-full inter-regular text-sm p-2 border-2 rounded-md resize-none ${modifiedFields["summary"] ? "border-yellow-500" : "border-gray-400"}`}
               rows={4}
             />
           </div>
@@ -107,7 +152,7 @@ const ResumeEditor = ({ resumeData, onUpdate }) => {
 
 
       {/* Experience */}
-      <div className="mb-6">
+      <div className="mb-12">
         <h3 className="font-semibold text-md mb-2">Experience</h3>
         {formData.experience.map((exp, i) => (
           <div key={i} className="mb-4 p-3 border rounded bg-gray-100">
@@ -142,7 +187,7 @@ const ResumeEditor = ({ resumeData, onUpdate }) => {
                   }));
                   setIsUpdated(true);
                 }}
-                className={`w-full text-sm inter-regular mb-1 p-2 border rounded ${
+                className={`w-full text-sm inter-regular mb-1 p-2 border rounded resize-none ${
                   modifiedFields[`experience.${i}.description.${j}`] ? "border-yellow-400" : "border-gray-300"
                 }`}
               />
@@ -151,12 +196,46 @@ const ResumeEditor = ({ resumeData, onUpdate }) => {
         ))}
       </div>
 
+
+      {/* Education */}
+      <div className="mb-12">
+        <h3 className="font-semibold text-md mb-2">Education</h3>
+        {formData.education.map((edu, i) => (
+          <div key={i} className="mb-4 p-3 border rounded bg-gray-100">
+            {["degree", "institution", "year_end"].map((field) => (
+              <div key={field} className="mb-4">
+                <label className="block capitalize inter-semibold">{field === "year_end" ? "year end" : field}</label>
+                <input
+                  type="text"
+                  value={edu[field]}
+                  onChange={(e) => handleChange("education", null, e.target.value, i, field)}
+                  className={`w-full p-2 border rounded inter-regular text-sm ${
+                    isFieldModified("education", i, field) ? "border-yellow-400" : "border-gray-300"
+                  }`}
+                />
+              </div>
+            ))}
+            <label className="block inter-semibold mb-1">Description</label>
+            <textarea
+              value={edu.description}
+              onChange={(e) => handleChange("education", null, e.target.value, i, "description")}
+              className={`w-full text-sm inter-regular p-2 border rounded resize-none ${
+                modifiedFields[`education.${i}.description`] ? "border-yellow-400" : "border-gray-300"
+              }`}
+              rows={2}
+            />
+          </div>
+        ))}
+      </div>
+
+
+
       {/* Skills */}
       <div className="mb-6">
         <h3 className="font-semibold text-md mb-2">Skills</h3>
         {formData.skills.map((skillSet, i) => (
-          <div key={i} className="mb-2">
-            <label className="block font-medium text-sm">{skillSet.category}</label>
+          <div key={i} className="mb-4">
+            <label className="block inter-medium">{skillSet.category}</label>
             <input
               type="text"
               value={skillSet.skills.join(", ")}
@@ -167,7 +246,7 @@ const ResumeEditor = ({ resumeData, onUpdate }) => {
                 setModifiedFields((prev) => ({ ...prev, [`skills.${i}.skills`]: true }));
                 setIsUpdated(true);
               }}
-              className={`w-full p-2 border rounded ${
+              className={`w-full text-sm inter-regular p-2 border rounded ${
                 modifiedFields[`skills.${i}.skills`] ? "border-yellow-400" : "border-gray-300"
               }`}
             />

@@ -21,6 +21,7 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
   const [contact, setContact] = useState("")
   const [currentJobTitle, setCurrentJobTitle] = useState("")
   const [currentLocation, setCurrentLocation] = useState("")
+  const [linkedin, setLinkedIn] = useState("")
 
   const [experiences, setExperiences] = useState([{ company: "", role: "", location: "", startDate: "", endDate: "" }])
   const [education, setEducation] = useState([{ institution: "", degree: "", year: "" }])
@@ -65,7 +66,7 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
 
   const handleFormSubmit = () => {
     const resumeData = {
-      name, email, contact, currentJobTitle, currentLocation, experiences, education, skills, summary
+      name, email, contact, linkedin, currentJobTitle, currentLocation, experiences, education, skills, summary
     }
     handleSubmit(resumeData)
     setFormIsFilled(true)
@@ -151,6 +152,16 @@ const MultiStepForm = ({handleSubmit, setFormIsFilled}) => {
                 name='email'
                 placeholder='johndoe@example.com'
                 className={`p-3 border rounded w-full text-sm ${email.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
+              />
+
+              <span className='mt-4 mb-1 inter-semibold'>Linkedin</span>
+              <input
+                type='text'
+                value={linkedin}
+                onChange={(e) => setLinkedIn(e.target.value)}
+                name='linkedin'
+                placeholder='https://www.linkedin.com/in/johndoe'
+                className={`p-3 border rounded w-full text-sm ${linkedin.length > 0 ? 'bg-white border-black' : 'bg-[#f9f9f9] border-gray-300'}`}
               />
 
               <span className='mt-4 mb-1 inter-semibold'>Current Location</span>
