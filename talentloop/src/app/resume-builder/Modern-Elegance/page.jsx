@@ -107,6 +107,27 @@ export default function Home() {
   };
 
 
+  const handleATSRecalculate = async (updatedResume) => {
+    try {
+      const response = await axios.post("http://localhost:5000/calculate-ats", {
+        resume: updatedResume,
+      });
+  
+      const { ats_score, ats_feedback, ats_warnings } = response.data;
+  
+      setAtsScore(ats_score);
+      setAtsFeedback(ats_feedback);
+      setAtsWarnings(ats_warnings);
+  
+      // Optionally: Update localStorage for dev-mode caching
+      localStorage.setItem("dev_atsScore", JSON.stringify(ats_score));
+      localStorage.setItem("dev_atsFeedback", JSON.stringify(ats_feedback));
+      localStorage.setItem("dev_atsWarnings", JSON.stringify(ats_warnings));
+    } catch (error) {
+      console.error("Failed to recalculate ATS:", error);
+    }
+  };
+  
 
 
   return (
@@ -147,6 +168,7 @@ export default function Home() {
             <ResumeEditor
               resumeData={resumeContent}
               onUpdate={(updatedResume) => setResumeContent(updatedResume)}
+              onATSRecalculate={handleATSRecalculate}
             />
           </div>
           <div className="w-6/12 bg-white h-screen overflow-y-scroll overflow-x-hidden no-scrollbar">

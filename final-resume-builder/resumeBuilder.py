@@ -8,7 +8,6 @@ from ats_score import calculate_ats_score
 app = Flask(__name__)
 CORS(app)
 @app.route('/generate-resume', methods=['POST'])
-
 def generate_resume():
   data = request.json
   user_data = data.get('user_data')
@@ -120,6 +119,31 @@ def generate_resume():
         "message": str(e),
         "raw_output": output_text
     }), 500
+
+
+
+
+@app.route('/calculate-ats', methods=['POST'])
+def calculate_ats():
+    data = request.json
+    resume = data.get('resume')
+
+    if not resume:
+        return jsonify({"error": "Missing resume data"}), 400
+    
+    try:
+       ats_result = calculate_ats_score(resume)
+       return jsonify({
+           "ats_score": ats_result["score"],
+           "ats_feedback": ats_result["feedback"],
+           "ats_warnings": ats_result["warnings"]
+       }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+       
+
+
+
 
 
 if __name__ == '__main__':

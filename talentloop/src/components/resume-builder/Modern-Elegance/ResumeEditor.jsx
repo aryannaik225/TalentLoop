@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const ResumeEditor = ({ resumeData, onUpdate }) => {
+const ResumeEditor = ({ resumeData, onUpdate, onATSRecalculate }) => {
   const [formData, setFormData] = useState(resumeData);
   const [modifiedFields, setModifiedFields] = useState({});
   const [isUpdated, setIsUpdated] = useState(false);
@@ -28,6 +28,7 @@ const ResumeEditor = ({ resumeData, onUpdate }) => {
 
   const handleUpdate = () => {
     onUpdate(formData);
+    onATSRecalculate(formData);
     setModifiedFields({});
     setIsUpdated(false);
   };
