@@ -37,10 +37,11 @@
 
 import re
 import json
-from textstat import lexicon_count, flesch_reading_ease
+from textstat import flesch_kincaid_grade
 from collections import Counter
 import spacy
 from sentence_transformers import CrossEncoder
+import math
 
 nlp = spacy.load("en_core_web_sm")
 model = CrossEncoder('cross-encoder/stsb-roberta-base')
@@ -365,6 +366,43 @@ def contains_personal_pronouns(text):
     return any(token.text.lower() in pronouns for token in doc if token.pos_ == "PRON")
 
 
+def calculate_vocabulary_score(text):
+    words = re.findall(r'\b\w+\b', text.lower())
+    total_words = len(words)
+    unique_words = len(set(words))
+
+    if total_words == 0:
+        return 0.0
+
+    ttr = unique_words / total_words  # Type-token ratio
+    score = min(round(ttr * 25, 2), 10)  # scale TTR to 0-10 range
+
+    return score
+
+
+def calculate_readability_score(resume):
+    summary_text = resume.get("summary", "")
+    experience_text = " ".join(
+        " ".join(exp.get("description", [])) for exp in resume.get("experience", [])
+    )
+    education_text = " ".join(
+        edu.get("description", "") for edu in resume.get("education", [])
+    )
+
+    readable_text = f"{summary_text} {experience_text} {education_text}".strip()
+    if not readable_text:
+        return 0.0
+
+    grade_level = flesch_kincaid_grade(readable_text)
+    print("📘 Grade level:", grade_level)
+
+    score = max(0, min(grade_level, 10))  # Scale to 0-10 range
+
+    return score
+
+
+
+
 def calculate_lexical_analysis(resume):
     feedback = []
     score = 0
@@ -387,20 +425,16 @@ def calculate_lexical_analysis(resume):
         feedback.append("⚠️ Add Numericized Achievements (e.g., 'Increased sales by 20%')")
 
     # 3. Vocabulary Level (Scale 0-10 → 5)
-    vocab_score = lexicon_count(resume_text, removepunct=True) / 100
-    vocab_score = min(vocab_score, 10)
+    vocab_score = calculate_vocabulary_score(resume_text)
     score += (vocab_score / 2)
-    
     if vocab_score < 5:
-        feedback.append(f"⚠️ Improve Vocabulary Level ({round(vocab_score,1)}/10)")
+        feedback.append(f"⚠️ Improve Vocabulary Level ({vocab_score}/10)")
 
     # 4. Reading Level (Scale 0-10 → 5)
-    readability_score = flesch_reading_ease(resume_text)
-    readability_score = max(0, min(readability_score / 10, 10))
+    readability_score = calculate_readability_score(resume)
     score += (readability_score / 2)
-
     if readability_score < 5:
-        feedback.append(f"⚠️ Improve Readability Score ({round(readability_score,1)}/10)")
+        feedback.append(f"⚠️ Improve Readability Score ({readability_score}/10)")
 
     # 5. Common Words Check (Industry Keywords)
     words = resume_text.lower().split()
