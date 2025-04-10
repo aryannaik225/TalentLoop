@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ResumeEditor from "@/components/resume-builder/Modern-Elegance/ResumeEditor";
 import FeedbackBanner from "@/components/utils/FeedbackBanner";
+import LoadingResumeBar from "@/components/utils/LoadingResume";
 
 
 export default function Home() {
@@ -88,7 +89,7 @@ export default function Home() {
         resume_template: selectedResumeTemplate
       });
 
-      const { resume_json, ats_score, ats_feedback, ats_warnings } = response.data;
+      const { resume_json, ats_score, ats_feedback, ats_warnings, note } = response.data;
 
       if (note?.includes("optimization")) {
         setIsOptimizing(true); // fallback

@@ -29,14 +29,14 @@ export default function LoadingResumeBar({ isOptimizing }) {
     const interval = setInterval(() => {
       setProgress((prev) => Math.min(prev + 2, 95)); // slowly rise until 95%
       setMessageIndex((prev) => (prev + 1) % steps.length);
-    }, 3000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [isOptimizing]);
 
   return (
     <div className="flex flex-col items-center justify-center mt-20 gap-4">
-      <motion.div className="w-9/12 h-4 bg-gray-200 rounded-md overflow-hidden">
+      <motion.div className="w-40 h-4 bg-gray-200 rounded-md overflow-hidden">
         <motion.div
           className="h-full bg-green-500"
           initial={{ width: "0%" }}
@@ -44,7 +44,7 @@ export default function LoadingResumeBar({ isOptimizing }) {
           transition={{ ease: "easeInOut", duration: 0.8 }}
         />
       </motion.div>
-      <p className="text-sm text-gray-600 font-medium">
+      <p className="text-sm text-white font-medium">
         {isOptimizing ? optimizationMessages[messageIndex] : messages[messageIndex]}
       </p>
     </div>
