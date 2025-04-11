@@ -4,7 +4,7 @@ import Navbar from "@/components/authentication-page/Navbar";
 import MultiStepForm from "@/components/resume-builder/Modern-Elegance/MultiStepForm";
 import GeneratedResume from "@/components/resume-builder/Modern-Elegance/GeneratedResume";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import ResumeEditor from "@/components/resume-builder/Modern-Elegance/ResumeEditor";
 import FeedbackBanner from "@/components/utils/FeedbackBanner";
@@ -20,6 +20,8 @@ export default function Home() {
   const [atsFeedback, setAtsFeedback] = useState(null);
   const [atsWarnings, setAtsWarnings] = useState(null);
   const [isOptimizing, setIsOptimizing] = useState(false);
+
+  const resumeRef = useRef()
 
   // For development ONLY: Load from localStorage if available
   useEffect(() => {
@@ -179,10 +181,11 @@ export default function Home() {
               resumeData={resumeContent}
               onUpdate={(updatedResume) => setResumeContent(updatedResume)}
               onATSRecalculate={handleATSRecalculate}
+              resumeRef = {resumeRef}
             />
           </div>
           <div className="w-6/12 bg-white h-screen overflow-y-scroll overflow-x-hidden no-scrollbar">
-            <GeneratedResume userData={resumeContent} />
+            <GeneratedResume userData={resumeContent} resumeRef={resumeRef}/>
           </div>
         </div>
       )}

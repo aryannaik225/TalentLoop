@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import PDFDownloadButton from "@/components/utils/PDFDownloadButton";
 
-const ResumeEditor = ({ resumeData, onUpdate, onATSRecalculate }) => {
+const ResumeEditor = ({ resumeData, onUpdate, onATSRecalculate, resumeRef }) => {
   const [formData, setFormData] = useState(resumeData);
   const [modifiedFields, setModifiedFields] = useState({});
   const [isUpdated, setIsUpdated] = useState(false);
@@ -255,16 +256,22 @@ const ResumeEditor = ({ resumeData, onUpdate, onATSRecalculate }) => {
         ))}
       </div>
 
-      {/* Update Button */}
-      <button
-        onClick={handleUpdate}
-        className={`px-4 py-2 rounded font-semibold ${
-          isUpdated ? "bg-green-500 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"
-        }`}
-        disabled={!isUpdated}
-      >
-        Update Resume
-      </button>
+      <div className="flex w-full justify-between">
+        {/* Update Button */}
+        <button
+          onClick={handleUpdate}
+          className={`px-4 py-2 rounded font-semibold ${
+            isUpdated ? "bg-green-500 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
+          disabled={!isUpdated}
+        >
+          Update Resume
+        </button>
+
+        {/* Download Button */}
+        <PDFDownloadButton filename={`${formData.fullName || "resume"}.pdf`} />
+
+      </div>
     </div>
   );
 };
