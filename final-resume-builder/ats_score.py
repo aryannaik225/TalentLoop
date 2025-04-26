@@ -260,6 +260,29 @@ industry_keywords = {
     "Escape Room Designer": ["Puzzle Creation", "Storytelling", "Mechanical Engineering"],
 }
 
+weights_for_all = {
+    "word_score": 0.5,
+    "page_score": 0.5,
+    "file_size_score": 0.5,
+    "pdf_score": 0.5,
+    "phone_number": 5,
+    "email": 5,
+    "linkedin": 4,
+    "education": 2.5,
+    "experience": 4.5,
+    "skills": 4.5,
+    "date_formatting": 4,
+    "personal_pronouns": 0.1,
+    "numericized_data": 4,
+    "vocabulary_level": 2,
+    "reading_level": 2,
+    "common_words": 0.1,
+    "soft_skills": 1,
+    "hard_skills": 1,
+    "skills_ratio": 1.5,
+    "job_title_relevance": 2,
+}
+
 
 file_path = "../training-data/testing.json"
 with open(file_path, "r", encoding="utf-8") as file:
@@ -296,7 +319,7 @@ def calculate_document_synopsis(resume):
     file_size_score = 5
     pdf_score = 5
 
-    total_score = word_score + page_score + file_size_score + pdf_score
+    total_score = (word_score * weights_for_all["word_score"]) + (page_score * weights_for_all["page_score"]) + (file_size_score * weights_for_all["file_size_score"]) + (pdf_score * weights_for_all["pdf_score"])
     return total_score, feedback
 
 
@@ -308,7 +331,8 @@ def calculate_data_identification(resume):
     # Phone Number Check
     phone_regex = r"\+?\d[\d\s\-\(\)]{9,}"  
     if re.search(phone_regex, resume.get("contact", "")):
-        score += 5
+        s = 5*weights_for_all["phone_number"]
+        score += s
     else:
         feedback.append("⚠️ Missing Phone Number")
 
@@ -316,7 +340,8 @@ def calculate_data_identification(resume):
     # Email Check
     email_regex = r"[^@]+@[^@]+\.[^@]+"
     if re.search(email_regex, resume.get("email", "")):
-        score += 5
+        s = 5*weights_for_all["email"]
+        score += s
     else:
         feedback.append("⚠️ Missing Email Address")
 
@@ -324,28 +349,32 @@ def calculate_data_identification(resume):
     # LinkedIn URL Check
     linkedin_field = resume.get("linkedin", "") or resume.get("contact", "")
     if "linkedin.com" in linkedin_field.lower():
-        score += 5
+        s = 5*weights_for_all["linkedin"]
+        score += s
     else:
         feedback.append("⚠️ Missing LinkedIn URL")
 
 
     # Education Section Check
     if resume.get("education"):
-        score += 5
+        s = 5*weights_for_all["education"]
+        score += s
     else:
         feedback.append("⚠️ Missing Education Section")
 
 
     # Experience Section Check 
     if resume.get("experience"):
-        score += 5
+        s = 5*weights_for_all["experience"]
+        score += s
     else:
         feedback.append("⚠️ Missing Experience Section")
 
 
     # Skills Section Check
     if resume.get("skills"):
-        score += 5
+        s = 5*weights_for_all["skills"]
+        score += s
     else:
         feedback.append("⚠️ Missing Skills Section")
 
@@ -354,7 +383,7 @@ def calculate_data_identification(resume):
     date_regex = r"\b(?:\d{2}/\d{4}|\d{4}-\d{2})\b"
     dates_valid = any(re.search(date_regex, exp["duration"]) for exp in resume.get("experience", []))
     if dates_valid:
-        score += 5
+        score += 5*weights_for_all["date_formatting"]
     else:
         feedback.append("⚠️ Invalid Date Formatting (Use MM/YYYY or YYYY-MM)")
 
@@ -415,24 +444,24 @@ def calculate_lexical_analysis(resume):
     if contains_personal_pronouns(resume_text):
         feedback.append("⚠️ Avoid Personal Pronouns (I, Me, My, etc.)")
     else:
-        score += 5
+        score += 5*weights_for_all["personal_pronouns"]
 
 
     # 2. Numericized Data Check
     if re.search(r"\d+", resume_text):
-        score += 5
+        score += 5*weights_for_all["numericized_data"]
     else:
         feedback.append("⚠️ Add Numericized Achievements (e.g., 'Increased sales by 20%')")
 
     # 3. Vocabulary Level (Scale 0-10 → 5)
     vocab_score = calculate_vocabulary_score(resume_text)
-    score += vocab_score
+    score += vocab_score*weights_for_all["vocabulary_level"]
     if vocab_score < 5:
         feedback.append(f"⚠️ Improve Vocabulary Level ({vocab_score}/10)")
 
     # 4. Reading Level (Scale 0-10 → 5)
     readability_score = calculate_readability_score(resume)
-    score += readability_score
+    score += readability_score*weights_for_all["reading_level"]
     if readability_score < 1:
         feedback.append(f"⚠️ Improve Readability Score ({readability_score}/10)")
 
@@ -441,7 +470,7 @@ def calculate_lexical_analysis(resume):
     keyword_count = sum(1 for word in words if word in industry_keywords)
 
     if keyword_count > 3:
-        score += 5
+        score += 5*weights_for_all["common_words"]
     else:
         feedback.append("⚠️ Add More Industry-Relevant Keywords")
 
@@ -488,7 +517,6 @@ def calculate_skills_efficiency_ratio(hard_skills_count, soft_skills_count):
 
 def check_semantic_analysis(resume, ats_report):
     score = 0
-    total_score = 30
 
     # 1. Measurable Achievements
     achievement_count = len(resume.get("experience", []))
@@ -519,7 +547,7 @@ def check_semantic_analysis(resume, ats_report):
     hard_skills_count = len(hard_skills)
     soft_skills_count = len(soft_skills)
     efficiency_score, warning = calculate_skills_efficiency_ratio(hard_skills_count, soft_skills_count)
-    score += efficiency_score
+    score += efficiency_score*weights_for_all["skills_ratio"]
     if warning:
         ats_report["feedback"].append(warning)
 
@@ -581,11 +609,11 @@ def calculate_ats_score(resume):
     if not is_relevant:
         ats_report["feedback"].append(job_title_feedback)
     else:
-        ats_report["score"] += 10
+        ats_report["score"] += 10*weights_for_all["job_title_relevance"]
 
     # Normalize score to 100
     # ats_report["score"] = min(ats_report["score"], 100)
 
-    ats_report["score"] = round(ats_report["score"] / 135 * 100, 2)  # Normalize to 100
+    ats_report["score"] = round(ats_report["score"] / 266 * 100, 2)  # Normalize to 100
 
     return ats_report

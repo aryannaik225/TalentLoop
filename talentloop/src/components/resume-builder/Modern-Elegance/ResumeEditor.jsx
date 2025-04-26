@@ -237,7 +237,7 @@ const ResumeEditor = ({ resumeData, onUpdate, onATSRecalculate, resumeRef }) => 
         <h3 className="font-semibold text-md mb-2">Skills</h3>
         {formData.skills.map((skillSet, i) => (
           <div key={i} className="mb-4">
-            <label className="block inter-medium">{skillSet.category}</label>
+            <label className="block inter-medium capitalize">{skillSet.category}</label>
             <input
               type="text"
               value={skillSet.skills.join(", ")}
