@@ -6,8 +6,15 @@ import DocumentIcon from '@/../public/landing-page/doc-hero.svg'
 import TextIcon from '@/../public/landing-page/text-icon-hero.svg'
 import Texttxt from '@/../public/landing-page/txt-hero.svg'
 import PDFIcon from '@/../public/landing-page/pdf-icon-hero.svg'
+import { useRouter } from 'next/navigation'
 
 const HeroSection = ({ onScrollToHowItWorks }) => {
+  const router = useRouter()
+
+  const handleRedirect = (path) => {
+    router.push(path)
+  }
+
   const smallIconVariants = {
     initial: { opacity: 0, scale: 0, x: 0, y: 0 },
     animate: (custom) => ({
@@ -25,6 +32,8 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
       },
     }),
   }
+
+
 
   return (
     <div className='md:mt-0 mt-20 flex flex-col md:flex-row w-full max-w-screen px-4 md:px-12 lg:px-20 h-auto md:h-[80vh] justify-evenly items-center gap-10 md:gap-0'>
@@ -77,6 +86,7 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
+          onClick={() => handleRedirect('/resume-templates')}
         >
           Get Started
         </motion.button>

@@ -7,6 +7,7 @@ import Brain from "@/../public/landing-page/benefits/brain.svg"
 import Robot from "@/../public/landing-page/benefits/robot.svg"
 import Writing from "@/../public/landing-page/writing.svg"
 import Resume from "@/../public/landing-page/benefits/resume.png"
+import { useRouter } from 'next/navigation'
 
 const benefits = [
   { icon: Brain, label: "ATS-Optimized Output" },
@@ -16,6 +17,13 @@ const benefits = [
 ]
 
 const Benefits = () => {
+
+  const router = useRouter()
+
+  const handleRedirect = (path) => {
+    router.push(path)
+  }
+
   return (
     <motion.div
       className='w-screen h-auto flex justify-center items-start gap-10 px-6'
@@ -62,6 +70,7 @@ const Benefits = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.9 }}
+          onClick={() => handleRedirect('/resume-templates')}
         >
           Get Started
         </motion.button>
