@@ -5,9 +5,9 @@ import Writing from "@/../public/landing-page/writing.svg"
 import Pallete from "@/../public/landing-page/pallete.svg"
 import Download from "@/../public/landing-page/download.svg"
 
-const HowItWorks = () => {
+const HowItWorks = ({ refProp }) => {
   return (
-    <div className='w-screen h-auto flex justify-center'>
+    <div className='w-screen h-auto flex justify-center' ref={refProp}>
       <div className='w-full max-w-[1200px] flex flex-col items-center justify-center py-20'>
         <span className='poppins-bold text-3xl text-white uppercase'>How it <span className='text-[#24eb91]'>Works</span></span>
         <span className='w-[50vw] text-center poppins-regular text-white text-sm mt-3'>Just enter a few key details — like your name, role, and skills. Our AI fills in the rest, crafting a complete, professional resume. It&#39;s then scored using our custom ATS system so you can edit, improve, and download a job-ready version in minutes.</span>

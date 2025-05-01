@@ -7,7 +7,7 @@ import TextIcon from '@/../public/landing-page/text-icon-hero.svg'
 import Texttxt from '@/../public/landing-page/txt-hero.svg'
 import PDFIcon from '@/../public/landing-page/pdf-icon-hero.svg'
 
-const HeroSection = () => {
+const HeroSection = ({ onScrollToHowItWorks }) => {
   const smallIconVariants = {
     initial: { opacity: 0, scale: 0, x: 0, y: 0 },
     animate: (custom) => ({
@@ -34,7 +34,7 @@ const HeroSection = () => {
           <span className='text-5xl poppins-bold text-white mt-2'>AI-Optimized <span className='text-[#24eb91]'>Resume</span></span>
           <span className='mt-6 text-white poppins-regular text-sm'>Generate a professional, job-ready resume in minutes <br/> backed by AI and our custom ATS scoring system.</span>
           <button className=' mt-6 px-10 py-3 bg-[#24eb91] hover:bg-[#0ca360] text-white hover:text-[#a4a4a4] poppins-bold transition-colors rounded'>Get Started</button>
-          <span className='text-white inter-medium text-sm text-nowrap mt-2'>Not sure? <span className='text-[#24eb91] hover:text-[#0ca360] cursor-pointer'>See how it works ↓</span></span>
+          <span className='text-white inter-medium text-sm text-nowrap mt-2'>Not sure? <span className='text-[#24eb91] hover:text-[#0ca360] cursor-pointer' onClick={onScrollToHowItWorks} >See how it works ↓</span></span>
       </div>
       <div className="relative flex items-center justify-center">
         {/* Center Image */}
