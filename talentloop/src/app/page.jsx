@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/landing-page/Navbar";
 import HeroSection from "@/components/landing-page/HeroSection";
 import HowItWorks from "@/components/landing-page/HowItWorks";
+import Benefits from "@/components/landing-page/Benefits";
 
 
 export default function Home() {
@@ -46,8 +47,11 @@ export default function Home() {
       <div className="mb-15">
         <HeroSection />
       </div>
-      <div className="mb-15">
+      <div className="mb-40">
         <HowItWorks />
+      </div>
+      <div className="mb-15">
+        <Benefits />
       </div>
     </div>
   );
