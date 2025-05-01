@@ -28,14 +28,73 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
 
   return (
     <div className='flex w-screen justify-evenly h-[80vh] items-center'>
-      <div className='flex flex-col items-start'>
-          <span className='text-nowrap poppins-medium text-[#24eb91]'>Land more interviews with better resumes</span>
-          <span className='text-5xl poppins-bold text-white mt-3'>Create a smarter,</span>
-          <span className='text-5xl poppins-bold text-white mt-2'>AI-Optimized <span className='text-[#24eb91]'>Resume</span></span>
-          <span className='mt-6 text-white poppins-regular text-sm'>Generate a professional, job-ready resume in minutes <br/> backed by AI and our custom ATS scoring system.</span>
-          <button className=' mt-6 px-10 py-3 bg-[#24eb91] hover:bg-[#0ca360] text-white hover:text-[#a4a4a4] poppins-bold transition-colors rounded'>Get Started</button>
-          <span className='text-white inter-medium text-sm text-nowrap mt-2'>Not sure? <span className='text-[#24eb91] hover:text-[#0ca360] cursor-pointer' onClick={onScrollToHowItWorks} >See how it works ↓</span></span>
-      </div>
+      <motion.div
+        className='flex flex-col items-start'
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
+        <motion.span
+          className='text-nowrap poppins-medium text-[#24eb91]'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+        >
+          Land more interviews with better resumes
+        </motion.span>
+
+        <motion.span
+          className='text-5xl poppins-bold text-white mt-3'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          Create a smarter,
+        </motion.span>
+
+        <motion.span
+          className='text-5xl poppins-bold text-white mt-2'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          AI-Optimized <span className='text-[#24eb91]'>Resume</span>
+        </motion.span>
+
+        <motion.span
+          className='mt-6 text-white poppins-regular text-sm'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          Generate a professional, job-ready resume in minutes <br />
+          backed by AI and our custom ATS scoring system.
+        </motion.span>
+
+        <motion.button
+          className='mt-6 px-10 py-3 bg-[#24eb91] hover:bg-[#0ca360] text-white hover:text-[#a4a4a4] poppins-bold transition-colors rounded'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          Get Started
+        </motion.button>
+
+        <motion.span
+          className='text-white inter-medium text-sm text-nowrap mt-2'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          Not sure?{' '}
+          <span
+            className='text-[#24eb91] hover:text-[#0ca360] cursor-pointer'
+            onClick={onScrollToHowItWorks}
+          >
+            See how it works ↓
+          </span>
+        </motion.span>
+      </motion.div>
       <div className="relative flex items-center justify-center">
         {/* Center Image */}
         <motion.div
