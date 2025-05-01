@@ -40,106 +40,107 @@ const Navbar = (setShowProfile) => {
             className="cursor-pointer"
           />
         </a>
+        <div className='flex items-center gap-8'>
+          <div className='hidden md:flex justify-between items-center gap-6'>
+            <motion.button 
+              initial={{ scale: 2, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, stiffness: 260, delay: 0.2 }}
+              className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4] cursor-pointer pointer-events-auto'
+            >Home</motion.button>
 
-        <div className='hidden md:flex justify-between items-center w-7/12 xl:w-5/12'>
-          <motion.button 
-            initial={{ scale: 2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, stiffness: 260, delay: 0.2 }}
-            className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4] cursor-pointer pointer-events-auto'
-          >Home</motion.button>
+            {/* <motion.button
+              initial={{ scale: 2, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, stiffness: 260, delay: 0.4 }}
+              className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4]'
+            >Find job</motion.button>
 
-          <motion.button
-            initial={{ scale: 2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, stiffness: 260, delay: 0.4 }}
-            className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4]'
-          >Find job</motion.button>
+            <motion.button
+              initial={{ scale: 2, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, stiffness: 260, delay: 0.6 }}
+              className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4]'
+            >Hire freelancers</motion.button> */}
 
-          <motion.button
-            initial={{ scale: 2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, stiffness: 260, delay: 0.6 }}
-            className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4]'
-          >Hire freelancers</motion.button>
-
-          <motion.button
-            onClick={() => windowChange('resume-templates')} 
-            initial={{ scale: 2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, stiffness: 260, delay: 0.8 }}
-            className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4]'
-          >Create Resume</motion.button>
-        </div>
-
-        <div className='hidden md:flex items-center gap-4'>
-          {!user ? (
-            <>
-              <button
-                onClick={() => windowChange('authentication-page')}
-                className='text-white poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
-              >
-                Sign In
-              </button>
-              
-              <button 
-                onClick={() => windowChange('authentication-page')}
-                className="hidden md:block poppins-semibold text-white py-2 px-4 rounded-md bg-[#0CA360] hover:bg-[#185037] transition-colors duration-300 ease-out"
-              >
-                Sign Up
-              </button>
-            </>
-          ) : (
-            <div className='flex items-center gap-4 relative'>
-              <button
-                onClick={() => setShowMenu(!showMenu)}
-                className='flex items-center gap-2 hover:scale-105 duration-300 ease-out cursor-pointer'
-              >
-                <motion.p 
-                  initial={{ scale: 2, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, stiffness: 260, delay: 0.8 }}
-                  className='text-white poppins-semibold'
-                >
-                  {user.name}
-                </motion.p>
-                <motion.div
-                  initial={{ scale: 2, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, stiffness: 260, delay: 1.2 }}
-                >
-                  <Image
-                    src={user.photoURL ? user.photoURL : '/landing-page/default-pfp.png'}
-                    width={40}
-                    height={40}
-                    alt={'user'}
-                    className="rounded-full"
-                  />
-                </motion.div>
-              </button>
-
-              <div className={`absolute top-11 right-0 bg-[#33404c] w-40 ${showMenu ? 'flex' : 'hidden'} flex-col items-center py-4 gap-4 rounded-md`}>
+            <motion.button
+              onClick={() => windowChange('resume-templates')} 
+              initial={{ scale: 2, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, stiffness: 260, delay: 0.4 }}
+              className='text-sm lg:text-base text-white poppins-semibold hover:text-[#a4a4a4]'
+            >Create Resume</motion.button>
+          </div>
+            <div className='hidden md:flex items-center gap-4'>
+            {!user ? (
+              <>
                 <button
-                  onClick={() => windowChange('profile')}
-                  className='flex items-center gap-2 text-white text-sm poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+                  onClick={() => windowChange('authentication-page')}
+                  className='text-white poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
                 >
-                  <Image src='/landing-page/profile-icon.svg' width={24} height={24} alt='user' />
-                  Profile
+                  Sign In
                 </button>
-                <div className='w-10/12 h-[1px] bg-gray-500'/>
+                
                 <button 
-                  onClick={logOutFunc}
-                  className='flex items-center gap-2 text-white text-sm poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+                  onClick={() => windowChange('authentication-page')}
+                  className="hidden md:block poppins-semibold text-white py-2 px-4 rounded-md bg-[#0CA360] hover:bg-[#185037] transition-colors duration-300 ease-out"
                 >
-                  <Image src='/landing-page/log-out.svg' width={24} height={24} alt='log-out' />
-                  Sign Out
+                  Sign Up
                 </button>
-              </div>
-            </div>
-          )
+              </>
+            ) : ( 
+              <div className='flex items-center gap-4 relative'>
+                <button
+                  onClick={() => setShowMenu(!showMenu)}
+                  className='flex items-center gap-2 hover:scale-105 duration-300 ease-out cursor-pointer'
+                >
+                  <motion.p 
+                    initial={{ scale: 2, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, stiffness: 260, delay: 0.6 }}
+                    className='text-white poppins-semibold'
+                  >
+                    {user.name}
+                  </motion.p>
+                  <motion.div
+                    initial={{ scale: 2, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, stiffness: 260, delay: 1 }}
+                  >
+                    <Image
+                      src={user.photoURL ? user.photoURL : '/landing-page/default-pfp.png'}
+                      width={40}
+                      height={40}
+                      alt={'user'}
+                      className="rounded-full"
+                    />
+                  </motion.div>
+                </button>
 
-          }
+                <div className={`absolute top-11 right-0 bg-[#33404c] w-40 ${showMenu ? 'flex' : 'hidden'} flex-col items-center py-4 gap-4 rounded-md`}>
+                  <button
+                    onClick={() => windowChange('profile')}
+                    className='flex items-center gap-2 text-white text-sm poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+                  >
+                    <Image src='/landing-page/profile-icon.svg' width={24} height={24} alt='user' />
+                    Profile
+                  </button>
+                  <div className='w-10/12 h-[1px] bg-gray-500'/>
+                  <button 
+                    onClick={logOutFunc}
+                    className='flex items-center gap-2 text-white text-sm poppins-semibold hover:text-[#a4a4a4] hover:scale-105 duration-300 ease-out cursor-pointer'
+                  >
+                    <Image src='/landing-page/log-out.svg' width={24} height={24} alt='log-out' />
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            )
+
+            }
+          </div>
         </div>
+       
 
         {/* Mobile Menu Button */}
         <button
@@ -158,7 +159,7 @@ const Navbar = (setShowProfile) => {
           transition={{ duration: 0.5 }}
           className={`md:hidden absolute top-16 right-0 w-60 bg-gray-500 flex flex-col items-center py-4 gap-4`}
         >
-          {["Home", "Find job", "Hire freelancers", "Create Resume"].map(
+          {["Home", "Create Resume"].map(
             (text) => (
               <button
                 key={text}

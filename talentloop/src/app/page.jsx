@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/landing-page/Navbar";
+import HeroSection from "@/components/landing-page/HeroSection";
+import HowItWorks from "@/components/landing-page/HowItWorks";
 
 
 export default function Home() {
@@ -39,7 +41,13 @@ export default function Home() {
       />
       {/* <div className="absolute w-96 h-96 bg-[#A6B331] opacity-30 rounded-full top-[74px] right-[173px] blur-[140px]" /> */}
       <div className="z-10">
-      <Navbar setShowProfile={setShowProfile} /> 
+        <Navbar setShowProfile={setShowProfile} /> 
+      </div>
+      <div className="mb-20">
+        <HeroSection />
+      </div>
+      <div>
+        <HowItWorks />
       </div>
     </div>
   );
