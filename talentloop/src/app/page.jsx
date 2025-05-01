@@ -51,7 +51,7 @@ export default function Home() {
       <div className="z-10">
         <Navbar setShowProfile={setShowProfile} /> 
       </div>
-      <div className="mb-15">
+      <div className="mb-32 md:mb-15">
         <HeroSection onScrollToHowItWorks={handleScrollToHowItWorks}/>
       </div>
       <div className="mb-40">

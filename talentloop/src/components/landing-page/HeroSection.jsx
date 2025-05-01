@@ -27,15 +27,16 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
   }
 
   return (
-    <div className='flex w-screen justify-evenly h-[80vh] items-center'>
+    <div className='md:mt-0 mt-20 flex flex-col md:flex-row w-full max-w-screen px-4 md:px-12 lg:px-20 h-auto md:h-[80vh] justify-evenly items-center gap-10 md:gap-0'>
+      {/* Left Content */}
       <motion.div
-        className='flex flex-col items-start'
+        className='flex flex-col items-center md:items-start max-w-[640px]'
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        transition={{ duration: 1, ease: 'easeOut' }}
       >
         <motion.span
-          className='text-nowrap poppins-medium text-[#24eb91]'
+          className='text-nowrap poppins-medium text-[#24eb91] text-sm sm:text-base'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -44,7 +45,7 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
         </motion.span>
 
         <motion.span
-          className='text-5xl poppins-bold text-white mt-3'
+          className='text-3xl sm:text-4xl lg:text-5xl poppins-bold text-white mt-3'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -53,7 +54,7 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
         </motion.span>
 
         <motion.span
-          className='text-5xl poppins-bold text-white mt-2'
+          className='text-3xl sm:text-4xl lg:text-5xl poppins-bold text-white mt-2'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -62,7 +63,7 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
         </motion.span>
 
         <motion.span
-          className='mt-6 text-white poppins-regular text-sm'
+          className='mt-6 text-white poppins-regular text-sm sm:text-base'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -72,7 +73,7 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
         </motion.span>
 
         <motion.button
-          className='mt-6 px-10 py-3 bg-[#24eb91] hover:bg-[#0ca360] text-white hover:text-[#a4a4a4] poppins-bold transition-colors rounded'
+          className='mt-6 px-8 sm:px-10 py-3 bg-[#24eb91] hover:bg-[#0ca360] text-white hover:text-[#a4a4a4] poppins-bold transition-colors rounded text-sm sm:text-base'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
@@ -95,7 +96,9 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
           </span>
         </motion.span>
       </motion.div>
-      <div className="relative flex items-center justify-center">
+
+      {/* Right Icons - hidden on small screens */}
+      <div className="relative hidden md:flex items-center justify-center">
         {/* Center Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0, rotate: 0 }}
@@ -105,6 +108,7 @@ const HeroSection = ({ onScrollToHowItWorks }) => {
         >
           <Image src={PDFIcon} alt="PDF Icon" width={176} height={226} />
         </motion.div>
+
         {/* Small Images */}
         {[
           { icon: HighlighterIcon, x: -120, y: -120, rotate: 465 },
