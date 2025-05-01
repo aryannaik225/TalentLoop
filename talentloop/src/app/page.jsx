@@ -43,10 +43,10 @@ export default function Home() {
       <div className="z-10">
         <Navbar setShowProfile={setShowProfile} /> 
       </div>
-      <div className="mb-20">
+      <div className="mb-15">
         <HeroSection />
       </div>
-      <div>
+      <div className="mb-15">
         <HowItWorks />
       </div>
     </div>
