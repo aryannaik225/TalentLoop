@@ -120,13 +120,13 @@ const Navbar = () => {
                       transition={{ duration: 0.3 }}
                       className="absolute top-11 right-0 bg-[#33404c] w-40 flex flex-col items-center py-4 gap-4 rounded-md shadow-lg z-50"
                     >
-                      <button
+                      {/* <button
                         onClick={() => windowChange('profile')}
                         className="flex items-center gap-2 text-white text-sm poppins-semibold hover:text-[#a4a4a4] transition-transform hover:scale-105"
                       >
                         <Image src='/landing-page/profile-icon.svg' width={24} height={24} alt='profile' />
                         Profile
-                      </button>
+                      </button> */}
                       <div className="w-10/12 h-[1px] bg-gray-500" />
                       <button
                         onClick={logOutFunc}
