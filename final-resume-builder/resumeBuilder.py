@@ -28,12 +28,12 @@ def generate_resume():
   2️⃣ **Experience must exactly match the provided role, company, and dates.**
   3️⃣ **Summary must be 4-5 sentences based on given skills and experience.**
   4️⃣ **Each experience must have at least 3 bullet points describing work done.**
-  5️⃣ **Each education entry MUST have a "description" field with one meaningful sentence about coursework, GPA, or achievements. DO NOT leave it blank.**
-  6️⃣ **All skills must be categorized under:**
+  5️⃣ **Each experience must have a "description" with some numerized achievements.**
+  6️⃣ **Each education entry MUST have a "description" field with one meaningful sentence about coursework, GPA, or achievements. DO NOT leave it blank.**
+  7️⃣ **All skills must be categorized under:**
     - `"Industrial Knowledge"`  
     - `"Tools & Technologies"`  
     - `"Soft Skills"`
-
   ---
   ✅ **USER INPUT**
   {json.dumps(user_data, indent=2)}
@@ -94,10 +94,20 @@ def generate_resume():
             for category, value in resume_json["skills"].items()
         ]
 
+    required_edu_fields = ["institution", "degree", "start_date", "end_date", "description"]
+    for edu in resume_json.get("education", []):
+        for field in required_edu_fields:
+            if field not in edu:
+                edu[field] = "N/A" 
+
     # 🛡️ Ensure all education entries have a "description" field
     for edu in resume_json.get("education", []):
         if "description" not in edu or not edu["description"].strip():
             edu["description"] = "Coursework included practicals, projects, and academic excellence."
+    
+    for i, edu in enumerate(resume_json.get("education", [])):
+      if "institution" not in edu:
+        print(f"❌ Missing 'institution' in education[{i}]: {edu}")
 
     
     # print("✅ Successfully Parsed JSON:", json.dumps(resume_json, indent=4))
