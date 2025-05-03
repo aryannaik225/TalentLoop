@@ -8,7 +8,6 @@ from ats_score import calculate_ats_score
 app = Flask(__name__)
 CORS(app)
 @app.route('/generate-resume', methods=['POST'])
-
 def generate_resume():
   data = request.json
   user_data = data.get('user_data')
@@ -29,12 +28,12 @@ def generate_resume():
   2️⃣ **Experience must exactly match the provided role, company, and dates.**
   3️⃣ **Summary must be 4-5 sentences based on given skills and experience.**
   4️⃣ **Each experience must have at least 3 bullet points describing work done.**
-  5️⃣ **Each education entry MUST have a "description" field with one meaningful sentence about coursework, GPA, or achievements. DO NOT leave it blank.**
-  6️⃣ **All skills must be categorized under:**
+  5️⃣ **Each experience must have a "description" with some numerized achievements.**
+  6️⃣ **Each education entry MUST have a "description" field with one meaningful sentence about coursework, GPA, or achievements. DO NOT leave it blank.**
+  7️⃣ **All skills must be categorized under:**
     - `"Industrial Knowledge"`  
     - `"Tools & Technologies"`  
     - `"Soft Skills"`
-
   ---
   ✅ **USER INPUT**
   {json.dumps(user_data, indent=2)}
@@ -95,20 +94,108 @@ def generate_resume():
             for category, value in resume_json["skills"].items()
         ]
 
+    required_edu_fields = ["institution", "degree", "start_date", "end_date", "description"]
+    for edu in resume_json.get("education", []):
+        for field in required_edu_fields:
+            if field not in edu:
+                edu[field] = "N/A" 
+
     # 🛡️ Ensure all education entries have a "description" field
     for edu in resume_json.get("education", []):
         if "description" not in edu or not edu["description"].strip():
             edu["description"] = "Coursework included practicals, projects, and academic excellence."
+    
+    for i, edu in enumerate(resume_json.get("education", [])):
+      if "institution" not in edu:
+        print(f"❌ Missing 'institution' in education[{i}]: {edu}")
 
     
     # print("✅ Successfully Parsed JSON:", json.dumps(resume_json, indent=4))
     ats_result = calculate_ats_score(resume_json)
+
+
+    if ats_result["score"] >= 70:
+      return jsonify({
+        "resume_json": resume_json,
+        "ats_score": ats_result["score"],
+        "ats_feedback": ats_result["feedback"],
+        "ats_warnings": ats_result["warnings"]
+      }), 200
+
+    feedback_summary = ". ".join(ats_result["feedback"])[:1000]  # Limit to 1000 chars
+    optimization_prompt = f"""
+    You generated the following resume based on this user input. However, it received a low ATS score with specific feedback.
+
+    ---
+
+    👤 USER INPUT (STRICT - DO NOT CHANGE PERSONAL DETAILS):
+    {json.dumps(user_data, indent=2)}
+
+    ---
+
+    📄 YOUR PREVIOUS RESUME OUTPUT:
+    {json.dumps(resume_json, indent=2)}
+
+    ---
+
+    ❗ ATS FEEDBACK (IMPROVE THESE AREAS STRICTLY):
+    {feedback_summary}
+
+    ---
+
+    ✅ NOW, regenerate a resume that fixes the above issues without changing:
+    1️⃣ User name, email, phone, or company names  
+    2️⃣ JSON format or structure  
+    3️⃣ Skill categories
+
+    Let the word count stay between 300-1000. Avoid personal pronouns, improve vocabulary/readability, and increase quantified achievements.
+
+    Return **ONLY JSON**. NO explanations.
+    ---
+    🚨 **IMPORTANT:** 🚨
+    - **DO NOT RETURN ANYTHING ELSE EXCEPT PURE JSON.**
+    - **NO MARKDOWN (` ```json `), NO TEXT, NO EXPLANATIONS, NO COMMENTS, JUST JSON!**
+    - **DO NOT include ```json or any kind of markdown. If you do, the response will be REJECTED. JSON ONLY.**
+    - **FIRST SORT THE ALREADY PROVIDED SKILLS INTO THE CATEGORIES AND THEN YOU MIGHT ADD NEW IF REQUIRED**
+    - **Let the WORD COUNT be between 300 and 1000**
+    - **Avoid Personal Pronouns.**
+    - **Keep the VOCABULARY LEVEL ABOUVE AVERAGE.**
+    - **Keep the READABILITY LEVEL AVERAGE.**
+    - **USE FEW INDUSTRY-RELEVANT JARGONS.**
+    """
+
+    retry_response = ollama.chat(model="deepseek-r1:7b", messages=[
+        {"role": "user", "content": optimization_prompt}
+    ])
+    retry_output = retry_response.get("message", {}).get("content", "").strip()
+    retry_output = re.sub(r"^```json\s*|\s*```$", "", retry_output.strip(), flags=re.MULTILINE).strip()
+    retry_output = re.sub(r",\s*([}\]])", r"\1", retry_output)
+    retry_output = re.sub(r"\]\s*\]", "]", retry_output)
+    try:
+        optimized_resume = json.loads(retry_output)
+    except Exception as e:
+        print("🔥 Retry JSON Parse Failed:", str(e))
+        return jsonify({
+            "resume_json": resume_json,
+            "ats_score": ats_result["score"],
+            "ats_feedback": ats_result["feedback"],
+            "ats_warnings": ats_result["warnings"],
+            "note": "Returned original resume because retry optimization failed."
+        }), 200
+    optimized_ats = calculate_ats_score(optimized_resume)
+
+    # Return the better one
+    final_resume = optimized_resume if optimized_ats["score"] > ats_result["score"] else resume_json
+    print(f"🔁 Optimized ATS Score: {optimized_ats['score']} vs Original: {ats_result['score']}")
+    final_ats = optimized_ats if optimized_ats["score"] > ats_result["score"] else ats_result
+
     return jsonify({
-      "resume_json": resume_json,
-      "ats_score": ats_result["score"],
-      "ats_feedback": ats_result["feedback"],
-      "ats_warnings": ats_result["warnings"]
+        "resume_json": final_resume,
+        "ats_score": final_ats["score"],
+        "ats_feedback": final_ats["feedback"],
+        "ats_warnings": final_ats["warnings"]
     }), 200
+
 
   except Exception as e:
     print("🔥 ERROR OCCURED:", str(e))
@@ -121,6 +208,27 @@ def generate_resume():
         "raw_output": output_text
     }), 500
 
+
+
+
+@app.route('/calculate-ats', methods=['POST'])
+def calculate_ats():
+    data = request.json
+    resume = data.get('resume')
+
+    if not resume:
+        return jsonify({"error": "Missing resume data"}), 400
+    
+    try:
+       ats_result = calculate_ats_score(resume)
+       return jsonify({
+           "ats_score": ats_result["score"],
+           "ats_feedback": ats_result["feedback"],
+           "ats_warnings": ats_result["warnings"]
+       }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+       
 
 if __name__ == '__main__':
     app.run(debug=True)

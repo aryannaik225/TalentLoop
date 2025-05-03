@@ -1,11 +1,15 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/landing-page/Navbar";
+import HeroSection from "@/components/landing-page/HeroSection";
+import HowItWorks from "@/components/landing-page/HowItWorks";
+import Benefits from "@/components/landing-page/Benefits";
+import Footer from "@/components/landing-page/Footer";
 
 
 export default function Home() {
-
+  const howItWorksRef = useRef(null);
   const [circlePosition, setCirclePosition] = useState({ x: 0, y: 0 });
   const [showProfile, setShowProfile] = useState(false);
 
@@ -23,6 +27,12 @@ export default function Home() {
     }
   }, []);
 
+  const handleScrollToHowItWorks = () => {
+    if (howItWorksRef.current) {
+      howItWorksRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <div className="relative w-screen h-auto min-h-screen bg-[#2A2929] overflow-hidden">
       <div className="relative w-screen h-full landing-page-bg"/>
@@ -39,7 +49,19 @@ export default function Home() {
       />
       {/* <div className="absolute w-96 h-96 bg-[#A6B331] opacity-30 rounded-full top-[74px] right-[173px] blur-[140px]" /> */}
       <div className="z-10">
-      <Navbar setShowProfile={setShowProfile} /> 
+        <Navbar setShowProfile={setShowProfile} /> 
+      </div>
+      <div className="mb-32 md:mb-15">
+        <HeroSection onScrollToHowItWorks={handleScrollToHowItWorks}/>
+      </div>
+      <div className="mb-40">
+        <HowItWorks refProp={howItWorksRef}/>
+      </div>
+      <div className="">
+        <Benefits />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

@@ -37,10 +37,11 @@
 
 import re
 import json
-from textstat import lexicon_count, flesch_reading_ease
+from textstat import flesch_kincaid_grade
 from collections import Counter
 import spacy
 from sentence_transformers import CrossEncoder
+import math
 
 nlp = spacy.load("en_core_web_sm")
 model = CrossEncoder('cross-encoder/stsb-roberta-base')
@@ -259,6 +260,29 @@ industry_keywords = {
     "Escape Room Designer": ["Puzzle Creation", "Storytelling", "Mechanical Engineering"],
 }
 
+weights_for_all = {
+    "word_score": 0.5,
+    "page_score": 0.5,
+    "file_size_score": 0.5,
+    "pdf_score": 0.5,
+    "phone_number": 5,
+    "email": 5,
+    "linkedin": 4,
+    "education": 2.5,
+    "experience": 4.5,
+    "skills": 4.5,
+    "date_formatting": 4,
+    "personal_pronouns": 0.1,
+    "numericized_data": 4,
+    "vocabulary_level": 2,
+    "reading_level": 2,
+    "common_words": 0.1,
+    "soft_skills": 1,
+    "hard_skills": 1,
+    "skills_ratio": 1.5,
+    "job_title_relevance": 2,
+}
+
 
 file_path = "../training-data/testing.json"
 with open(file_path, "r", encoding="utf-8") as file:
@@ -295,7 +319,7 @@ def calculate_document_synopsis(resume):
     file_size_score = 5
     pdf_score = 5
 
-    total_score = word_score + page_score + file_size_score + pdf_score
+    total_score = (word_score * weights_for_all["word_score"]) + (page_score * weights_for_all["page_score"]) + (file_size_score * weights_for_all["file_size_score"]) + (pdf_score * weights_for_all["pdf_score"])
     return total_score, feedback
 
 
@@ -307,7 +331,8 @@ def calculate_data_identification(resume):
     # Phone Number Check
     phone_regex = r"\+?\d[\d\s\-\(\)]{9,}"  
     if re.search(phone_regex, resume.get("contact", "")):
-        score += 5
+        s = 5*weights_for_all["phone_number"]
+        score += s
     else:
         feedback.append("⚠️ Missing Phone Number")
 
@@ -315,35 +340,41 @@ def calculate_data_identification(resume):
     # Email Check
     email_regex = r"[^@]+@[^@]+\.[^@]+"
     if re.search(email_regex, resume.get("email", "")):
-        score += 5
+        s = 5*weights_for_all["email"]
+        score += s
     else:
         feedback.append("⚠️ Missing Email Address")
 
 
     # LinkedIn URL Check
-    if "linkedin.com" in resume.get("contact", "").lower():
-        score += 5
+    linkedin_field = resume.get("linkedin", "") or resume.get("contact", "")
+    if "linkedin.com" in linkedin_field.lower():
+        s = 5*weights_for_all["linkedin"]
+        score += s
     else:
         feedback.append("⚠️ Missing LinkedIn URL")
 
 
     # Education Section Check
     if resume.get("education"):
-        score += 5
+        s = 5*weights_for_all["education"]
+        score += s
     else:
         feedback.append("⚠️ Missing Education Section")
 
 
     # Experience Section Check 
     if resume.get("experience"):
-        score += 5
+        s = 5*weights_for_all["experience"]
+        score += s
     else:
         feedback.append("⚠️ Missing Experience Section")
 
 
     # Skills Section Check
     if resume.get("skills"):
-        score += 5
+        s = 5*weights_for_all["skills"]
+        score += s
     else:
         feedback.append("⚠️ Missing Skills Section")
 
@@ -352,11 +383,52 @@ def calculate_data_identification(resume):
     date_regex = r"\b(?:\d{2}/\d{4}|\d{4}-\d{2})\b"
     dates_valid = any(re.search(date_regex, exp["duration"]) for exp in resume.get("experience", []))
     if dates_valid:
-        score += 5
+        score += 5*weights_for_all["date_formatting"]
     else:
         feedback.append("⚠️ Invalid Date Formatting (Use MM/YYYY or YYYY-MM)")
 
     return score, feedback
+
+def contains_personal_pronouns(text):
+    doc = nlp(text)
+    pronouns = {"I", "me", "my", "mine", "we", "us", "our", "ours"}
+    return any(token.text.lower() in pronouns for token in doc if token.pos_ == "PRON")
+
+
+def calculate_vocabulary_score(text):
+    words = re.findall(r'\b\w+\b', text.lower())
+    total_words = len(words)
+    unique_words = len(set(words))
+
+    if total_words == 0:
+        return 0.0
+
+    ttr = unique_words / total_words  # Type-token ratio
+    score = min(round(ttr * 25, 2), 10)  # scale TTR to 0-10 range
+
+    return score
+
+
+def calculate_readability_score(resume):
+    summary_text = resume.get("summary", "")
+    experience_text = " ".join(
+        " ".join(exp.get("description", [])) for exp in resume.get("experience", [])
+    )
+    education_text = " ".join(
+        edu.get("description", "") for edu in resume.get("education", [])
+    )
+
+    readable_text = f"{summary_text} {experience_text} {education_text}".strip()
+    if not readable_text:
+        return 0.0
+
+    grade_level = flesch_kincaid_grade(readable_text)
+    print("📘 Grade level:", grade_level)
+
+    score = round(max(0, min((16 - grade_level), 10)),2)  # Scale to 0-10 range
+
+    return score
+
 
 
 
@@ -369,40 +441,36 @@ def calculate_lexical_analysis(resume):
     )
 
     # 1. Personal Pronouns Check
-    personal_pronouns = ["i ", "me ", "my ", "mine ", "we ", "us "]
-    if any(word in resume_text.lower() for word in personal_pronouns):
+    if contains_personal_pronouns(resume_text):
         feedback.append("⚠️ Avoid Personal Pronouns (I, Me, My, etc.)")
     else:
-        score += 5
+        score += 5*weights_for_all["personal_pronouns"]
+
 
     # 2. Numericized Data Check
     if re.search(r"\d+", resume_text):
-        score += 5
+        score += 5*weights_for_all["numericized_data"]
     else:
         feedback.append("⚠️ Add Numericized Achievements (e.g., 'Increased sales by 20%')")
 
     # 3. Vocabulary Level (Scale 0-10 → 5)
-    vocab_score = lexicon_count(resume_text, removepunct=True) / 100
-    vocab_score = min(vocab_score, 10)
-    score += (vocab_score / 2)
-    
+    vocab_score = calculate_vocabulary_score(resume_text)
+    score += vocab_score*weights_for_all["vocabulary_level"]
     if vocab_score < 5:
-        feedback.append(f"⚠️ Improve Vocabulary Level ({round(vocab_score,1)}/10)")
+        feedback.append(f"⚠️ Improve Vocabulary Level ({vocab_score}/10)")
 
     # 4. Reading Level (Scale 0-10 → 5)
-    readability_score = flesch_reading_ease(resume_text)
-    readability_score = max(0, min(readability_score / 10, 10))
-    score += (readability_score / 2)
-
-    if readability_score < 5:
-        feedback.append(f"⚠️ Improve Readability Score ({round(readability_score,1)}/10)")
+    readability_score = calculate_readability_score(resume)
+    score += readability_score*weights_for_all["reading_level"]
+    if readability_score < 1:
+        feedback.append(f"⚠️ Improve Readability Score ({readability_score}/10)")
 
     # 5. Common Words Check (Industry Keywords)
     words = resume_text.lower().split()
     keyword_count = sum(1 for word in words if word in industry_keywords)
 
     if keyword_count > 3:
-        score += 5
+        score += 5*weights_for_all["common_words"]
     else:
         feedback.append("⚠️ Add More Industry-Relevant Keywords")
 
@@ -438,18 +506,17 @@ def calculate_skills_efficiency_ratio(hard_skills_count, soft_skills_count):
     ratio = hard_skills_count / (soft_skills_count + 1)
     score = max(0, min(10 - abs(ratio - 1) * 5, 10))
 
-    warning = None
+    feedback = None
     if ratio > 2:
-        warning = f"Too many hard skills ({hard_skills_count}). Consider adding more soft skills."
+        feedback = f"Too many hard skills ({hard_skills_count}). Consider adding more soft skills."
     elif ratio < 0.5:
-        warning = f"Too many soft skills ({soft_skills_count}). Consider adding more technical expertise."
+        feedback = f"Too many soft skills ({soft_skills_count}). Consider adding more technical expertise."
 
-    return round(score, 2), warning
+    return round(score, 2), feedback
 
 
 def check_semantic_analysis(resume, ats_report):
     score = 0
-    total_score = 30
 
     # 1. Measurable Achievements
     achievement_count = len(resume.get("experience", []))
@@ -459,7 +526,7 @@ def check_semantic_analysis(resume, ats_report):
     elif achievement_count == 1:
         score += 5
     elif achievement_count < 1:
-        ats_report["warnings"].append("Lack of Measurable Achievements - Consider adding quantifiable data.")
+        ats_report["feedback"].append("Lack of Measurable Achievements - Consider adding quantifiable data.")
 
         
 
@@ -467,12 +534,12 @@ def check_semantic_analysis(resume, ats_report):
     soft_skills, hard_skills = categorize_skills(resume)
 
     if not soft_skills:
-        ats_report["warnings"].append("Insufficient Soft Skills - Consider adding communication, teamwork, or leadership skills.")
+        ats_report["feedback"].append("Insufficient Soft Skills - Consider adding communication, teamwork, or leadership skills.")
     else:
         score += 5  
 
     if not hard_skills:
-        ats_report["warnings"].append("Insufficient Hard Skills - Consider adding technical or industry-specific skills.")
+        ats_report["feedback"].append("Insufficient Hard Skills - Consider adding technical or industry-specific skills.")
     else:
         score += 5  
 
@@ -480,9 +547,9 @@ def check_semantic_analysis(resume, ats_report):
     hard_skills_count = len(hard_skills)
     soft_skills_count = len(soft_skills)
     efficiency_score, warning = calculate_skills_efficiency_ratio(hard_skills_count, soft_skills_count)
-    score += efficiency_score
+    score += efficiency_score*weights_for_all["skills_ratio"]
     if warning:
-        ats_report["warnings"].append(warning)
+        ats_report["feedback"].append(warning)
 
     return score, ats_report
 
@@ -490,22 +557,6 @@ def check_semantic_analysis(resume, ats_report):
 
 
 def check_job_title_relevance(experience):
-    # title = experience.get("role", "").strip().lower()
-    # description_list = experience.get("description", [])
-    # description = " ".join(description_list).strip().lower()
-
-    # if not title or not description:
-    #     return False, "⚠️ Missing job title or description."
-
-    # # Cross-encoder takes both strings at once
-    # similarity_score = model.predict([(title, description)])[0]
-
-    # relevance_threshold = 0.35  # You can tune this
-
-    # if similarity_score < relevance_threshold:
-    #     return False, f"⚠️ The job description for '{title}' seems unrelated. Similarity Score: {similarity_score:.2f}."
-    
-    # return True, f"✅ Relevance passed. Similarity Score: {similarity_score:.2f}"
     for experiences in experience:
         title = experiences.get("role", "").strip().lower()
         description_list = experiences.get("description", [])
@@ -517,7 +568,7 @@ def check_job_title_relevance(experience):
         # Cross-encoder takes both strings at once
         similarity_score = model.predict([(title, description)])[0]
 
-        relevance_threshold = 0.35
+        relevance_threshold = 0.30
 
         if similarity_score < relevance_threshold:
             return False, f"⚠️ The job description for '{title}' seems unrelated. Similarity Score: {similarity_score:.2f}."
@@ -558,11 +609,11 @@ def calculate_ats_score(resume):
     if not is_relevant:
         ats_report["feedback"].append(job_title_feedback)
     else:
-        ats_report["score"] += 10
+        ats_report["score"] += 10*weights_for_all["job_title_relevance"]
 
     # Normalize score to 100
     # ats_report["score"] = min(ats_report["score"], 100)
 
-    ats_report["score"] = round(ats_report["score"] / 135 * 100, 2)  # Normalize to 100
+    ats_report["score"] = round(ats_report["score"] / 266 * 100, 2)  # Normalize to 100
 
     return ats_report

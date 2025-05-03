@@ -1,13 +1,15 @@
 'use client'
 
 import Navbar from "@/components/authentication-page/Navbar";
-import MultiStepForm from "@/components/resume-builder/Modern-Elegance/MultiStepFormm";
+import MultiStepForm from "@/components/resume-builder/Modern-Elegance/MultiStepForm";
 import GeneratedResume from "@/components/resume-builder/Modern-Elegance/GeneratedResume";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import ResumeEditor from "@/components/resume-builder/Modern-Elegance/ResumeEditor";
 import FeedbackBanner from "@/components/utils/FeedbackBanner";
+import LoadingResumeBar from "@/components/utils/LoadingResume";
+
 
 export default function Home() {
 
@@ -17,6 +19,9 @@ export default function Home() {
   const [atsScore, setAtsScore] = useState(null);
   const [atsFeedback, setAtsFeedback] = useState(null);
   const [atsWarnings, setAtsWarnings] = useState(null);
+  const [isOptimizing, setIsOptimizing] = useState(false);
+
+  const resumeRef = useRef()
 
   // For development ONLY: Load from localStorage if available
   useEffect(() => {
@@ -41,6 +46,7 @@ export default function Home() {
     contact: "",
     location: "",
     email: "",
+    linkedin: "",
     summary: "",
     experience: [
       {
@@ -78,13 +84,18 @@ export default function Home() {
   const handleGenerateResume = async (minimalInput) => {
     try {
       setLoading(true);
+      setIsOptimizing(false);
 
       const response = await axios.post('http://localhost:5000/generate-resume', {
         user_data: minimalInput,
         resume_template: selectedResumeTemplate
       });
 
-      const { resume_json, ats_score, ats_feedback, ats_warnings } = response.data;
+      const { resume_json, ats_score, ats_feedback, ats_warnings, note } = response.data;
+
+      if (note?.includes("optimization")) {
+        setIsOptimizing(true); // fallback
+      }
 
       setResumeContent(resume_json);
       setAtsScore(ats_score);
@@ -106,6 +117,27 @@ export default function Home() {
   };
 
 
+  const handleATSRecalculate = async (updatedResume) => {
+    try {
+      const response = await axios.post("http://localhost:5000/calculate-ats", {
+        resume: updatedResume,
+      });
+  
+      const { ats_score, ats_feedback, ats_warnings } = response.data;
+  
+      setAtsScore(ats_score);
+      setAtsFeedback(ats_feedback);
+      setAtsWarnings(ats_warnings);
+  
+      // Optionally: Update localStorage for dev-mode caching
+      localStorage.setItem("dev_atsScore", JSON.stringify(ats_score));
+      localStorage.setItem("dev_atsFeedback", JSON.stringify(ats_feedback));
+      localStorage.setItem("dev_atsWarnings", JSON.stringify(ats_warnings));
+    } catch (error) {
+      console.error("Failed to recalculate ATS:", error);
+    }
+  };
+  
 
 
   return (
@@ -122,7 +154,9 @@ export default function Home() {
       )}
 
       {loading && (
-        <div className="text-center mt-10 text-lg font-semibold">Generating your resume...</div>
+        <div className="fixed w-screen h-screen inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+          <LoadingResumeBar isOptimizing={isOptimizing} />
+        </div>
       )}
 
       {resumeContent && !loading && (
@@ -146,10 +180,12 @@ export default function Home() {
             <ResumeEditor
               resumeData={resumeContent}
               onUpdate={(updatedResume) => setResumeContent(updatedResume)}
+              onATSRecalculate={handleATSRecalculate}
+              resumeRef = {resumeRef}
             />
           </div>
           <div className="w-6/12 bg-white h-screen overflow-y-scroll overflow-x-hidden no-scrollbar">
-            <GeneratedResume userData={resumeContent} />
+            <GeneratedResume userData={resumeContent} resumeRef={resumeRef}/>
           </div>
         </div>
       )}
