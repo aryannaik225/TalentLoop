@@ -158,6 +158,7 @@ def generate_resume():
     - **DO NOT include ```json or any kind of markdown. If you do, the response will be REJECTED. JSON ONLY.**
     - **FIRST SORT THE ALREADY PROVIDED SKILLS INTO THE CATEGORIES AND THEN YOU MIGHT ADD NEW IF REQUIRED**
     - **Let the WORD COUNT be between 300 and 1000**
+    - **USE CORRECT SET OF OPENING AND CLOSING BRACKETS**
     - **Avoid Personal Pronouns.**
     - **Keep the VOCABULARY LEVEL ABOUVE AVERAGE.**
     - **Keep the READABILITY LEVEL AVERAGE.**
@@ -221,6 +222,7 @@ def calculate_ats():
     
     try:
        ats_result = calculate_ats_score(resume)
+       print("Sending final resume and ATS score to frontend")
        return jsonify({
            "ats_score": ats_result["score"],
            "ats_feedback": ats_result["feedback"],
